@@ -9,20 +9,28 @@ const supabase = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY!)
 
-async function sendEmail(
-  to: string,
-  subject: string,
-  text: string,
+async function sendEmail({
+  to,
+  subject,
+  text,
+  html,
+  replyTo,
+}: {
+  to: string
+  subject: string
+  text: string
   html?: string
-) {
+  replyTo?: string
+}) {
   const { data, error } = await resend.emails.send({
-    from: 'AttorneyAbogado <noreply@attorneyabogado.com>',
-    to,
+    from: 'AttorneyAbogado <info@networkingleads.com>',
+    to: [to],
     subject,
     text,
     html:
       html ||
       `<div style="font-family:Arial,sans-serif;white-space:pre-line">${text}</div>`,
+    replyTo,
   })
 
   if (error) {
@@ -63,7 +71,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get attorney information
     const { data: attorneyData, error: attorneyError } = await supabase
       .from('attorneys')
       .select('*')
@@ -71,13 +78,13 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (attorneyError || !attorneyData) {
+      console.error(attorneyError)
       return NextResponse.json(
         { error: 'Attorney not found' },
         { status: 404 }
       )
     }
 
-    // Save lead
     const { data: leadData, error: leadError } = await supabase
       .from('leads')
       .insert([
@@ -94,7 +101,7 @@ export async function POST(request: NextRequest) {
       .select()
 
     if (leadError) {
-      console.error(leadError)
+      console.error('Supabase Error:', leadError)
 
       return NextResponse.json(
         { error: 'Failed to save lead' },
@@ -102,14 +109,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    //
-    // EMAIL TO ATTORNEY
-    //
+    // Email attorney
     if (attorneyData.email) {
-      await sendEmail(
-        attorneyData.email,
-        `New Lead - ${fullName}`,
-        `
+      await sendEmail({
+        to: attorneyData.email,
+        subject: `New Lead - ${fullName}`,
+        replyTo: email,
+        text: `
 New Lead Received
 
 Client:
@@ -133,7 +139,7 @@ ${county}
 Legal Issue:
 ${legalIssue}
 `,
-        `
+        html: `
 <h2>New Lead Received</h2>
 
 <p><strong>Client:</strong> ${fullName}</p>
@@ -148,23 +154,21 @@ ${legalIssue}
 
 <p><strong>County:</strong> ${county}</p>
 
-<p><strong>Legal Issue</strong></p>
+<p><strong>Legal Issue:</strong></p>
 
 <p>${legalIssue.replace(/\n/g, '<br>')}</p>
-`
-      )
+`,
+      })
     }
 
-    //
-    // CONFIRMATION EMAIL
-    //
-    await sendEmail(
-      email,
-      'We Received Your Request',
-      `
+    // Confirmation email
+    await sendEmail({
+      to: email,
+      subject: 'We Received Your Request',
+      text: `
 Thank you for contacting AttorneyAbogado.
 
-We've successfully received your information and forwarded it to:
+We've successfully received your request and forwarded your information to:
 
 ${attorneyData.firm_name || attorneyData.name}
 
@@ -174,7 +178,7 @@ Thank you,
 
 AttorneyAbogado
 `,
-      `
+      html: `
 <h2>Thank You!</h2>
 
 <p>We've successfully received your request.</p>
@@ -186,19 +190,24 @@ AttorneyAbogado
 <p>An attorney should contact you shortly.</p>
 
 <p>Thank you for using AttorneyAbogado.</p>
-`
-    )
-
-    return NextResponse.json({
-      success: true,
-      lead: leadData,
-    })
-  } catch (err) {
-    console.error(err)
+`,
+      })
 
     return NextResponse.json(
       {
-        error: 'Internal Server Error',
+        success: true,
+        data: leadData,
+      },
+      {
+        status: 200,
+      }
+    )
+  } catch (error) {
+    console.error('API Error:', error)
+
+    return NextResponse.json(
+      {
+        error: 'Internal server error',
       },
       {
         status: 500,
