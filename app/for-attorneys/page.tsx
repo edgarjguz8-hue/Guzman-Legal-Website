@@ -107,7 +107,7 @@ export default function ForAttorneysPage() {
                 href="mailto:info@attorneyabogado.com"
                 className="inline-flex items-center gap-4 rounded-md bg-white px-8 py-4 font-black text-[#071226] shadow-xl"
               >
-                {copy("forAttorneys.checkAvailability", "Check Availability")}
+                {copy("forAttorneys.getListed", "Get Listed")}
                 <ArrowRight className="h-5 w-5" />
               </a>
 
@@ -129,58 +129,49 @@ export default function ForAttorneysPage() {
           </div>
 
           <div className="rounded-xl border border-white/10 bg-white/[0.05] p-8 shadow-2xl">
-            <div className="grid gap-8 md:grid-cols-[0.8fr_1fr]">
-              <div>
-                <p className="text-sm font-black uppercase tracking-wide text-white/70">
-                  {copy("forAttorneys.previewTitle", "Exclusive Territory Preview")}
-                </p>
+            <div className="max-w-md">
+              <p className="text-sm font-black uppercase tracking-wide text-white/70">
+                {copy("forAttorneys.previewTitle", "Exclusive Territory Preview")}
+              </p>
 
-                <h2
-                  className="mt-6 text-3xl font-black"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {copy("forAttorneys.previewPractice", "Personal Injury")}
-                </h2>
+              <h2
+                className="mt-6 text-3xl font-black"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {copy("forAttorneys.previewPractice", "Personal Injury")}
+              </h2>
 
-                <p className="mt-6 text-lg font-black">
-                  {copy("forAttorneys.previewZip", "ZIP 33602")}
-                </p>
-                <p className="mt-2 font-bold text-white/80">
-                  {copy("forAttorneys.previewCounty", "Hillsborough County, FL")}
-                </p>
+              <p className="mt-6 text-lg font-black">
+                {copy("forAttorneys.previewZip", "ZIP 33602")}
+              </p>
 
-                <div className="my-7 h-px bg-white/10" />
+              <p className="mt-2 font-bold text-white/80">
+                {copy("forAttorneys.previewCounty", "Hillsborough County, FL")}
+              </p>
 
-                <p className="text-sm font-black uppercase tracking-wide text-white/60">
-                  {copy("forAttorneys.status", "Status")}
-                </p>
-                <p className="mt-2 text-3xl font-black text-[#21d37c]">
-                  {copy("forAttorneys.available", "Available")}
-                </p>
+              <div className="my-7 h-px bg-white/10" />
 
-                <p className="mt-5 max-w-[220px] text-base font-semibold leading-relaxed text-white/85">
-                  {copy(
-                    "forAttorneys.onlyOne",
-                    "Only 1 attorney can own this territory.",
-                  )}
-                </p>
+              <p className="text-sm font-black uppercase tracking-wide text-white/60">
+                {copy("forAttorneys.status", "Status")}
+              </p>
 
-                <a
-                  href="mailto:info@attorneyabogado.com"
-                  className="mt-8 inline-flex rounded-md bg-white px-8 py-4 font-black text-[#071226]"
-                >
-                  {copy("forAttorneys.checkAvailability", "Check Availability")}
-                </a>
-              </div>
+              <p className="mt-2 text-3xl font-black text-[#21d37c]">
+                {copy("forAttorneys.available", "Available")}
+              </p>
 
-              <div className="relative flex min-h-[300px] items-center justify-center">
-                <div className="absolute inset-0 rounded-xl bg-[#071a38]/40" />
-                <div className="relative h-[290px] w-[240px] opacity-70">
-                  <div className="absolute left-10 top-3 h-[250px] w-[155px] rounded-[45%_45%_35%_35%] border-2 border-white/15" />
-                  <div className="absolute left-16 top-40 h-16 w-24 rounded-br-[80px] rounded-tl-[30px] bg-[#006dff]" />
-                  <MapPin className="absolute left-[125px] top-[120px] h-12 w-12 fill-white text-white" />
-                </div>
-              </div>
+              <p className="mt-5 max-w-[220px] text-base font-semibold leading-relaxed text-white/85">
+                {copy(
+                  "forAttorneys.onlyOne",
+                  "Only 1 attorney can own this territory.",
+                )}
+              </p>
+
+              <a
+                href="mailto:info@attorneyabogado.com"
+                className="mt-8 inline-flex rounded-md bg-white px-8 py-4 font-black text-[#071226]"
+              >
+                {copy("forAttorneys.getListed", "Get Listed")}
+              </a>
             </div>
           </div>
         </div>
@@ -208,6 +199,7 @@ export default function ForAttorneysPage() {
             >
               {copy("forAttorneys.whatWeDoTitle", "What We Do")}
             </h2>
+
             <div className="mt-3 h-1 w-9 bg-[#006dff]" />
 
             <h3 className="mt-5 max-w-[720px] text-2xl font-black leading-snug">
@@ -245,6 +237,7 @@ export default function ForAttorneysPage() {
               "Why Attorneys Choose AttorneyAbogado",
             )}
           </h2>
+
           <div className="mx-auto mt-3 h-1 w-9 bg-[#006dff]" />
 
           <p className="mt-3 text-lg font-black text-[#071226]">
@@ -268,8 +261,9 @@ export default function ForAttorneysPage() {
               return (
                 <div
                   key={item.title}
-                  className={`px-7 text-center ${index !== 0 ? "lg:border-l lg:border-slate-200" : ""
-                    }`}
+                  className={`px-7 text-center ${
+                    index !== 0 ? "lg:border-l lg:border-slate-200" : ""
+                  }`}
                 >
                   <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff]">
                     <Icon className="h-8 w-8 text-[#006dff]" />
@@ -295,6 +289,7 @@ export default function ForAttorneysPage() {
           >
             {copy("forAttorneys.pricingTitle", "Simple, Transparent Pricing")}
           </h2>
+
           <div className="mx-auto mt-3 h-1 w-9 bg-[#006dff]" />
 
           <div className="mt-5 grid gap-7 md:grid-cols-2">
