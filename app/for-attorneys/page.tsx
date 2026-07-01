@@ -59,38 +59,29 @@ export default function ForAttorneysPage() {
   ]
 
   const monthlyFeatures = [
-  copy(
-    "forAttorneys.priceFeature1",
-    "Exclusive rights to your ZIP code & practice area",
-  ),
-  copy(
-    "forAttorneys.priceFeature2",
-    "High-quality, pre-qualified leads",
-  ),
-  copy(
-    "forAttorneys.priceFeature3",
-    "Direct connections with people actively seeking legal help",
-  ),
-  copy(
-    "forAttorneys.priceFeature4",
-    "Cancel anytime",
-  ),
-]
+    copy(
+      "forAttorneys.priceFeature1",
+      "Exclusive rights to your ZIP code & practice area",
+    ),
+    copy("forAttorneys.priceFeature2", "High-quality, pre-qualified leads"),
+    copy(
+      "forAttorneys.priceFeature3",
+      "Direct connections with people actively seeking legal help",
+    ),
+    copy("forAttorneys.priceFeature4", "Cancel anytime"),
+  ]
 
-const yearlyFeatures = [
-  copy(
-    "forAttorneys.priceFeature1",
-    "Exclusive rights to your ZIP code & practice area",
-  ),
-  copy(
-    "forAttorneys.priceFeature2",
-    "High-quality, pre-qualified leads",
-  ),
-  copy(
-    "forAttorneys.priceFeature3",
-    "Direct connections with people actively seeking legal help",
-  ),
-]
+  const yearlyFeatures = [
+    copy(
+      "forAttorneys.priceFeature1",
+      "Exclusive rights to your ZIP code & practice area",
+    ),
+    copy("forAttorneys.priceFeature2", "High-quality, pre-qualified leads"),
+    copy(
+      "forAttorneys.priceFeature3",
+      "Direct connections with people actively seeking legal help",
+    ),
+  ]
 
   return (
     <main className="min-h-screen bg-white text-[#071226]">
@@ -297,7 +288,7 @@ const yearlyFeatures = [
               title={copy("forAttorneys.monthly", "Monthly")}
               price="$800"
               period="/mo"
-              features={pricingFeatures}
+              features={monthlyFeatures}
             />
 
             <PricingCard
@@ -305,7 +296,7 @@ const yearlyFeatures = [
               title={copy("forAttorneys.yearly", "Yearly")}
               price="$8,000"
               period="/yr"
-              features={pricingFeatures}
+              features={yearlyFeatures}
             />
           </div>
         </div>
@@ -330,6 +321,7 @@ function IconBubble({
       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-[0_6px_20px_rgba(15,23,42,0.12)] ring-1 ring-slate-200">
         <Icon className="h-7 w-7 text-[#071226]" />
       </div>
+
       <p className="mt-3 text-xs font-black leading-tight text-[#071226]">
         {text}
       </p>
