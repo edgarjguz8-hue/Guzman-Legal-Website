@@ -100,15 +100,15 @@ export default function ForAttorneysPage() {
           </p>
 
           <h1
-            className="max-w-[850px] text-5xl font-black leading-[0.95] tracking-tight md:text-7xl"
+            className="max-w-[900px] text-4xl font-black leading-[0.95] tracking-tight md:text-5xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             {copy("forAttorneys.heroTitle1", "Grow Your")}
             <br />
             {copy("forAttorneys.heroTitle2", "Legal Practice.")}
             <br />
-            <span className="text-[#006dff]">
-              {copy("forAttorneys.heroTitle3", "For Attorneys.")}
+            <span className="mt-3 block text-6xl text-white md:text-7xl">
+              {copy("forAttorneys.heroTitle3", "Get Discovered.")}
             </span>
           </h1>
 
