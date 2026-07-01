@@ -58,18 +58,39 @@ export default function ForAttorneysPage() {
     },
   ]
 
-  const pricingFeatures = [
-    copy(
-      "forAttorneys.priceFeature1",
-      "Exclusive rights to your ZIP code & practice area",
-    ),
-    copy("forAttorneys.priceFeature2", "High-quality, pre-qualified leads"),
-    copy(
-      "forAttorneys.priceFeature3",
-      "Direct connections with people actively seeking legal help",
-    ),
-    copy("forAttorneys.priceFeature4", "Cancel anytime"),
-  ]
+  const monthlyFeatures = [
+  copy(
+    "forAttorneys.priceFeature1",
+    "Exclusive rights to your ZIP code & practice area",
+  ),
+  copy(
+    "forAttorneys.priceFeature2",
+    "High-quality, pre-qualified leads",
+  ),
+  copy(
+    "forAttorneys.priceFeature3",
+    "Direct connections with people actively seeking legal help",
+  ),
+  copy(
+    "forAttorneys.priceFeature4",
+    "Cancel anytime",
+  ),
+]
+
+const yearlyFeatures = [
+  copy(
+    "forAttorneys.priceFeature1",
+    "Exclusive rights to your ZIP code & practice area",
+  ),
+  copy(
+    "forAttorneys.priceFeature2",
+    "High-quality, pre-qualified leads",
+  ),
+  copy(
+    "forAttorneys.priceFeature3",
+    "Direct connections with people actively seeking legal help",
+  ),
+]
 
   return (
     <main className="min-h-screen bg-white text-[#071226]">
