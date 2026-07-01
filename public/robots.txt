@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Allow crawling of all dynamic SEO pages
+Allow: /car-accident-lawyer*
+Allow: /personal-injury-lawyer*
+Allow: /criminal-defense-lawyer*
+Allow: /dui-lawyer*
+Allow: /family-lawyer*
+Allow: /divorce-lawyer*
+Allow: /immigration-lawyer*
+Allow: /employment-lawyer*
+Allow: /business-lawyer*
+Allow: /estate-planning-lawyer*
+Allow: /real-estate-lawyer*
+Allow: /landlord-tenant-lawyer*
+Allow: /bankruptcy-lawyer*
+Allow: /workers-compensation-lawyer*
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.next/
+
+Sitemap: https://attorneyabogado.com/sitemap.xml
