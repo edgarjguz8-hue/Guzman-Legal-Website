@@ -13,24 +13,24 @@ export default function DisclaimerPage() {
 
   return (
     <main className="min-h-screen bg-white text-[#071226]">
-      <section className="bg-[#061733] px-7 py-20 text-white">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-black uppercase tracking-wide text-[#0b6fff]">
-            AttorneyAbogado.com
-          </p>
+      <section className="relative overflow-hidden bg-[#061733] px-7 pb-20 pt-6 text-white">
+        <div className="relative z-10 mx-auto max-w-4xl">
+          <BackButton />
 
-          <h1
-            className="mt-4 text-5xl font-black"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            {copy("disclaimer.title", "Disclaimer")}
-          </h1>
+          <div className="mt-12 text-center">
+            <p className="text-sm font-black uppercase tracking-wide text-[#0b6fff]">
+              AttorneyAbogado.com
+            </p>
+
+            <h1
+              className="mt-4 text-5xl font-black"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {copy("disclaimer.title", "Disclaimer")}
+            </h1>
+          </div>
         </div>
       </section>
-
-      <div className="mx-auto max-w-4xl px-7 pt-8">
-        <BackButton />
-      </div>
 
       <section className="mx-auto max-w-4xl px-7 py-14">
         <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_16px_45px_rgba(15,23,42,0.06)] md:p-12">
