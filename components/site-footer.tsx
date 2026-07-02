@@ -21,16 +21,16 @@ export function SiteFooter() {
             <h4 className="font-bold">{t("footer.quickLinks")}</h4>
             <div className="mt-2 h-1 w-8 rounded-full bg-[#0b5fc4]" />
             <div className="mt-4 space-y-3 text-sm text-white/70">
-              <a href="/how-it-works" className="block">
+              <a href="/how-it-works" className="block hover:text-white">
                 {t("nav.howItWorks")}
               </a>
-              <a href="/get-connected" className="block">
+              <a href="/get-connected" className="block hover:text-white">
                 {t("nav.getConnected")}
               </a>
-              <a href="/resources" className="block">
+              <a href="/resources" className="block hover:text-white">
                 {t("nav.resources")}
               </a>
-              <a href="/for-attorneys" className="block">
+              <a href="/for-attorneys" className="block hover:text-white">
                 {t("nav.forAttorneys")}
               </a>
             </div>
@@ -55,9 +55,18 @@ export function SiteFooter() {
             <h4 className="font-bold">{t("footer.legal")}</h4>
             <div className="mt-2 h-1 w-8 rounded-full bg-[#0b5fc4]" />
             <div className="mt-4 space-y-3 text-sm text-white/70">
-              <p>{t("footer.privacyPolicy")}</p>
-              <p>{t("footer.terms")}</p>
-              <p>{t("footer.disclaimer")}</p>
+              <a href="/legal/privacy" className="block hover:text-white">
+                {t("footer.privacyPolicy")}
+              </a>
+              <a href="/legal/terms" className="block hover:text-white">
+                {t("footer.terms")}
+              </a>
+              <a href="/legal/disclaimer" className="block hover:text-white">
+                {t("footer.disclaimer")}
+              </a>
+              <a href="/legal/accessibility" className="block hover:text-white">
+                Accessibility
+              </a>
             </div>
           </div>
 
@@ -106,7 +115,26 @@ export function SiteFooter() {
 
         <div className="mt-8 border-t border-white/10 pt-6 text-center text-sm text-white/60">
           <p>© 2026 AttorneyAbogado.com. {t("footer.rights")}</p>
-          <p className="mt-2">{t("footer.advertising")}</p>
+
+          <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2">
+            <a href="/legal/privacy" className="hover:text-white">
+              {t("footer.privacyPolicy")}
+            </a>
+            <span>•</span>
+            <a href="/legal/terms" className="hover:text-white">
+              {t("footer.terms")}
+            </a>
+            <span>•</span>
+            <a href="/legal/disclaimer" className="hover:text-white">
+              {t("footer.disclaimer")}
+            </a>
+            <span>•</span>
+            <a href="/legal/accessibility" className="hover:text-white">
+              Accessibility
+            </a>
+          </div>
+
+          <p className="mt-3">{t("footer.advertising")}</p>
         </div>
       </div>
     </footer>
