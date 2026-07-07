@@ -15,20 +15,30 @@ import {
 type Article = {
   id: string
   title: string
+  title_es: string | null
   slug: string
   category: string | null
+  category_es: string | null
   excerpt: string | null
+  excerpt_es: string | null
   image_url: string | null
   read_time: string | null
+  read_time_es: string | null
   published_date: string | null
 }
 
+type Topic = {
+  category: string
+  category_es: string | null
+}
+
 export default function ResourcesPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const isSpanish = language === "es"
 
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [articles, setArticles] = useState<Article[]>([])
-  const [topics, setTopics] = useState<string[]>([])
+  const [topics, setTopics] = useState<Topic[]>([])
 
   useEffect(() => {
     async function loadResources() {
@@ -44,9 +54,20 @@ export default function ResourcesPage() {
 
       const { data: articleData, error: articleError } = await supabase
         .from("articles")
-        .select(
-          "id, title, slug, category, excerpt, image_url, read_time, published_date"
-        )
+        .select(`
+          id,
+          title,
+          title_es,
+          slug,
+          category,
+          category_es,
+          excerpt,
+          excerpt_es,
+          image_url,
+          read_time,
+          read_time_es,
+          published_date
+        `)
         .eq("published", true)
         .eq("featured", true)
         .order("published_date", { ascending: false })
@@ -61,7 +82,7 @@ export default function ResourcesPage() {
 
       const { data: topicData, error: topicError } = await supabase
         .from("articles")
-        .select("category")
+        .select("category, category_es")
         .eq("published", true)
         .not("category", "is", null)
 
@@ -71,12 +92,18 @@ export default function ResourcesPage() {
       }
 
       const uniqueTopics = Array.from(
-        new Set(
+        new Map(
           (topicData || [])
-            .map((item) => item.category)
-            .filter(Boolean)
-        )
-      ) as string[]
+            .filter((item) => item.category)
+            .map((item) => [
+              item.category,
+              {
+                category: item.category as string,
+                category_es: item.category_es,
+              },
+            ])
+        ).values()
+      )
 
       setTopics(uniqueTopics)
     }
@@ -136,53 +163,75 @@ export default function ResourcesPage() {
             <div className="mt-7 space-y-6">
               {articles.length === 0 && (
                 <div className="rounded-xl border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
-                  No articles are published yet.
+                  {isSpanish
+                    ? "No hay artículos publicados todavía."
+                    : "No articles are published yet."}
                 </div>
               )}
 
-              {articles.map((article) => (
-                <a
-                  key={article.id}
-                  href={`/resources/${article.slug}`}
-                  className="grid overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md md:grid-cols-[250px_1fr]"
-                >
-                  <img
-                    src={article.image_url || "/placeholder.jpg"}
-                    alt={article.title}
-                    className="h-52 w-full object-cover md:h-full"
-                  />
+              {articles.map((article) => {
+                const title =
+                  isSpanish && article.title_es ? article.title_es : article.title
 
-                  <div className="p-7">
-                    {article.category && (
-                      <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#0b5fc4]">
-                        {article.category}
-                      </span>
-                    )}
+                const category =
+                  isSpanish && article.category_es
+                    ? article.category_es
+                    : article.category
 
-                    <h3 className="mt-4 text-2xl font-black leading-tight text-[#071226]">
-                      {article.title}
-                    </h3>
+                const excerpt =
+                  isSpanish && article.excerpt_es
+                    ? article.excerpt_es
+                    : article.excerpt
 
-                    {article.excerpt && (
-                      <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
-                        {article.excerpt}
-                      </p>
-                    )}
+                const readTime =
+                  isSpanish && article.read_time_es
+                    ? article.read_time_es
+                    : article.read_time || "5 min read"
 
-                    <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-500">
-                      <span className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        {formatDate(article.published_date)}
-                      </span>
+                return (
+                  <a
+                    key={article.id}
+                    href={`/resources/${article.slug}`}
+                    className="grid overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md md:grid-cols-[250px_1fr]"
+                  >
+                    <img
+                      src={article.image_url || "/placeholder.jpg"}
+                      alt={title}
+                      className="h-52 w-full object-cover md:h-full"
+                    />
 
-                      <span className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
-                        {article.read_time || "5 min read"}
-                      </span>
+                    <div className="p-7">
+                      {category && (
+                        <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#0b5fc4]">
+                          {category}
+                        </span>
+                      )}
+
+                      <h3 className="mt-4 text-2xl font-black leading-tight text-[#071226]">
+                        {title}
+                      </h3>
+
+                      {excerpt && (
+                        <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                          {excerpt}
+                        </p>
+                      )}
+
+                      <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-500">
+                        <span className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          {formatDate(article.published_date, isSpanish)}
+                        </span>
+
+                        <span className="flex items-center gap-2">
+                          <Clock className="h-4 w-4" />
+                          {readTime}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              ))}
+                  </a>
+                )
+              })}
             </div>
 
             <a
@@ -200,20 +249,29 @@ export default function ResourcesPage() {
             <div className="mt-7 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
               {topics.length === 0 && (
                 <div className="px-7 py-6 text-slate-600">
-                  No topics yet.
+                  {isSpanish ? "No hay temas todavía." : "No topics yet."}
                 </div>
               )}
 
-              {topics.map((topic) => (
-                <a
-                  key={topic}
-                  href={`/resources?category=${encodeURIComponent(topic)}`}
-                  className="flex items-center justify-between border-b border-slate-200 px-7 py-6 font-black last:border-b-0"
-                >
-                  {topic}
-                  <ArrowRight className="h-5 w-5 text-[#0b5fc4]" />
-                </a>
-              ))}
+              {topics.map((topic) => {
+                const topicLabel =
+                  isSpanish && topic.category_es
+                    ? topic.category_es
+                    : topic.category
+
+                return (
+                  <a
+                    key={topic.category}
+                    href={`/resources?category=${encodeURIComponent(
+                      topic.category
+                    )}`}
+                    className="flex items-center justify-between border-b border-slate-200 px-7 py-6 font-black last:border-b-0"
+                  >
+                    {topicLabel}
+                    <ArrowRight className="h-5 w-5 text-[#0b5fc4]" />
+                  </a>
+                )
+              })}
 
               <a
                 href="/resources"
@@ -250,8 +308,9 @@ export default function ResourcesPage() {
                     </span>
 
                     <ChevronDown
-                      className={`h-5 w-5 text-[#0b5fc4] transition-transform duration-300 ${isOpen ? "rotate-180" : ""
-                        }`}
+                      className={`h-5 w-5 text-[#0b5fc4] transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
 
@@ -330,10 +389,10 @@ function SectionTitle({ title }: { title: string }) {
   )
 }
 
-function formatDate(date: string | null) {
+function formatDate(date: string | null, isSpanish: boolean) {
   if (!date) return ""
 
-  return new Date(date).toLocaleDateString("en-US", {
+  return new Date(date).toLocaleDateString(isSpanish ? "es-US" : "en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
