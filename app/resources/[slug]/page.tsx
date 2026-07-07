@@ -139,7 +139,7 @@ export default async function ArticlePage({
                 .map((paragraph, index) => (
                   <p
                     key={index}
-                    className="mb-8 indent-8 leading-8"
+                   className="mb-5 leading-8"
                   >
                     {paragraph.trim()}
                   </p>
