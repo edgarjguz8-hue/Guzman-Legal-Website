@@ -127,20 +127,20 @@ export default function ResourcesPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] text-[#071226]">
-      <section className="bg-[#082f63] px-7 pt-6 text-white">
+    <main className="min-h-screen overflow-x-hidden bg-[#f8fafc] text-[#071226]">
+      <section className="bg-[#082f63] px-5 pt-6 text-white sm:px-7">
         <div className="mx-auto max-w-[1400px]">
           <SiteHeader activePage="resources" />
         </div>
 
-        <div className="relative mx-auto mt-12 max-w-[1400px] overflow-hidden pb-24 pt-20">
-          <div className="pointer-events-none absolute right-12 top-6 text-[220px] font-black text-white/10">
+        <div className="relative mx-auto mt-6 max-w-[1400px] overflow-hidden px-1 pb-14 pt-8 sm:mt-8 sm:pb-16 sm:pt-12 md:mt-12 md:px-0 md:pb-24 md:pt-20">
+          <div className="pointer-events-none absolute bottom-8 right-4 text-[130px] font-black text-white/10 sm:right-12 sm:top-6 sm:text-[180px] md:text-[220px]">
             ⚖
           </div>
 
           <div className="relative z-10">
             <h1
-              className="text-6xl font-black tracking-tight md:text-7xl"
+              className="max-w-[320px] text-5xl font-black leading-none tracking-tight sm:max-w-full sm:text-6xl md:text-7xl"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               {t("resources.title")}
@@ -148,14 +148,14 @@ export default function ResourcesPage() {
 
             <div className="mt-4 h-1 w-12 rounded-full bg-[#0b5fc4]" />
 
-            <p className="mt-5 max-w-2xl text-xl text-white/90">
+            <p className="mt-5 max-w-2xl text-lg leading-7 text-white/90 sm:text-xl">
               {t("resources.subtitle")}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="px-7 py-16">
+      <section className="px-5 py-12 sm:px-7 sm:py-16">
         <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <SectionTitle title={t("resources.helpfulArticles")} />
@@ -200,7 +200,7 @@ export default function ResourcesPage() {
                       className="h-52 w-full object-cover md:h-full"
                     />
 
-                    <div className="p-7">
+                    <div className="p-6 sm:p-7">
                       {category && (
                         <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#0b5fc4]">
                           {category}
@@ -285,7 +285,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="px-7 pb-14">
+      <section className="px-5 pb-14 sm:px-7">
         <div className="mx-auto max-w-[1400px] border-t border-slate-200 pt-12">
           <SectionTitle title={t("resources.faqTitle")} />
 
@@ -336,15 +336,15 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="px-7 pb-20">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-8 rounded-2xl bg-[#eef5ff] p-8 md:flex-row">
+      <section className="px-5 pb-20 sm:px-7">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-8 rounded-2xl bg-[#eef5ff] p-6 sm:p-8 md:flex-row">
           <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white">
               <Mail className="h-8 w-8 text-[#0b5fc4]" />
             </div>
 
             <div>
-              <h3 className="text-3xl font-black">
+              <h3 className="text-2xl font-black sm:text-3xl">
                 {t("resources.stayInformed")}
               </h3>
 
@@ -354,7 +354,7 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          <form className="flex w-full gap-4 md:max-w-[620px]">
+          <form className="flex w-full flex-col gap-4 sm:flex-row md:max-w-[620px]">
             <input
               type="email"
               placeholder={t("resources.emailPlaceholder")}
@@ -363,7 +363,7 @@ export default function ResourcesPage() {
 
             <button
               type="submit"
-              className="rounded-lg bg-[#0b5fc4] px-8 font-black text-white"
+              className="h-14 rounded-lg bg-[#0b5fc4] px-8 font-black text-white"
             >
               {t("resources.subscribe")}
             </button>
@@ -378,7 +378,7 @@ function SectionTitle({ title }: { title: string }) {
   return (
     <div>
       <h2
-        className="text-3xl font-black text-[#071226]"
+        className="text-3xl font-black text-[#071226] sm:text-4xl"
         style={{ fontFamily: "var(--font-heading)" }}
       >
         {title}
