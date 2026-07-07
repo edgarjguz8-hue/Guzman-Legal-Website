@@ -20,7 +20,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const linkClass = (page: SiteHeaderProps["activePage"]) =>
-    `flex h-11 items-center border-b-2 text-sm font-bold ${
+    `flex h-11 items-center justify-center border-b-2 text-sm font-bold ${
       activePage === page ? "border-white" : "border-transparent"
     }`
 
@@ -31,16 +31,15 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
 
   return (
     <header className="relative z-50 mx-auto w-full max-w-[1400px] border-b border-white/12">
-      <div className="flex h-20 items-center justify-between">
+      <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center">
         <Link
           href="/"
-          className="shrink-0 text-xl font-bold tracking-tight text-white sm:text-2xl"
+          className="justify-self-start text-xl font-bold tracking-tight text-white sm:text-2xl"
         >
           AttorneyAbogado.com
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center justify-center gap-4 lg:flex">
+        <nav className="hidden items-center justify-center gap-8 lg:flex">
           <Link href="/how-it-works" className={linkClass("how-it-works")}>
             {t("nav.howItWorks")}
           </Link>
@@ -52,10 +51,10 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
           <Link href="/resources" className={linkClass("resources")}>
             {t("nav.resources")}
           </Link>
+        </nav>
 
-          <div className="flex h-11 min-w-[100px] items-center justify-center">
-            <LanguageToggle />
-          </div>
+        <div className="hidden items-center justify-end gap-6 lg:flex">
+          <LanguageToggle />
 
           <Link
             href="/for-attorneys"
@@ -63,20 +62,18 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
           >
             {t("nav.forAttorneys")}
           </Link>
-        </nav>
+        </div>
 
-        {/* Mobile button */}
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white lg:hidden"
+          className="justify-self-end inline-flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white lg:hidden"
           aria-label="Open menu"
         >
           {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <div className="absolute left-0 right-0 top-20 z-50 rounded-b-2xl border border-white/10 bg-[#082f63] p-4 shadow-2xl lg:hidden">
           <nav className="space-y-2">
