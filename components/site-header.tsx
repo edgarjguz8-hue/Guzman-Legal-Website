@@ -31,10 +31,10 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
 
   return (
     <header className="relative z-[9999] mx-auto w-full max-w-[1400px] border-b border-white/12">
-      <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center">
+      <div className="flex h-20 items-center justify-between">
         <Link
           href="/"
-          className="justify-self-start truncate pr-3 text-[22px] font-bold tracking-tight text-white sm:text-2xl"
+          className="min-w-0 truncate pr-3 text-[22px] font-bold tracking-tight text-white sm:text-2xl"
         >
           AttorneyAbogado.com
         </Link>
@@ -67,7 +67,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex h-12 w-12 items-center justify-center justify-self-end rounded-xl bg-white/10 text-white lg:hidden"
+          className="ml-4 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white lg:hidden"
           aria-label="Open menu"
         >
           {menuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
