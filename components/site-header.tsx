@@ -39,7 +39,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
           AttorneyAbogado.com
         </Link>
 
-        <nav className="hidden items-center justify-center gap-8 lg:flex">
+        <nav className="hidden items-center justify-center gap-12 lg:flex">
           <Link href="/how-it-works" className={linkClass("how-it-works")}>
             {t("nav.howItWorks")}
           </Link>
