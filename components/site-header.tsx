@@ -25,16 +25,16 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
     }`
 
   const mobileLinkClass = (page: SiteHeaderProps["activePage"]) =>
-    `block rounded-lg px-4 py-3 text-base font-bold ${
+    `block rounded-xl px-5 py-4 text-lg font-bold ${
       activePage === page ? "bg-white/10 text-white" : "text-white"
     }`
 
   return (
-    <header className="relative z-50 mx-auto w-full max-w-[1400px] border-b border-white/12">
-      <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center">
+    <header className="relative z-[9999] mx-auto w-full max-w-[1400px] border-b border-white/12">
+      <div className="flex h-20 items-center justify-between gap-3">
         <Link
           href="/"
-          className="justify-self-start text-xl font-bold tracking-tight text-white sm:text-2xl"
+          className="shrink-0 whitespace-nowrap text-[18px] font-bold tracking-tight text-white sm:text-2xl"
         >
           AttorneyAbogado.com
         </Link>
@@ -67,7 +67,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="justify-self-end inline-flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white lg:hidden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white lg:hidden"
           aria-label="Open menu"
         >
           {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -75,7 +75,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
       </div>
 
       {menuOpen && (
-        <div className="absolute left-0 right-0 top-20 z-50 rounded-b-2xl border border-white/10 bg-[#082f63] p-4 shadow-2xl lg:hidden">
+        <div className="fixed left-4 right-4 top-24 z-[99999] rounded-2xl border border-white/10 bg-[#061a38] p-5 shadow-2xl lg:hidden">
           <nav className="space-y-2">
             <Link
               href="/how-it-works"
@@ -109,7 +109,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               {t("nav.forAttorneys")}
             </Link>
 
-            <div className="px-4 py-3">
+            <div className="px-5 py-4">
               <LanguageToggle />
             </div>
           </nav>
