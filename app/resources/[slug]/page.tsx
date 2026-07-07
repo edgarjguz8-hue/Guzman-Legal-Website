@@ -8,7 +8,7 @@ type Article = {
   title: string
   slug: string
   category: string | null
-  excerpt: string |null
+  excerpt: string | null
   content: string | null
   image_url: string | null
   read_time: string | null
@@ -132,8 +132,18 @@ export default async function ArticlePage({
 
           {/* Article */}
           <div className="mt-12 rounded-2xl bg-white p-8 shadow-sm">
-            <div className="whitespace-pre-wrap text-lg leading-9 text-slate-700">
-              {article.content}
+            <div className="text-lg leading-8 text-slate-700">
+              {article.content
+                ?.split(/\n\s*\n/)
+                .filter((paragraph) => paragraph.trim() !== "")
+                .map((paragraph, index) => (
+                  <p
+                    key={index}
+                   className="mb-5 leading-8"
+                  >
+                    {paragraph.trim()}
+                  </p>
+                ))}
             </div>
 
             {/* Disclaimer */}
