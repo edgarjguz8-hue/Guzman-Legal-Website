@@ -8,7 +8,7 @@ type Article = {
   title: string
   slug: string
   category: string | null
-  excerpt: string | null
+  excerpt: string |null
   content: string | null
   image_url: string | null
   read_time: string | null
@@ -68,7 +68,9 @@ export default async function ArticlePage({
               ← Back to Resources
             </Link>
 
-            <h1 className="mt-8 text-4xl font-black">Article not found</h1>
+            <h1 className="mt-8 text-4xl font-black">
+              Article not found
+            </h1>
           </div>
         </section>
       </main>
@@ -128,8 +130,26 @@ export default async function ArticlePage({
             />
           )}
 
-          <div className="mt-12 rounded-2xl bg-white p-8 text-lg leading-9 text-slate-700 shadow-sm">
-            {article.content}
+          {/* Article */}
+          <div className="mt-12 rounded-2xl bg-white p-8 shadow-sm">
+            <div className="whitespace-pre-wrap text-lg leading-9 text-slate-700">
+              {article.content}
+            </div>
+
+            {/* Disclaimer */}
+            <div className="mt-12 rounded-2xl border border-blue-100 bg-blue-50 p-6">
+              <h3 className="mb-3 text-xl font-black text-[#071226]">
+                Disclaimer
+              </h3>
+
+              <p className="text-base leading-7 text-slate-700">
+                <strong>Disclaimer:</strong> This article is for informational
+                purposes only and does not constitute legal advice. Every legal
+                matter is unique, and reading this article does not create an
+                attorney-client relationship. For advice regarding your specific
+                situation, consider speaking with a qualified attorney.
+              </p>
+            </div>
           </div>
         </div>
       </article>
