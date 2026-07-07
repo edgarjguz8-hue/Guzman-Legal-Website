@@ -134,7 +134,7 @@ export default function ResourcesPage() {
         </div>
 
         <div className="relative mx-auto mt-6 max-w-[1400px] overflow-hidden px-1 pb-14 pt-8 sm:mt-8 sm:pb-16 sm:pt-12 md:mt-12 md:px-0 md:pb-24 md:pt-20">
-          <div className="pointer-events-none absolute bottom-8 right-4 text-[130px] font-black text-white/10 sm:right-12 sm:top-6 sm:text-[180px] md:text-[220px]">
+          <div className="pointer-events-none absolute right-12 top-6 hidden text-[180px] font-black text-white/10 md:block md:text-[220px]">
             ⚖
           </div>
 
