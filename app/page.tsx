@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { createClient } from "@supabase/supabase-js"
 import { useLanguage } from "@/contexts/language-context"
 import { SiteHeader } from "@/components/site-header"
 import {
@@ -18,14 +19,54 @@ import {
   FileText,
 } from "lucide-react"
 
+type Article = {
+  id: string
+  title: string
+  title_es: string | null
+  slug: string
+  excerpt: string | null
+  excerpt_es: string | null
+}
+
 export default function HomePage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const isSpanish = language === "es"
+
   const [zipCode, setZipCode] = useState("")
   const [selectedArea, setSelectedArea] = useState("")
   const [showDropdown, setShowDropdown] = useState(false)
   const [loading, setLoading] = useState(false)
   const [notAvailableMessage, setNotAvailableMessage] = useState("")
+  const [articles, setArticles] = useState<Article[]>([])
   const router = useRouter()
+
+  useEffect(() => {
+    async function loadArticles() {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+      if (!supabaseUrl || !supabaseKey) return
+
+      const supabase = createClient(supabaseUrl, supabaseKey)
+
+      const { data, error } = await supabase
+        .from("articles")
+        .select("id, title, title_es, slug, excerpt, excerpt_es")
+        .eq("published", true)
+        .eq("featured", true)
+        .order("published_date", { ascending: false })
+        .limit(3)
+
+      if (error) {
+        console.error("Homepage article fetch error:", error.message)
+        return
+      }
+
+      setArticles(data || [])
+    }
+
+    loadArticles()
+  }, [])
 
   const practiceAreas = [
     { icon: Car, value: "Car Accidents & Injury", title: t("practice.carAccidents"), text: t("home.practiceCarDesc") },
@@ -401,54 +442,67 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link
-              href="/resources#articles"
-              className="group rounded-3xl bg-white p-8 shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
-            >
-              <div className="mb-6 flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff]">
-                  <FileText className="h-8 w-8 text-[#0b5fc4]" />
-                </div>
+            <div className="rounded-3xl bg-white p-8 shadow-[0_8px_24px_rgba(15,23,42,0.08)]">
+              <Link href="/resources#articles" className="group block">
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff]">
+                    <FileText className="h-8 w-8 text-[#0b5fc4]" />
+                  </div>
 
-                <h3 className="text-2xl font-black text-[#071226]">
-                  {t("home.blogCardTitle")}
-                </h3>
-              </div>
+                  <h3 className="text-2xl font-black text-[#071226]">
+                    {t("home.blogCardTitle")}
+                  </h3>
+                </div>
+              </Link>
 
               <div className="space-y-5">
-                <div className="border-b pb-4">
-                  <h4 className="font-semibold text-[#071226]">
-                    {t("home.blog1Title")}
-                  </h4>
-                  <p className="mt-1 text-sm text-slate-500">
-                    {t("home.blog1Text")}
+                {articles.length === 0 ? (
+                  <p className="text-sm text-slate-500">
+                    {isSpanish
+                      ? "No hay artículos publicados todavía."
+                      : "No articles are published yet."}
                   </p>
-                </div>
+                ) : (
+                  articles.map((article, index) => {
+                    const title =
+                      isSpanish && article.title_es ? article.title_es : article.title
 
-                <div className="border-b pb-4">
-                  <h4 className="font-semibold text-[#071226]">
-                    {t("home.blog2Title")}
-                  </h4>
-                  <p className="mt-1 text-sm text-slate-500">
-                    {t("home.blog2Text")}
-                  </p>
-                </div>
+                    const excerpt =
+                      isSpanish && article.excerpt_es
+                        ? article.excerpt_es
+                        : article.excerpt
 
-                <div>
-                  <h4 className="font-semibold text-[#071226]">
-                    {t("home.blog3Title")}
-                  </h4>
-                  <p className="mt-1 text-sm text-slate-500">
-                    {t("home.blog3Text")}
-                  </p>
-                </div>
+                    return (
+                      <Link
+                        key={article.id}
+                        href={`/resources/${article.slug}`}
+                        className={`block ${
+                          index !== articles.length - 1 ? "border-b pb-4" : ""
+                        }`}
+                      >
+                        <h4 className="font-semibold text-[#071226]">
+                          {title}
+                        </h4>
+
+                        {excerpt && (
+                          <p className="mt-1 text-sm text-slate-500">
+                            {excerpt}
+                          </p>
+                        )}
+                      </Link>
+                    )
+                  })
+                )}
               </div>
 
-              <div className="mt-8 inline-flex items-center gap-2 font-black text-[#0b5fc4]">
+              <Link
+                href="/resources#articles"
+                className="mt-8 inline-flex items-center gap-2 font-black text-[#0b5fc4]"
+              >
                 {t("resources.viewAllArticles")}
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </div>
-            </Link>
+              </Link>
+            </div>
           </div>
 
           <div className="mt-12 rounded-2xl bg-[#082f63] p-10">
