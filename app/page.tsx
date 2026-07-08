@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
 import { SiteHeader } from "@/components/site-header"
 import {
@@ -15,7 +16,6 @@ import {
   Heart,
   Globe,
   FileText,
-  BookOpen,
 } from "lucide-react"
 
 export default function HomePage() {
@@ -52,10 +52,7 @@ export default function HomePage() {
       const response = await fetch("/api/find-attorney", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          zipCode,
-          category: selectedArea,
-        }),
+        body: JSON.stringify({ zipCode, category: selectedArea }),
       })
 
       const data = await response.json()
@@ -335,13 +332,13 @@ export default function HomePage() {
               </div>
             </div>
 
-            <a
+            <Link
               href="/get-connected"
               className="mt-8 inline-flex items-center gap-4 rounded-lg bg-[#061a38] px-7 py-4 font-black text-white shadow-xl"
             >
               {t("hero.findButton")}
               <ArrowRight className="h-5 w-5" />
-            </a>
+            </Link>
           </div>
 
           <div className="overflow-hidden rounded-2xl shadow-xl">
@@ -355,9 +352,12 @@ export default function HomePage() {
       </section>
 
       <section className="bg-[#f8fafc] px-7 py-20">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1100px]">
           <div className="text-center">
-            <h2 className="text-4xl font-black text-[#071226]">
+            <h2
+              className="text-4xl font-black text-[#071226] md:text-5xl"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
               {t("home.resourcesTitle")}
             </h2>
 
@@ -366,8 +366,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-3">
-            <div className="rounded-2xl bg-white p-8 shadow-[0_8px_24px_rgba(15,23,42,0.08)]">
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <Link
+              href="/resources#faqs"
+              className="group rounded-3xl bg-white p-8 shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
+            >
               <div className="mb-6 flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff]">
                   <MessageCircle className="h-8 w-8 text-[#0b5fc4]" />
@@ -383,25 +386,25 @@ export default function HomePage() {
                   (question) => (
                     <div
                       key={question}
-                      className="flex items-center justify-between border-b pb-4"
+                      className="flex items-center justify-between border-b pb-4 text-[#071226]"
                     >
                       <span>{question}</span>
-                      <ArrowRight className="h-4 w-4 text-slate-400" />
+                      <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1 group-hover:text-[#0b5fc4]" />
                     </div>
                   )
                 )}
               </div>
 
-              <a
-                href="/resources"
-                className="mt-8 inline-flex items-center gap-2 font-black text-[#0b5fc4]"
-              >
+              <div className="mt-8 inline-flex items-center gap-2 font-black text-[#0b5fc4]">
                 {t("home.viewAllFaqs")}
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </div>
+            </Link>
 
-            <div className="rounded-2xl bg-white p-8 shadow-[0_8px_24px_rgba(15,23,42,0.08)]">
+            <Link
+              href="/resources#articles"
+              className="group rounded-3xl bg-white p-8 shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
+            >
               <div className="mb-6 flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff]">
                   <FileText className="h-8 w-8 text-[#0b5fc4]" />
@@ -414,62 +417,38 @@ export default function HomePage() {
 
               <div className="space-y-5">
                 <div className="border-b pb-4">
-                  <h4 className="font-semibold">{t("home.blog1Title")}</h4>
+                  <h4 className="font-semibold text-[#071226]">
+                    {t("home.blog1Title")}
+                  </h4>
                   <p className="mt-1 text-sm text-slate-500">
                     {t("home.blog1Text")}
                   </p>
                 </div>
 
                 <div className="border-b pb-4">
-                  <h4 className="font-semibold">{t("home.blog2Title")}</h4>
+                  <h4 className="font-semibold text-[#071226]">
+                    {t("home.blog2Title")}
+                  </h4>
                   <p className="mt-1 text-sm text-slate-500">
                     {t("home.blog2Text")}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold">{t("home.blog3Title")}</h4>
+                  <h4 className="font-semibold text-[#071226]">
+                    {t("home.blog3Title")}
+                  </h4>
                   <p className="mt-1 text-sm text-slate-500">
                     {t("home.blog3Text")}
                   </p>
                 </div>
               </div>
 
-              <a
-                href="/resources"
-                className="mt-8 inline-flex items-center gap-2 font-black text-[#0b5fc4]"
-              >
+              <div className="mt-8 inline-flex items-center gap-2 font-black text-[#0b5fc4]">
                 {t("resources.viewAllArticles")}
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-
-            <div className="rounded-2xl bg-white p-8 shadow-[0_8px_24px_rgba(15,23,42,0.08)]">
-              <div className="mb-6 flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#eef5ff]">
-                  <BookOpen className="h-8 w-8 text-[#0b5fc4]" />
-                </div>
-
-                <h3 className="text-2xl font-black text-[#071226]">
-                  {t("home.helpfulResourcesTitle")}
-                </h3>
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </div>
-
-              <div className="space-y-5">
-                <div className="border-b pb-4">{t("home.resource1")}</div>
-                <div className="border-b pb-4">{t("home.resource2")}</div>
-                <div className="border-b pb-4">{t("home.resource3")}</div>
-                <div>{t("home.resource4")}</div>
-              </div>
-
-              <a
-                href="/resources"
-                className="mt-8 inline-flex items-center gap-2 font-black text-[#0b5fc4]"
-              >
-                {t("home.viewAllResources")}
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
+            </Link>
           </div>
 
           <div className="mt-12 rounded-2xl bg-[#082f63] p-10">
@@ -483,8 +462,8 @@ export default function HomePage() {
                   {t("home.questionsSubtitle")}
                 </p>
               </div>
-              <a
 
+              <a
                 href="mailto:edgar@attorneyabogado.com?subject=Attorney%20Abogado%20Inquiry&body=Hello,%0D%0A%0D%0AI%20would%20like%20more%20information%20about..."
                 className="rounded-xl bg-white px-8 py-4 font-black text-[#071226] transition hover:bg-slate-100"
               >
