@@ -423,7 +423,7 @@ export default function HomePage() {
               </div>
 
               <div className="space-y-5">
-                {[t("home.faq1"), t("home.faq2"), t("home.faq3"), t("home.faq4")].map(
+                {[t("resources.faq1"), t("resources.faq2"), t("resources.faq3")].map(
                   (question) => (
                     <div
                       key={question}
@@ -476,9 +476,8 @@ export default function HomePage() {
                       <Link
                         key={article.id}
                         href={`/resources/${article.slug}`}
-                        className={`block ${
-                          index !== articles.length - 1 ? "border-b pb-4" : ""
-                        }`}
+                        className={`block ${index !== articles.length - 1 ? "border-b pb-4" : ""
+                          }`}
                       >
                         <h4 className="font-semibold text-[#071226]">
                           {title}
