@@ -155,7 +155,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="px-5 py-12 sm:px-7 sm:py-16">
+      <section id="articles" className="scroll-mt-24 px-5 py-12 sm:px-7 sm:py-16">
         <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <SectionTitle title={t("resources.helpfulArticles")} />
@@ -262,9 +262,7 @@ export default function ResourcesPage() {
                 return (
                   <a
                     key={topic.category}
-                    href={`/resources?category=${encodeURIComponent(
-                      topic.category
-                    )}`}
+                    href={`/resources?category=${encodeURIComponent(topic.category)}`}
                     className="flex items-center justify-between border-b border-slate-200 px-7 py-6 font-black last:border-b-0"
                   >
                     {topicLabel}
@@ -285,7 +283,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="px-5 pb-14 sm:px-7">
+      <section id="faqs" className="scroll-mt-24 px-5 pb-14 sm:px-7">
         <div className="mx-auto max-w-[1400px] border-t border-slate-200 pt-12">
           <SectionTitle title={t("resources.faqTitle")} />
 
@@ -327,7 +325,7 @@ export default function ResourcesPage() {
           </div>
 
           <a
-            href="#"
+            href="#faqs"
             className="mt-7 inline-flex items-center gap-3 font-black text-[#0b5fc4]"
           >
             {t("resources.viewAllFaqs")}
