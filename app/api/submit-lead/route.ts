@@ -179,19 +179,50 @@ Thank you,
 AttorneyAbogado
 `,
       html: `
-<h2>Thank You!</h2>
+<div style="margin:0;padding:40px;background:#f4f7fc;font-family:Arial,Helvetica,sans-serif;">
+  <div style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:18px;padding:50px 40px;border:1px solid #e5e7eb;text-align:center;">
 
-<p>We've successfully received your request.</p>
+    <div style="width:80px;height:80px;border-radius:50%;background:#eef4ff;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;">
+      <span style="font-size:42px;color:#0b6fff;line-height:1;">✓</span>
+    </div>
 
-<p>Your information has been forwarded to:</p>
+    <h1 style="margin:0;color:#061733;font-size:42px;font-weight:700;">
+      Thank You!
+    </h1>
 
-<p><strong>${attorneyData.firm_name || attorneyData.name}</strong></p>
+    <div style="width:70px;height:4px;background:#0b6fff;margin:18px auto 28px;border-radius:999px;"></div>
 
-<p>An attorney should contact you shortly.</p>
+    <p style="font-size:18px;color:#4b5563;line-height:1.6;margin:0 0 30px;">
+      We've successfully received your request.
+    </p>
 
-<p>Thank you for using AttorneyAbogado.</p>
+    <hr style="border:none;border-top:1px solid #e5e7eb;margin:30px 0;">
+
+    <p style="font-size:17px;color:#374151;margin-bottom:18px;">
+      Your information has been forwarded to:
+    </p>
+
+    <div style="display:inline-block;border:1px solid #dbe3ef;border-radius:12px;padding:18px 28px;background:#ffffff;margin-bottom:30px;">
+      <span style="font-size:24px;">⚖️</span>
+      <span style="font-size:24px;font-weight:700;color:#061733;margin-left:10px;">
+        ${attorneyData.firm_name || attorneyData.name}
+      </span>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 28px;">
+
+    <p style="font-size:17px;color:#374151;margin-bottom:16px;">
+      ⏰ Someone from <strong>${attorneyData.firm_name || attorneyData.name}</strong> should contact you shortly.
+    </p>
+
+    <p style="font-size:17px;color:#374151;margin:0;">
+      Thank you for using <strong>AttorneyAbogado</strong>.
+    </p>
+
+  </div>
+</div>
 `,
-      })
+    })
 
     return NextResponse.json(
       {
