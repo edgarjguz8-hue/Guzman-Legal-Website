@@ -211,7 +211,6 @@ Thank you for using AttorneyAbogado.
         Your Attorney Match
       </p>
 
-      <div style="font-size:34px;margin-bottom:10px;">⚖️</div>
 
       <h2 style="font-size:26px;color:#061733;margin:0 0 18px;font-weight:800;">
         ${firmName}
