@@ -85,6 +85,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const firmName = attorneyData.firm_name || attorneyData.name
+    const firstName = String(fullName).trim().split(' ')[0]
+    const logoUrl = 'https://attorneyabogado.com/aa-logo.jpg'
+
     const { data: leadData, error: leadError } = await supabase
       .from('leads')
       .insert([
@@ -109,7 +113,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Email attorney
+    // Email attorney — unchanged
     if (attorneyData.email) {
       await sendEmail({
         to: attorneyData.email,
@@ -161,37 +165,105 @@ ${legalIssue}
       })
     }
 
-    // Confirmation email
+    // Confirmation email to customer
     await sendEmail({
       to: email,
-      subject: 'We Received Your Request',
+      subject: `You're Connected with ${firmName}`,
       text: `
-Thank you for contacting AttorneyAbogado.
+Thank you, ${firstName}!
 
-We've successfully received your request and forwarded your information to:
+We've successfully received your request and matched you with:
 
-${attorneyData.firm_name || attorneyData.name}
+${firmName}
 
-Someone from their office should contact you shortly.
+Practice Area:
+${practiceArea}
 
-Thank you,
+Serving:
+${county} County
 
-AttorneyAbogado
+Someone from ${firmName} should contact you shortly.
+
+Thank you for using AttorneyAbogado.
 `,
       html: `
-<h2>Thank You!</h2>
+<div style="margin:0;padding:42px 20px;background:#f4f7fc;font-family:Arial,Helvetica,sans-serif;color:#061733;">
+  <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:22px;padding:42px 34px;border:1px solid #e5eaf2;text-align:center;box-shadow:0 12px 30px rgba(6,23,51,0.08);">
 
-<p>We've successfully received your request.</p>
+    <img src="${logoUrl}" alt="AttorneyAbogado" style="width:110px;max-width:110px;margin:0 auto 26px;display:block;border:0;" />
 
-<p>Your information has been forwarded to:</p>
+    <div style="width:72px;height:72px;border-radius:50%;background:#eef4ff;margin:0 auto 20px;line-height:72px;text-align:center;">
+      <span style="font-size:40px;color:#0b6fff;">✓</span>
+    </div>
 
-<p><strong>${attorneyData.firm_name || attorneyData.name}</strong></p>
+    <h1 style="margin:0;color:#061733;font-size:38px;font-weight:800;line-height:1.15;">
+      Thank You, ${firstName}!
+    </h1>
 
-<p>An attorney should contact you shortly.</p>
+    <div style="width:70px;height:4px;background:#0b6fff;margin:18px auto 26px;border-radius:999px;"></div>
 
-<p>Thank you for using AttorneyAbogado.</p>
+    <p style="font-size:17px;color:#475569;line-height:1.6;margin:0 0 30px;">
+      We've successfully received your request and matched you with a law firm based on your legal matter and location.
+    </p>
+
+    <div style="background:#f8fbff;border:1px solid #dbe3ef;border-radius:18px;padding:26px 24px;margin:0 0 30px;">
+      <p style="font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#0b6fff;font-weight:800;margin:0 0 16px;">
+        Your Attorney Match
+      </p>
+
+      <div style="font-size:34px;margin-bottom:10px;">⚖️</div>
+
+      <h2 style="font-size:26px;color:#061733;margin:0 0 18px;font-weight:800;">
+        ${firmName}
+      </h2>
+
+      <div style="border-top:1px solid #e5eaf2;margin:18px 0;"></div>
+
+      <p style="font-size:15px;color:#64748b;margin:0 0 6px;">
+        Practice Area
+      </p>
+      <p style="font-size:18px;color:#061733;font-weight:700;margin:0 0 18px;">
+        ${practiceArea}
+      </p>
+
+      <p style="font-size:15px;color:#64748b;margin:0 0 6px;">
+        Serving
+      </p>
+      <p style="font-size:18px;color:#061733;font-weight:700;margin:0;">
+        ${county} County
+      </p>
+    </div>
+
+    <div style="text-align:left;background:#ffffff;border:1px solid #e5eaf2;border-radius:16px;padding:22px 24px;margin-bottom:28px;">
+      <h3 style="font-size:18px;color:#061733;margin:0 0 16px;">
+        What happens next?
+      </h3>
+
+      <p style="font-size:15px;color:#334155;line-height:1.6;margin:0 0 12px;">
+        ✅ Your information has been securely sent to <strong>${firmName}</strong>.
+      </p>
+
+      <p style="font-size:15px;color:#334155;line-height:1.6;margin:0 0 12px;">
+        📞 Someone from their office should contact you shortly.
+      </p>
+
+      <p style="font-size:15px;color:#334155;line-height:1.6;margin:0;">
+        💬 If you don't hear back within one business day, simply reply to this email and our team will be happy to help.
+      </p>
+    </div>
+
+    <p style="font-size:15px;color:#475569;line-height:1.6;margin:0;">
+      Thank you for trusting <strong>AttorneyAbogado</strong>.
+    </p>
+
+    <p style="font-size:13px;color:#94a3b8;margin:14px 0 0;">
+      Connecting people with the right attorney.
+    </p>
+
+  </div>
+</div>
 `,
-      })
+    })
 
     return NextResponse.json(
       {
