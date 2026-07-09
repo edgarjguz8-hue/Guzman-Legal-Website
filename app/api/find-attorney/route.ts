@@ -40,14 +40,14 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    const county = zipMatch.county.trim()
+    const county = String(zipMatch.county).trim()
 
     const { data: attorneys, error: attorneyError } = await supabase
       .from("attorneys")
       .select("*")
       .eq("approved", true)
-      .ilike("county", county)
-      .ilike("category", cleanCategory)
+      .eq("county", county)
+      .eq("category", cleanCategory)
 
     if (attorneyError) {
       return NextResponse.json(
