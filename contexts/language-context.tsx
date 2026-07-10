@@ -80,7 +80,7 @@ const englishTranslations = {
   'hero.notAvailable': 'We are currently expanding in your area. Please check back soon.',
 
   // Practice Areas
-  'practice.carAccidents': 'Car Accidents & Injury',
+  'practice.carAccidents': 'Personal Injury',
   'practice.criminalDefense': 'Criminal Defense',
   'practice.familyLaw': 'Family Law',
   'practice.immigration': 'Immigration',
@@ -418,7 +418,7 @@ const spanishTranslations = {
   'hero.notAvailable': 'Actualmente estamos expandiendo en tu área. Por favor, vuelve pronto.',
 
   // Practice Areas
-  'practice.carAccidents': 'Accidentes Automovilísticos y Lesiones',
+  'practice.carAccidents': 'Lesiones Personales',
   'practice.criminalDefense': 'Defensa Penal',
   'practice.familyLaw': 'Derecho Familiar',
   'practice.immigration': 'Inmigración',
