@@ -69,7 +69,7 @@ export default function HomePage() {
   }, [])
 
   const practiceAreas = [
-    { icon: Car, value: "Car Accidents & Injury", title: t("practice.carAccidents"), text: t("home.practiceCarDesc") },
+    { icon: Car, value: "Personal Injury", title: t("practice.carAccidents"), text: t("home.practiceCarDesc") },
     { icon: Heart, value: "Family Law", title: t("practice.familyLaw"), text: t("home.practiceFamilyDesc") },
     { icon: Shield, value: "Criminal Defense", title: t("practice.criminalDefense"), text: t("home.practiceCriminalDesc") },
     { icon: Globe, value: "Immigration", title: t("practice.immigration"), text: t("home.practiceImmigrationDesc") },
