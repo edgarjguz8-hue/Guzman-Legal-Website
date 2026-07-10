@@ -89,7 +89,6 @@ export async function POST(request: NextRequest) {
     const firmName = attorneyData.firm_name || attorneyData.name
     const firstName = String(fullName).trim().split(' ')[0]
     const logoUrl = 'https://attorneyabogado.com/aa-logo.jpg'
-
     const formattedLegalIssue = String(legalIssue).replace(/\n/g, '<br>')
 
     const { data: leadData, error: leadError } = await supabase
@@ -173,24 +172,27 @@ ${legalIssue}
       </p>
     </div>
 
-    <div style="background:#f8fbff;border:1px solid #dbe3ef;border-radius:18px;padding:26px 24px;margin:0 0 24px;">
-      <p style="font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#0b6fff;font-weight:800;margin:0 0 20px;">
-        Client Information
+    <div style="background:#f8fbff;border:1px solid #dbe3ef;border-radius:18px;padding:28px 26px;margin:0 0 28px;">
+
+      <p style="font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#0b6fff;font-weight:800;margin:0 0 22px;">
+        Lead Information
       </p>
 
       <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
         Client Name
       </p>
 
-      <p style="font-size:18px;color:#061733;font-weight:700;margin:0 0 18px;">
+      <p style="font-size:18px;color:#061733;font-weight:700;margin:0 0 20px;">
         ${fullName}
       </p>
+
+      <div style="border-top:1px solid #e2e8f0;margin:0 0 20px;"></div>
 
       <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
         Phone
       </p>
 
-      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 18px;">
+      <p style="font-size:17px;font-weight:700;margin:0 0 20px;">
         <a
           href="tel:${phone}"
           style="color:#0b6fff;text-decoration:none;"
@@ -199,11 +201,13 @@ ${legalIssue}
         </a>
       </p>
 
+      <div style="border-top:1px solid #e2e8f0;margin:0 0 20px;"></div>
+
       <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
         Email
       </p>
 
-      <p style="font-size:17px;color:#061733;font-weight:700;margin:0;">
+      <p style="font-size:17px;font-weight:700;margin:0 0 20px;word-break:break-word;">
         <a
           href="mailto:${email}"
           style="color:#0b6fff;text-decoration:none;"
@@ -211,39 +215,39 @@ ${legalIssue}
           ${email}
         </a>
       </p>
-    </div>
 
-    <div style="background:#ffffff;border:1px solid #e5eaf2;border-radius:18px;padding:26px 24px;margin:0 0 24px;">
-      <p style="font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#0b6fff;font-weight:800;margin:0 0 20px;">
-        Lead Details
-      </p>
+      <div style="border-top:1px solid #e2e8f0;margin:0 0 20px;"></div>
 
       <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
         Practice Area
       </p>
 
-      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 18px;">
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 20px;">
         ${practiceArea}
       </p>
+
+      <div style="border-top:1px solid #e2e8f0;margin:0 0 20px;"></div>
 
       <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
         ZIP Code
       </p>
 
-      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 18px;">
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 20px;">
         ${zipCode}
       </p>
+
+      <div style="border-top:1px solid #e2e8f0;margin:0 0 20px;"></div>
 
       <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
         County
       </p>
 
-      <p style="font-size:17px;color:#061733;font-weight:700;margin:0;">
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 20px;">
         ${county}
       </p>
-    </div>
 
-    <div style="background:#f8fbff;border-left:4px solid #0b6fff;border-radius:12px;padding:22px 24px;margin:0 0 28px;">
+      <div style="border-top:1px solid #e2e8f0;margin:0 0 20px;"></div>
+
       <p style="font-size:14px;color:#64748b;margin:0 0 8px;">
         Legal Issue
       </p>
@@ -251,6 +255,7 @@ ${legalIssue}
       <p style="font-size:16px;color:#061733;line-height:1.7;margin:0;">
         ${formattedLegalIssue}
       </p>
+
     </div>
 
     <div style="text-align:center;">
