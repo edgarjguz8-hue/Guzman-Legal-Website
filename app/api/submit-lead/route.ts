@@ -78,7 +78,8 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (attorneyError || !attorneyData) {
-      console.error(attorneyError)
+      console.error('Attorney lookup error:', attorneyError)
+
       return NextResponse.json(
         { error: 'Attorney not found' },
         { status: 404 }
@@ -88,6 +89,8 @@ export async function POST(request: NextRequest) {
     const firmName = attorneyData.firm_name || attorneyData.name
     const firstName = String(fullName).trim().split(' ')[0]
     const logoUrl = 'https://attorneyabogado.com/aa-logo.jpg'
+
+    const formattedLegalIssue = String(legalIssue).replace(/\n/g, '<br>')
 
     const { data: leadData, error: leadError } = await supabase
       .from('leads')
@@ -113,7 +116,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Email attorney — unchanged
+    // Branded notification email sent to the attorney
     if (attorneyData.email) {
       await sendEmail({
         to: attorneyData.email,
@@ -144,28 +147,129 @@ Legal Issue:
 ${legalIssue}
 `,
         html: `
-<h2>New Lead Received</h2>
+<div style="margin:0;padding:42px 20px;background:#f4f7fc;font-family:Arial,Helvetica,sans-serif;color:#061733;">
+  <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:22px;padding:42px 34px;border:1px solid #e5eaf2;box-shadow:0 12px 30px rgba(6,23,51,0.08);">
 
-<p><strong>Client:</strong> ${fullName}</p>
+    <img
+      src="${logoUrl}"
+      alt="AttorneyAbogado"
+      style="width:110px;max-width:110px;margin:0 auto 26px;display:block;border:0;"
+    />
 
-<p><strong>Phone:</strong> ${phone}</p>
+    <div style="text-align:center;">
+      <p style="font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#0b6fff;font-weight:800;margin:0 0 12px;">
+        Attorney Notification
+      </p>
 
-<p><strong>Email:</strong> ${email}</p>
+      <h1 style="margin:0;color:#061733;font-size:34px;font-weight:800;line-height:1.15;">
+        New Lead Received
+      </h1>
 
-<p><strong>Practice Area:</strong> ${practiceArea}</p>
+      <div style="width:70px;height:4px;background:#0b6fff;margin:18px auto 24px;border-radius:999px;"></div>
 
-<p><strong>ZIP Code:</strong> ${zipCode}</p>
+      <p style="font-size:16px;color:#475569;line-height:1.6;margin:0 0 30px;">
+        A potential client has submitted a request through AttorneyAbogado.
+        Their information is provided below.
+      </p>
+    </div>
 
-<p><strong>County:</strong> ${county}</p>
+    <div style="background:#f8fbff;border:1px solid #dbe3ef;border-radius:18px;padding:26px 24px;margin:0 0 24px;">
+      <p style="font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#0b6fff;font-weight:800;margin:0 0 20px;">
+        Client Information
+      </p>
 
-<p><strong>Legal Issue:</strong></p>
+      <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
+        Client Name
+      </p>
 
-<p>${legalIssue.replace(/\n/g, '<br>')}</p>
+      <p style="font-size:18px;color:#061733;font-weight:700;margin:0 0 18px;">
+        ${fullName}
+      </p>
+
+      <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
+        Phone
+      </p>
+
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 18px;">
+        <a
+          href="tel:${phone}"
+          style="color:#0b6fff;text-decoration:none;"
+        >
+          ${phone}
+        </a>
+      </p>
+
+      <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
+        Email
+      </p>
+
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0;">
+        <a
+          href="mailto:${email}"
+          style="color:#0b6fff;text-decoration:none;"
+        >
+          ${email}
+        </a>
+      </p>
+    </div>
+
+    <div style="background:#ffffff;border:1px solid #e5eaf2;border-radius:18px;padding:26px 24px;margin:0 0 24px;">
+      <p style="font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#0b6fff;font-weight:800;margin:0 0 20px;">
+        Lead Details
+      </p>
+
+      <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
+        Practice Area
+      </p>
+
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 18px;">
+        ${practiceArea}
+      </p>
+
+      <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
+        ZIP Code
+      </p>
+
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0 0 18px;">
+        ${zipCode}
+      </p>
+
+      <p style="font-size:14px;color:#64748b;margin:0 0 5px;">
+        County
+      </p>
+
+      <p style="font-size:17px;color:#061733;font-weight:700;margin:0;">
+        ${county}
+      </p>
+    </div>
+
+    <div style="background:#f8fbff;border-left:4px solid #0b6fff;border-radius:12px;padding:22px 24px;margin:0 0 28px;">
+      <p style="font-size:14px;color:#64748b;margin:0 0 8px;">
+        Legal Issue
+      </p>
+
+      <p style="font-size:16px;color:#061733;line-height:1.7;margin:0;">
+        ${formattedLegalIssue}
+      </p>
+    </div>
+
+    <div style="text-align:center;">
+      <p style="font-size:15px;color:#475569;line-height:1.6;margin:0;">
+        Please contact this potential client as soon as possible.
+      </p>
+
+      <p style="font-size:13px;color:#94a3b8;margin:14px 0 0;">
+        This lead was submitted through AttorneyAbogado.com.
+      </p>
+    </div>
+
+  </div>
+</div>
 `,
       })
     }
 
-    // Confirmation email to customer
+    // Confirmation email sent to the customer
     await sendEmail({
       to: email,
       subject: `You're Connected with ${firmName}`,
@@ -211,7 +315,6 @@ Thank you for using AttorneyAbogado.
         Your Attorney Match
       </p>
 
-
       <h2 style="font-size:26px;color:#061733;margin:0 0 18px;font-weight:800;">
         ${firmName}
       </h2>
@@ -221,6 +324,7 @@ Thank you for using AttorneyAbogado.
       <p style="font-size:15px;color:#64748b;margin:0 0 6px;">
         Practice Area
       </p>
+
       <p style="font-size:18px;color:#061733;font-weight:700;margin:0 0 18px;">
         ${practiceArea}
       </p>
@@ -228,6 +332,7 @@ Thank you for using AttorneyAbogado.
       <p style="font-size:15px;color:#64748b;margin:0 0 6px;">
         Serving
       </p>
+
       <p style="font-size:18px;color:#061733;font-weight:700;margin:0;">
         ${county} County
       </p>
