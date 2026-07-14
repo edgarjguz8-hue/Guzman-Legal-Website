@@ -170,7 +170,7 @@ export default function HomePage() {
       } else {
         setNotAvailableMessage(
           data.message ||
-            "We are currently expanding in your area. Please check back soon."
+          "We are currently expanding in your area. Please check back soon."
         )
       }
     } catch (error) {
@@ -201,14 +201,14 @@ export default function HomePage() {
           <div className="absolute right-[-180px] top-56 h-[420px] w-[760px] rounded-full border border-white/10" />
         </div>
 
-        <div className="pointer-events-none absolute right-8 top-12 hidden opacity-20 lg:block xl:right-16">
+        <div className="pointer-events-none absolute right-6 top-20 hidden opacity-15 lg:block xl:right-12">
           <Image
             src="/logo-white.png"
             alt=""
             width={700}
             height={700}
             priority
-            className="h-auto w-[360px] xl:w-[430px]"
+            className="h-auto w-[290px] xl:w-[340px]"
           />
         </div>
 
@@ -580,11 +580,10 @@ export default function HomePage() {
                       <Link
                         key={article.id}
                         href={`/resources/${article.slug}`}
-                        className={`block ${
-                          index !== articles.length - 1
-                            ? "border-b pb-4"
-                            : ""
-                        }`}
+                        className={`block ${index !== articles.length - 1
+                          ? "border-b pb-4"
+                          : ""
+                          }`}
                       >
                         <h4 className="font-semibold text-[#071226]">
                           {title}
