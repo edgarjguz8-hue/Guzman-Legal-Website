@@ -201,7 +201,7 @@ export default function HomePage() {
           <div className="absolute right-[-180px] top-56 h-[420px] w-[760px] rounded-full border border-white/10" />
         </div>
 
-        <div className="pointer-events-none absolute right-6 top-14 hidden opacity-15 lg:block xl:right-12">
+        <div className="pointer-events-none absolute right-6 top-20 hidden opacity-15 lg:block xl:right-12">
           <Image
             src="/logo-white.png"
             alt=""
