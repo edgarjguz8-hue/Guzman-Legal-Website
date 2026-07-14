@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { LanguageToggle } from "@/components/language-toggle"
 import { useLanguage } from "@/contexts/language-context"
@@ -32,11 +33,15 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
   return (
     <header className="relative z-[9999] mx-auto w-full max-w-[1400px] border-b border-white/12">
       <div className="flex h-20 items-center justify-between gap-3">
-        <Link
-          href="/"
-          className="shrink-0 whitespace-nowrap text-[18px] font-bold tracking-tight text-white sm:text-2xl"
-        >
-          AttorneyAbogado.com
+        <Link href="/" className="shrink-0 flex items-center h-20">
+          <Image
+            src="/logo-white.png"
+            alt="AttorneyAbogado.com"
+            width={900}
+            height={250}
+            priority
+            className="h-13 w-auto sm:h-17 lg:h-20"
+          />
         </Link>
 
         <nav className="hidden items-center justify-center gap-14 lg:flex">
