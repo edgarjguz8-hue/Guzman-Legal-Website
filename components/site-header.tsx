@@ -37,10 +37,10 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
           <Image
             src="/logo-white.png"
             alt="AttorneyAbogado.com"
-            width={400}
-            height={100}
+            width={900}
+            height={250}
             priority
-            className="h-8 w-auto sm:h-10 lg:h-12"
+            className="h-12 w-auto sm:h-16 lg:h-20"
           />
         </Link>
 
