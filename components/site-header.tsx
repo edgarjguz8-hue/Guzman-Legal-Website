@@ -40,7 +40,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
             width={900}
             height={250}
             priority
-            className="h-13 w-auto sm:h-17 lg:h-19"
+            className="h-13 w-auto sm:h-17 lg:h-20"
           />
         </Link>
 
