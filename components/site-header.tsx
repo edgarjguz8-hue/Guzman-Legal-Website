@@ -21,7 +21,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const linkClass = (page: SiteHeaderProps["activePage"]) =>
-    `flex h-11 items-center justify-center border-b-2 text-sm font-bold ${
+    `flex h-11 items-center justify-center border-b-2 text-sm font-bold whitespace-nowrap ${
       activePage === page ? "border-white" : "border-transparent"
     }`
 
@@ -32,8 +32,12 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
 
   return (
     <header className="relative z-[9999] mx-auto w-full max-w-[1400px] border-b border-white/12">
-      <div className="flex h-20 items-center justify-between gap-3">
-        <Link href="/" className="shrink-0 flex items-center h-20">
+      <div className="relative flex h-20 items-center justify-between gap-3">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="relative z-10 flex h-20 shrink-0 items-center"
+        >
           <Image
             src="/logo-white.png"
             alt="AttorneyAbogado.com"
@@ -44,7 +48,8 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
           />
         </Link>
 
-        <nav className="hidden items-center justify-center gap-14 lg:flex">
+        {/* Perfectly centered desktop navigation */}
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-14 lg:flex">
           <Link href="/how-it-works" className={linkClass("how-it-works")}>
             {t("nav.howItWorks")}
           </Link>
@@ -58,27 +63,31 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
           </Link>
         </nav>
 
-        <div className="hidden items-center justify-end gap-6 lg:flex">
+        {/* Right-side desktop buttons */}
+        <div className="relative z-10 hidden items-center justify-end gap-6 lg:flex">
           <LanguageToggle />
 
           <Link
             href="/for-attorneys"
-            className="inline-flex h-11 items-center rounded-lg bg-[#061a38] px-5 text-sm font-bold text-white shadow-xl"
+            className="inline-flex h-11 items-center whitespace-nowrap rounded-lg bg-[#061a38] px-5 text-sm font-bold text-white shadow-xl"
           >
             {t("nav.forAttorneys")}
           </Link>
         </div>
 
+        {/* Mobile menu button */}
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
           className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white lg:hidden"
-          aria-label="Open menu"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
+      {/* Mobile menu */}
       {menuOpen && (
         <div className="fixed left-4 right-4 top-24 z-[99999] rounded-2xl border border-white/10 bg-[#061a38] p-5 shadow-2xl lg:hidden">
           <nav className="space-y-2">
