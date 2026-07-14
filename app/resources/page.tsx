@@ -25,12 +25,15 @@ type Article = {
   read_time: string | null
   read_time_es: string | null
   published_date: string | null
+  featured: boolean | null
 }
 
 type Topic = {
   category: string
   category_es: string | null
 }
+
+type ArticleView = "featured" | "category" | "all"
 
 export default function ResourcesPage() {
   const { t, language } = useLanguage()
@@ -39,14 +42,20 @@ export default function ResourcesPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [articles, setArticles] = useState<Article[]>([])
   const [topics, setTopics] = useState<Topic[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>("")
+  const [articleView, setArticleView] = useState<ArticleView>("featured")
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadResources() {
+      setLoading(true)
+
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
       const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
       if (!supabaseUrl || !supabaseKey) {
         console.error("Missing Supabase keys")
+        setLoading(false)
         return
       }
 
@@ -66,50 +75,91 @@ export default function ResourcesPage() {
           image_url,
           read_time,
           read_time_es,
-          published_date
+          published_date,
+          featured
         `)
         .eq("published", true)
-        .eq("featured", true)
         .order("published_date", { ascending: false })
-        .limit(3)
 
       if (articleError) {
         console.error("Article fetch error:", articleError.message)
+        setLoading(false)
         return
       }
 
-      setArticles(articleData || [])
-
-      const { data: topicData, error: topicError } = await supabase
-        .from("articles")
-        .select("category, category_es")
-        .eq("published", true)
-        .not("category", "is", null)
-
-      if (topicError) {
-        console.error("Topic fetch error:", topicError.message)
-        return
-      }
+      const loadedArticles = articleData || []
+      setArticles(loadedArticles)
 
       const uniqueTopics = Array.from(
         new Map(
-          (topicData || [])
-            .filter((item) => item.category)
-            .map((item) => [
-              item.category,
+          loadedArticles
+            .filter((article) => article.category?.trim())
+            .map((article) => [
+              article.category!.trim().toLowerCase(),
               {
-                category: item.category as string,
-                category_es: item.category_es,
+                category: article.category!.trim(),
+                category_es: article.category_es?.trim() || null,
               },
             ])
         ).values()
       )
 
       setTopics(uniqueTopics)
+      setLoading(false)
     }
 
     loadResources()
   }, [])
+
+  const featuredArticles = articles
+    .filter((article) => article.featured === true)
+    .slice(0, 3)
+
+  const categoryArticles = articles.filter(
+    (article) =>
+      article.category?.trim().toLowerCase() ===
+      selectedCategory.trim().toLowerCase()
+  )
+
+  const displayedArticles =
+    articleView === "featured"
+      ? featuredArticles
+      : articleView === "category"
+        ? categoryArticles
+        : articles
+
+  const scrollToArticles = () => {
+    window.setTimeout(() => {
+      document
+        .getElementById("articles")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 50)
+  }
+
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category)
+    setArticleView("category")
+    scrollToArticles()
+  }
+
+  const handleViewAll = () => {
+    setSelectedCategory("")
+    setArticleView("all")
+    scrollToArticles()
+  }
+
+  const handleBackToFeatured = () => {
+    setSelectedCategory("")
+    setArticleView("featured")
+    scrollToArticles()
+  }
+
+  const selectedTopicLabel =
+    topics.find(
+      (topic) =>
+        topic.category.trim().toLowerCase() ===
+        selectedCategory.trim().toLowerCase()
+    ) || null
 
   const faqs = [
     {
@@ -155,99 +205,186 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section id="articles" className="scroll-mt-24 px-5 py-12 sm:px-7 sm:py-16">
+      <section
+        id="articles"
+        className="scroll-mt-24 px-5 py-12 sm:px-7 sm:py-16"
+      >
         <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <SectionTitle title={t("resources.helpfulArticles")} />
 
-            <div className="mt-7 space-y-6">
-              {articles.length === 0 && (
-                <div className="rounded-xl border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
+            {articleView === "category" && selectedTopicLabel && (
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <span className="text-sm font-bold text-slate-500">
+                  {isSpanish ? "Mostrando:" : "Showing:"}
+                </span>
+
+                <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-black text-[#0b5fc4]">
+                  {isSpanish && selectedTopicLabel.category_es
+                    ? selectedTopicLabel.category_es
+                    : selectedTopicLabel.category}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={handleViewAll}
+                  className="text-sm font-black text-[#0b5fc4] underline"
+                >
+                  {isSpanish ? "Mostrar todos" : "Show all"}
+                </button>
+              </div>
+            )}
+
+            {articleView === "all" && (
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-black text-[#0b5fc4]">
+                  {isSpanish ? "Todos los artículos" : "All Articles"}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={handleBackToFeatured}
+                  className="text-sm font-black text-[#0b5fc4] underline"
+                >
                   {isSpanish
-                    ? "No hay artículos publicados todavía."
-                    : "No articles are published yet."}
+                    ? "Volver a artículos destacados"
+                    : "Back to featured articles"}
+                </button>
+              </div>
+            )}
+
+            <div className="mt-7 space-y-6">
+              {loading && (
+                <div className="rounded-xl border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
+                  {isSpanish ? "Cargando artículos..." : "Loading articles..."}
                 </div>
               )}
 
-              {articles.map((article) => {
-                const title =
-                  isSpanish && article.title_es ? article.title_es : article.title
+              {!loading && displayedArticles.length === 0 && (
+                <div className="rounded-xl border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
+                  {articleView === "category"
+                    ? isSpanish
+                      ? "No hay artículos en esta categoría."
+                      : "No articles were found in this category."
+                    : articleView === "featured"
+                      ? isSpanish
+                        ? "No hay artículos destacados todavía."
+                        : "No featured articles are available yet."
+                      : isSpanish
+                        ? "No hay artículos publicados todavía."
+                        : "No articles are published yet."}
+                </div>
+              )}
 
-                const category =
-                  isSpanish && article.category_es
-                    ? article.category_es
-                    : article.category
+              {!loading &&
+                displayedArticles.map((article) => {
+                  const title =
+                    isSpanish && article.title_es
+                      ? article.title_es
+                      : article.title
 
-                const excerpt =
-                  isSpanish && article.excerpt_es
-                    ? article.excerpt_es
-                    : article.excerpt
+                  const category =
+                    isSpanish && article.category_es
+                      ? article.category_es
+                      : article.category
 
-                const readTime =
-                  isSpanish && article.read_time_es
-                    ? article.read_time_es
-                    : article.read_time || "5 min read"
+                  const excerpt =
+                    isSpanish && article.excerpt_es
+                      ? article.excerpt_es
+                      : article.excerpt
 
-                return (
-                  <a
-                    key={article.id}
-                    href={`/resources/${article.slug}`}
-                    className="grid overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md md:grid-cols-[250px_1fr]"
-                  >
-                    <img
-                      src={article.image_url || "/placeholder.jpg"}
-                      alt={title}
-                      className="h-52 w-full object-cover md:h-full"
-                    />
+                  const readTime =
+                    isSpanish && article.read_time_es
+                      ? article.read_time_es
+                      : article.read_time || "5 min read"
 
-                    <div className="p-6 sm:p-7">
-                      {category && (
-                        <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#0b5fc4]">
-                          {category}
-                        </span>
-                      )}
+                  return (
+                    <a
+                      key={article.id}
+                      href={`/resources/${article.slug}`}
+                      className="grid overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md md:grid-cols-[250px_1fr]"
+                    >
+                      <img
+                        src={article.image_url || "/placeholder.jpg"}
+                        alt={title}
+                        className="h-52 w-full object-cover md:h-full"
+                      />
 
-                      <h3 className="mt-4 text-2xl font-black leading-tight text-[#071226]">
-                        {title}
-                      </h3>
+                      <div className="p-6 sm:p-7">
+                        {category && (
+                          <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#0b5fc4]">
+                            {category}
+                          </span>
+                        )}
 
-                      {excerpt && (
-                        <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
-                          {excerpt}
-                        </p>
-                      )}
+                        <h3 className="mt-4 text-2xl font-black leading-tight text-[#071226]">
+                          {title}
+                        </h3>
 
-                      <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-500">
-                        <span className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          {formatDate(article.published_date, isSpanish)}
-                        </span>
+                        {excerpt && (
+                          <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
+                            {excerpt}
+                          </p>
+                        )}
 
-                        <span className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
-                          {readTime}
-                        </span>
+                        <div className="mt-5 flex flex-wrap gap-4 text-sm text-slate-500">
+                          <span className="flex items-center gap-2">
+                            <Calendar className="h-4 w-4" />
+                            {formatDate(article.published_date, isSpanish)}
+                          </span>
+
+                          <span className="flex items-center gap-2">
+                            <Clock className="h-4 w-4" />
+                            {readTime}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                )
-              })}
+                    </a>
+                  )
+                })}
             </div>
 
-            <a
-              href="/resources"
-              className="mt-7 inline-flex items-center gap-3 font-black text-[#0b5fc4]"
-            >
-              {t("resources.viewAllArticles")}
-              <ArrowRight className="h-5 w-5" />
-            </a>
+            {articleView === "featured" && articles.length > 0 && (
+              <button
+                type="button"
+                onClick={handleViewAll}
+                className="mt-7 inline-flex items-center gap-3 font-black text-[#0b5fc4]"
+              >
+                {t("resources.viewAllArticles")}
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            )}
+
+            {articleView === "category" && (
+              <button
+                type="button"
+                onClick={handleViewAll}
+                className="mt-7 inline-flex items-center gap-3 font-black text-[#0b5fc4]"
+              >
+                {t("resources.viewAllArticles")}
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            )}
+
+            {articleView === "all" && (
+              <button
+                type="button"
+                onClick={handleBackToFeatured}
+                className="mt-7 inline-flex items-center gap-3 font-black text-[#0b5fc4]"
+              >
+                {isSpanish
+                  ? "Ver artículos destacados"
+                  : "View Featured Articles"}
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            )}
           </div>
 
           <aside>
             <SectionTitle title={t("resources.popularTopics")} />
 
             <div className="mt-7 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-              {topics.length === 0 && (
+              {!loading && topics.length === 0 && (
                 <div className="px-7 py-6 text-slate-600">
                   {isSpanish ? "No hay temas todavía." : "No topics yet."}
                 </div>
@@ -259,25 +396,40 @@ export default function ResourcesPage() {
                     ? topic.category_es
                     : topic.category
 
+                const isSelected =
+                  articleView === "category" &&
+                  selectedCategory.trim().toLowerCase() ===
+                    topic.category.trim().toLowerCase()
+
                 return (
-                  <a
+                  <button
                     key={topic.category}
-                    href={`/resources?category=${encodeURIComponent(topic.category)}`}
-                    className="flex items-center justify-between border-b border-slate-200 px-7 py-6 font-black last:border-b-0"
+                    type="button"
+                    onClick={() => handleCategoryClick(topic.category)}
+                    className={`flex w-full items-center justify-between border-b border-slate-200 px-7 py-6 text-left font-black transition last:border-b-0 ${
+                      isSelected
+                        ? "bg-blue-50 text-[#0b5fc4]"
+                        : "bg-white text-[#071226] hover:bg-slate-50"
+                    }`}
                   >
                     {topicLabel}
                     <ArrowRight className="h-5 w-5 text-[#0b5fc4]" />
-                  </a>
+                  </button>
                 )
               })}
 
-              <a
-                href="/resources"
-                className="flex items-center gap-3 border-t border-slate-200 px-7 py-6 font-black text-[#0b5fc4]"
+              <button
+                type="button"
+                onClick={handleViewAll}
+                className={`flex w-full items-center gap-3 border-t border-slate-200 px-7 py-6 text-left font-black transition ${
+                  articleView === "all"
+                    ? "bg-blue-50 text-[#0b5fc4]"
+                    : "bg-white text-[#0b5fc4] hover:bg-slate-50"
+                }`}
               >
                 {t("resources.browseAllTopics")}
                 <ArrowRight className="h-5 w-5" />
-              </a>
+              </button>
             </div>
           </aside>
         </div>
@@ -390,9 +542,12 @@ function SectionTitle({ title }: { title: string }) {
 function formatDate(date: string | null, isSpanish: boolean) {
   if (!date) return ""
 
-  return new Date(date).toLocaleDateString(isSpanish ? "es-US" : "en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  })
+  return new Date(`${date}T12:00:00`).toLocaleDateString(
+    isSpanish ? "es-US" : "en-US",
+    {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }
+  )
 }
