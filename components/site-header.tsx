@@ -9,11 +9,11 @@ import { useLanguage } from "@/contexts/language-context"
 
 type SiteHeaderProps = {
   activePage?:
-  | "home"
-  | "how-it-works"
-  | "get-connected"
-  | "for-attorneys"
-  | "resources"
+    | "home"
+    | "how-it-works"
+    | "get-connected"
+    | "for-attorneys"
+    | "resources"
 }
 
 export function SiteHeader({ activePage }: SiteHeaderProps) {
@@ -21,20 +21,22 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const linkClass = (page: SiteHeaderProps["activePage"]) =>
-    `flex h-11 items-center justify-center border-b-2 text-sm font-bold whitespace-nowrap ${activePage === page ? "border-white" : "border-transparent"
+    `flex h-11 items-center justify-center whitespace-nowrap border-b-2 text-sm font-bold ${
+      activePage === page ? "border-white" : "border-transparent"
     }`
 
   const mobileLinkClass = (page: SiteHeaderProps["activePage"]) =>
-    `block rounded-xl px-5 py-4 text-lg font-bold ${activePage === page ? "bg-white/10 text-white" : "text-white"
+    `block rounded-xl px-5 py-4 text-lg font-bold ${
+      activePage === page ? "bg-white/10 text-white" : "text-white"
     }`
 
   return (
     <header className="relative z-[9999] mx-auto w-full max-w-[1400px] border-b border-white/12">
-      <div className="relative flex h-20 items-center justify-between gap-3">
+      <div className="relative flex h-28 items-center justify-between gap-3">
         {/* Logo */}
         <Link
           href="/"
-          className="relative z-10 flex h-20 shrink-0 items-center"
+          className="relative z-10 flex h-28 shrink-0 items-center"
         >
           <Image
             src="/logo-header.png"
@@ -42,7 +44,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
             width={900}
             height={250}
             priority
-            className="h-14 w-auto sm:h-18 lg:h-22"
+            className="h-20 w-auto sm:h-24 lg:h-28"
           />
         </Link>
 
@@ -87,7 +89,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="fixed left-4 right-4 top-24 z-[99999] rounded-2xl border border-white/10 bg-[#061a38] p-5 shadow-2xl lg:hidden">
+        <div className="fixed left-4 right-4 top-32 z-[99999] rounded-2xl border border-white/10 bg-[#061a38] p-5 shadow-2xl lg:hidden">
           <nav className="space-y-2">
             <Link
               href="/how-it-works"
