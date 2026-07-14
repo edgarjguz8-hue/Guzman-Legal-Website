@@ -9,11 +9,11 @@ import { useLanguage } from "@/contexts/language-context"
 
 type SiteHeaderProps = {
   activePage?:
-    | "home"
-    | "how-it-works"
-    | "get-connected"
-    | "for-attorneys"
-    | "resources"
+  | "home"
+  | "how-it-works"
+  | "get-connected"
+  | "for-attorneys"
+  | "resources"
 }
 
 export function SiteHeader({ activePage }: SiteHeaderProps) {
@@ -21,13 +21,11 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const linkClass = (page: SiteHeaderProps["activePage"]) =>
-    `flex h-11 items-center justify-center border-b-2 text-sm font-bold whitespace-nowrap ${
-      activePage === page ? "border-white" : "border-transparent"
+    `flex h-11 items-center justify-center border-b-2 text-sm font-bold whitespace-nowrap ${activePage === page ? "border-white" : "border-transparent"
     }`
 
   const mobileLinkClass = (page: SiteHeaderProps["activePage"]) =>
-    `block rounded-xl px-5 py-4 text-lg font-bold ${
-      activePage === page ? "bg-white/10 text-white" : "text-white"
+    `block rounded-xl px-5 py-4 text-lg font-bold ${activePage === page ? "bg-white/10 text-white" : "text-white"
     }`
 
   return (
