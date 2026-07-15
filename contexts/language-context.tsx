@@ -390,6 +390,13 @@ const englishTranslations = {
   'footer.advertising':
     'Attorney Advertising. Prior results do not guarantee a similar outcome.',
 
+  'matched.speaksSpanish': 'Hablamos Español',
+  'matched.spanishAvailable': 'Spanish-language service available',
+  'matched.loadingAttorney': 'Loading your matched attorney...',
+  'matched.loadError': 'We could not load this attorney. Please try again.',
+  'matched.notFound': 'The selected attorney could not be found.',
+  'matched.attorneyFallback': 'Matched Attorney',
+
 }
 
 const spanishTranslations = {
