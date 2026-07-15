@@ -390,6 +390,13 @@ const englishTranslations = {
   'footer.advertising':
     'Attorney Advertising. Prior results do not guarantee a similar outcome.',
 
+  'matched.speaksSpanish': 'Hablamos Español',
+  'matched.spanishAvailable': 'Spanish-language service available',
+  'matched.loadingAttorney': 'Loading your matched attorney...',
+  'matched.loadError': 'We could not load this attorney. Please try again.',
+  'matched.notFound': 'The selected attorney could not be found.',
+  'matched.attorneyFallback': 'Matched Attorney',
+
 }
 
 const spanishTranslations = {
@@ -727,4 +734,11 @@ const spanishTranslations = {
   'footer.rights': 'Todos los derechos reservados.',
   'footer.advertising':
     'Publicidad de abogados. Los resultados anteriores no garantizan resultados similares.',
+
+  'matched.speaksSpanish': 'Hablamos Español',
+  'matched.spanishAvailable': 'Servicio disponible en español',
+  'matched.loadingAttorney': 'Cargando su abogado asignado...',
+  'matched.loadError': 'No pudimos cargar este abogado. Inténtelo nuevamente.',
+  'matched.notFound': 'No se pudo encontrar al abogado seleccionado.',
+  'matched.attorneyFallback': 'Abogado asignado',
 }
