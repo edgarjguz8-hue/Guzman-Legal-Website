@@ -189,8 +189,8 @@ export default function ResourcesPage() {
             <Image
               src="/aa-logo.jpg"
               alt=""
-              width={500}
-              height={500}
+              width={320}
+              height={320}
               className="select-none"
               priority
             />
