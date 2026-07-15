@@ -185,7 +185,7 @@ export default function ResourcesPage() {
         </div>
 
         <div className="relative mx-auto mt-6 max-w-[1400px] overflow-hidden px-1 pb-14 pt-8 sm:mt-8 sm:pb-16 sm:pt-12 md:mt-12 md:px-0 md:pb-24 md:pt-20">
-          <div className="pointer-events-none absolute -bottom-10 right-0 hidden opacity-[0.06] md:block">
+          <div className="pointer-events-none absolute -bottom-1 right-0 hidden opacity-[0.06] md:block">
             <Image
               src="/aa-logo.jpg"
               alt=""
