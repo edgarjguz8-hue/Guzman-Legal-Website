@@ -56,11 +56,17 @@ export const useLanguage = () => {
 
 const englishTranslations = {
   // Navigation / Header
-  'nav.howItWorks': 'How It Works',
-  'nav.getConnected': 'Get Connected',
-  'nav.forAttorneys': 'For Attorneys',
-  'nav.resources': 'Resources',
-  'nav.language': 'Español',
+ // Navigation / Header
+// Navigation / Header
+'nav.practiceAreas': 'Practice Areas',
+'nav.attorney': 'Attorney',
+'nav.blog': 'Blog',
+'nav.contact': 'Contact',
+'nav.howItWorks': 'How It Works',
+'nav.getConnected': 'Get Connected',
+'nav.forAttorneys': 'For Attorneys',
+'nav.resources': 'Resources',
+'nav.language': 'Español',
   'header.getLegalHelp': 'Get Legal Help',
   'form.zipCode': 'ZIP Code',
   'form.zipPlaceholder': 'Enter your ZIP code',
