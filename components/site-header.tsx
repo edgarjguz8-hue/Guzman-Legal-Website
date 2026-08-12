@@ -34,8 +34,8 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
     }`
 
   return (
-    <header className="relative z-[9999] mx-auto w-full border-b border-white/10 bg-[#0B3975]">
-      <div className="relative mx-auto flex h-28 max-w-[1400px] items-center justify-between gap-3 px-8 sm:px-10 lg:px-14">
+    <header className="relative z-[9999] w-full border-b border-white/10 bg-[#0B3975]">
+      <div className="relative flex h-28 w-full items-center justify-between px-6 sm:px-10 lg:px-16 xl:px-20">
 
         {/* Guzman Legal Logo */}
         <Link
@@ -59,38 +59,48 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
             href="/practice-areas"
             className={linkClass("practice-areas")}
           >
-            {t("nav.practiceAreas")}
+            {t("nav.practiceAreas") !== "nav.practiceAreas"
+              ? t("nav.practiceAreas")
+              : "Practice Areas"}
           </Link>
 
           <Link
             href="/attorney"
             className={linkClass("attorney")}
           >
-            {t("nav.attorney")}
+            {t("nav.attorney") !== "nav.attorney"
+              ? t("nav.attorney")
+              : "Attorney"}
           </Link>
 
           <Link
             href="/blog"
             className={linkClass("blog")}
           >
-            {t("nav.blog")}
+            {t("nav.blog") !== "nav.blog"
+              ? t("nav.blog")
+              : "Blog"}
           </Link>
 
           <Link
             href="/contact"
             className={linkClass("contact")}
           >
-            {t("nav.contact")}
+            {t("nav.contact") !== "nav.contact"
+              ? t("nav.contact")
+              : "Contact"}
           </Link>
 
         </nav>
 
-        {/* Right-side language toggle */}
-        <div className="relative z-10 hidden items-center lg:flex">
-          <LanguageToggle />
+        {/* English / Spanish Toggle */}
+        <div className="relative z-10 hidden lg:flex">
+          <div className="flex items-center rounded-full border border-white/30 bg-white/5 p-1">
+            <LanguageToggle />
+          </div>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -106,7 +116,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className="absolute left-4 right-4 top-[112px] z-[99999] rounded-2xl border border-white/10 bg-[#0B3975] p-5 shadow-2xl lg:hidden">
           <nav className="space-y-2">
@@ -116,7 +126,9 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("practice-areas")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.practiceAreas")}
+              {t("nav.practiceAreas") !== "nav.practiceAreas"
+                ? t("nav.practiceAreas")
+                : "Practice Areas"}
             </Link>
 
             <Link
@@ -124,7 +136,9 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("attorney")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.attorney")}
+              {t("nav.attorney") !== "nav.attorney"
+                ? t("nav.attorney")
+                : "Attorney"}
             </Link>
 
             <Link
@@ -132,7 +146,9 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("blog")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.blog")}
+              {t("nav.blog") !== "nav.blog"
+                ? t("nav.blog")
+                : "Blog"}
             </Link>
 
             <Link
@@ -140,12 +156,16 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("contact")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.contact")}
+              {t("nav.contact") !== "nav.contact"
+                ? t("nav.contact")
+                : "Contact"}
             </Link>
 
             {/* Language Toggle */}
-            <div className="px-5 py-4">
-              <LanguageToggle />
+            <div className="mt-3 flex justify-center border-t border-white/10 px-5 pt-5">
+              <div className="rounded-full border border-white/30 bg-white/5 p-1">
+                <LanguageToggle />
+              </div>
             </div>
 
           </nav>
