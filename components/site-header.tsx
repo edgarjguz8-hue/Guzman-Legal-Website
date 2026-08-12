@@ -15,25 +15,25 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
   const linkClass = (page: SiteHeaderProps["activePage"]) =>
     `flex h-11 items-center justify-center whitespace-nowrap border-b-2 text-[15px] font-medium tracking-wide transition-colors ${
       activePage === page
-        ? "border-[#061a38] text-[#061a38]"
-        : "border-transparent text-[#061a38] hover:border-[#061a38]"
+        ? "border-white text-white"
+        : "border-transparent text-white hover:border-white"
     }`
 
   const mobileLinkClass = (page: SiteHeaderProps["activePage"]) =>
-    `block rounded-xl px-5 py-4 text-lg font-medium ${
+    `block rounded-xl px-5 py-4 text-lg font-medium transition-colors ${
       activePage === page
-        ? "bg-[#061a38]/10 text-[#061a38]"
-        : "text-[#061a38]"
+        ? "bg-white/10 text-white"
+        : "text-white hover:bg-white/5"
     }`
 
   return (
-    <header className="relative z-[9999] mx-auto w-full border-b border-[#061a38]/10 bg-[#faf9f6]">
-      <div className="relative mx-auto flex h-24 max-w-[1400px] items-center justify-between px-6 sm:px-8 lg:px-12">
+    <header className="relative z-[9999] mx-auto w-full border-b border-white/10 bg-[#0B3975]">
+      <div className="relative mx-auto flex h-28 max-w-[1400px] items-center justify-between px-8 sm:px-10 lg:px-14">
 
         {/* Guzman Legal Logo */}
         <Link
           href="/"
-          className="relative z-10 flex h-20 shrink-0 items-center"
+          className="relative z-10 flex h-28 shrink-0 items-center"
         >
           <Image
             src="/guzman-logo.png"
@@ -41,12 +41,13 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
             width={300}
             height={100}
             priority
-            className="h-14 w-auto sm:h-16"
+            className="h-16 w-auto sm:h-[72px]"
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-12 lg:flex">
+        <nav className="hidden items-center gap-16 lg:flex">
+
           <Link
             href="/practice-areas"
             className={linkClass("practice-areas")}
@@ -74,13 +75,14 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
           >
             CONTACT
           </Link>
+
         </nav>
 
         {/* Mobile Menu Button */}
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-[#061a38] lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-white lg:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
@@ -94,7 +96,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute left-4 right-4 top-[88px] z-[99999] rounded-2xl border border-[#061a38]/10 bg-[#faf9f6] p-5 shadow-2xl lg:hidden">
+        <div className="absolute left-4 right-4 top-[112px] z-[99999] rounded-2xl border border-white/10 bg-[#0B3975] p-5 shadow-2xl lg:hidden">
           <nav className="space-y-2">
 
             <Link
