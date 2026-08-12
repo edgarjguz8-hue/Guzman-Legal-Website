@@ -407,11 +407,16 @@ const englishTranslations = {
 
 const spanishTranslations = {
   // Navigation / Header
-  'nav.howItWorks': 'Cómo Funciona',
-  'nav.getConnected': 'Conectarse',
-  'nav.forAttorneys': 'Para Abogados',
-  'nav.resources': 'Recursos',
-  'nav.language': 'English',
+ // Navigation / Header
+'nav.practiceAreas': 'Áreas de Práctica',
+'nav.attorney': 'Abogado',
+'nav.blog': 'Blog',
+'nav.contact': 'Contacto',
+'nav.howItWorks': 'Cómo Funciona',
+'nav.getConnected': 'Conectarse',
+'nav.forAttorneys': 'Para Abogados',
+'nav.resources': 'Recursos',
+'nav.language': 'English',
   'header.getLegalHelp': 'Obtener Ayuda Legal',
   'form.zipCode': 'Código Postal',
   'form.zipPlaceholder': 'Ingrese su código postal',
