@@ -4,12 +4,19 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
+import { LanguageToggle } from "@/components/language-toggle"
+import { useLanguage } from "@/contexts/language-context"
 
 type SiteHeaderProps = {
-  activePage?: "practice-areas" | "attorney" | "blog" | "contact"
+  activePage?:
+    | "practice-areas"
+    | "attorney"
+    | "blog"
+    | "contact"
 }
 
 export function SiteHeader({ activePage }: SiteHeaderProps) {
+  const { t } = useLanguage()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const linkClass = (page: SiteHeaderProps["activePage"]) =>
@@ -28,7 +35,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
 
   return (
     <header className="relative z-[9999] mx-auto w-full border-b border-white/10 bg-[#0B3975]">
-      <div className="relative mx-auto flex h-28 max-w-[1400px] items-center justify-between px-8 sm:px-10 lg:px-14">
+      <div className="relative mx-auto flex h-28 max-w-[1400px] items-center justify-between gap-3 px-8 sm:px-10 lg:px-14">
 
         {/* Guzman Legal Logo */}
         <Link
@@ -46,43 +53,48 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-16 lg:flex">
+        <nav className="hidden items-center gap-14 lg:flex">
 
           <Link
             href="/practice-areas"
             className={linkClass("practice-areas")}
           >
-            PRACTICE AREAS
+            {t("nav.practiceAreas")}
           </Link>
 
           <Link
             href="/attorney"
             className={linkClass("attorney")}
           >
-            ATTORNEY
+            {t("nav.attorney")}
           </Link>
 
           <Link
             href="/blog"
             className={linkClass("blog")}
           >
-            BLOG
+            {t("nav.blog")}
           </Link>
 
           <Link
             href="/contact"
             className={linkClass("contact")}
           >
-            CONTACT
+            {t("nav.contact")}
           </Link>
 
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Right-side language toggle */}
+        <div className="relative z-10 hidden items-center lg:flex">
+          <LanguageToggle />
+        </div>
+
+        {/* Mobile menu button */}
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-white lg:hidden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-white lg:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
@@ -94,7 +106,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div className="absolute left-4 right-4 top-[112px] z-[99999] rounded-2xl border border-white/10 bg-[#0B3975] p-5 shadow-2xl lg:hidden">
           <nav className="space-y-2">
@@ -104,7 +116,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("practice-areas")}
               onClick={() => setMenuOpen(false)}
             >
-              PRACTICE AREAS
+              {t("nav.practiceAreas")}
             </Link>
 
             <Link
@@ -112,7 +124,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("attorney")}
               onClick={() => setMenuOpen(false)}
             >
-              ATTORNEY
+              {t("nav.attorney")}
             </Link>
 
             <Link
@@ -120,7 +132,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("blog")}
               onClick={() => setMenuOpen(false)}
             >
-              BLOG
+              {t("nav.blog")}
             </Link>
 
             <Link
@@ -128,8 +140,13 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("contact")}
               onClick={() => setMenuOpen(false)}
             >
-              CONTACT
+              {t("nav.contact")}
             </Link>
+
+            {/* Language Toggle */}
+            <div className="px-5 py-4">
+              <LanguageToggle />
+            </div>
 
           </nav>
         </div>
