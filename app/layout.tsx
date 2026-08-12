@@ -3,9 +3,14 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Merriweather } from "next/font/google"
 import "./globals.css"
 import { LanguageProvider } from "@/contexts/language-context"
+import { SiteHeader } from "@/components/site-header"
+import { HeroSection } from "@/components/hero-section"
 import { SiteFooter } from "@/components/site-footer"
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] })
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -19,35 +24,15 @@ const merriweather = Merriweather({
 })
 
 export const metadata: Metadata = {
-  title: "AttorneyAbogado",
+  title: "Guzman Legal",
   description:
-    "Find your attorney. Bilingual legal services in your language, in your community.",
+    "Guzman Legal represents individuals, families, and businesses throughout Tampa Bay.",
   generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
 }
 
 export const viewport: Viewport = {
-  colorScheme: "light dark",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  colorScheme: "dark",
+  themeColor: "#082f63",
 }
 
 export default function RootLayout({
@@ -61,7 +46,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable}`}
       >
         <LanguageProvider>
+          <SiteHeader />
+
+          <HeroSection />
+
           {children}
+
           <SiteFooter />
         </LanguageProvider>
 
