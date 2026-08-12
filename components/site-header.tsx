@@ -4,128 +4,131 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
-import { LanguageToggle } from "@/components/language-toggle"
-import { useLanguage } from "@/contexts/language-context"
 
 type SiteHeaderProps = {
-  activePage?:
-    | "home"
-    | "how-it-works"
-    | "get-connected"
-    | "for-attorneys"
-    | "resources"
+  activePage?: "practice-areas" | "attorney" | "blog" | "contact"
 }
 
 export function SiteHeader({ activePage }: SiteHeaderProps) {
-  const { t } = useLanguage()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const linkClass = (page: SiteHeaderProps["activePage"]) =>
-    `flex h-11 items-center justify-center whitespace-nowrap border-b-2 text-sm font-bold ${
-      activePage === page ? "border-white" : "border-transparent"
+    `flex h-11 items-center justify-center whitespace-nowrap border-b-2 text-[15px] font-medium tracking-wide transition-colors ${
+      activePage === page
+        ? "border-[#061a38] text-[#061a38]"
+        : "border-transparent text-[#061a38] hover:border-[#061a38]"
     }`
 
   const mobileLinkClass = (page: SiteHeaderProps["activePage"]) =>
-    `block rounded-xl px-5 py-4 text-lg font-bold ${
-      activePage === page ? "bg-white/10 text-white" : "text-white"
+    `block rounded-xl px-5 py-4 text-lg font-medium ${
+      activePage === page
+        ? "bg-[#061a38]/10 text-[#061a38]"
+        : "text-[#061a38]"
     }`
 
   return (
-    <header className="relative z-[9999] mx-auto w-full max-w-[1400px] border-b border-white/12">
-      <div className="relative flex h-28 items-center justify-between gap-3">
-        {/* Logo */}
+    <header className="relative z-[9999] mx-auto w-full border-b border-[#061a38]/10 bg-[#faf9f6]">
+      <div className="relative mx-auto flex h-24 max-w-[1400px] items-center justify-between px-6 sm:px-8 lg:px-12">
+
+        {/* Guzman Legal Logo */}
         <Link
           href="/"
-          className="relative z-10 flex h-28 shrink-0 items-center"
+          className="relative z-10 flex h-20 shrink-0 items-center"
         >
           <Image
-            src="/logo-header.png"
-            alt="AttorneyAbogado.com"
-            width={900}
-            height={250}
+            src="/guzman-logo.png"
+            alt="Guzman Legal"
+            width={300}
+            height={100}
             priority
-            className="h-20 w-auto sm:h-24 lg:h-28"
+            className="h-14 w-auto sm:h-16"
           />
         </Link>
 
-        {/* Perfectly centered desktop navigation */}
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-14 lg:flex">
-          <Link href="/how-it-works" className={linkClass("how-it-works")}>
-            {t("nav.howItWorks")}
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-12 lg:flex">
+          <Link
+            href="/practice-areas"
+            className={linkClass("practice-areas")}
+          >
+            PRACTICE AREAS
           </Link>
 
-          <Link href="/get-connected" className={linkClass("get-connected")}>
-            {t("nav.getConnected")}
+          <Link
+            href="/attorney"
+            className={linkClass("attorney")}
+          >
+            ATTORNEY
           </Link>
 
-          <Link href="/resources" className={linkClass("resources")}>
-            {t("nav.resources")}
+          <Link
+            href="/blog"
+            className={linkClass("blog")}
+          >
+            BLOG
+          </Link>
+
+          <Link
+            href="/contact"
+            className={linkClass("contact")}
+          >
+            CONTACT
           </Link>
         </nav>
 
-        {/* Right-side desktop buttons */}
-        <div className="relative z-10 hidden items-center justify-end gap-6 lg:flex">
-          <LanguageToggle />
-
-          <Link
-            href="/for-attorneys"
-            className="inline-flex h-11 items-center whitespace-nowrap rounded-lg bg-[#061a38] px-5 text-sm font-bold text-white shadow-xl"
-          >
-            {t("nav.forAttorneys")}
-          </Link>
-        </div>
-
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-[#061a38] lg:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
-          {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {menuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed left-4 right-4 top-32 z-[99999] rounded-2xl border border-white/10 bg-[#061a38] p-5 shadow-2xl lg:hidden">
+        <div className="absolute left-4 right-4 top-[88px] z-[99999] rounded-2xl border border-[#061a38]/10 bg-[#faf9f6] p-5 shadow-2xl lg:hidden">
           <nav className="space-y-2">
+
             <Link
-              href="/how-it-works"
-              className={mobileLinkClass("how-it-works")}
+              href="/practice-areas"
+              className={mobileLinkClass("practice-areas")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.howItWorks")}
+              PRACTICE AREAS
             </Link>
 
             <Link
-              href="/get-connected"
-              className={mobileLinkClass("get-connected")}
+              href="/attorney"
+              className={mobileLinkClass("attorney")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.getConnected")}
+              ATTORNEY
             </Link>
 
             <Link
-              href="/resources"
-              className={mobileLinkClass("resources")}
+              href="/blog"
+              className={mobileLinkClass("blog")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.resources")}
+              BLOG
             </Link>
 
             <Link
-              href="/for-attorneys"
-              className={mobileLinkClass("for-attorneys")}
+              href="/contact"
+              className={mobileLinkClass("contact")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.forAttorneys")}
+              CONTACT
             </Link>
 
-            <div className="px-5 py-4">
-              <LanguageToggle />
-            </div>
           </nav>
         </div>
       )}
