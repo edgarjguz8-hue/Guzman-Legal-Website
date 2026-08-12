@@ -59,43 +59,35 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
             href="/practice-areas"
             className={linkClass("practice-areas")}
           >
-            {t("nav.practiceAreas") !== "nav.practiceAreas"
-              ? t("nav.practiceAreas")
-              : "Practice Areas"}
+            {t("nav.practiceAreas")}
           </Link>
 
           <Link
             href="/attorney"
             className={linkClass("attorney")}
           >
-            {t("nav.attorney") !== "nav.attorney"
-              ? t("nav.attorney")
-              : "Attorney"}
+            {t("nav.attorney")}
           </Link>
 
           <Link
             href="/blog"
             className={linkClass("blog")}
           >
-            {t("nav.blog") !== "nav.blog"
-              ? t("nav.blog")
-              : "Blog"}
+            {t("nav.blog")}
           </Link>
 
           <Link
             href="/contact"
             className={linkClass("contact")}
           >
-            {t("nav.contact") !== "nav.contact"
-              ? t("nav.contact")
-              : "Contact"}
+            {t("nav.contact")}
           </Link>
 
         </nav>
 
         {/* English / Spanish Toggle */}
-        <div className="relative z-10 hidden lg:flex">
-          <div className="flex items-center rounded-full border border-white/30 bg-white/5 p-1">
+        <div className="relative z-10 hidden lg:flex items-center">
+          <div className="rounded-full border border-white/30 bg-white/5 px-2 py-1">
             <LanguageToggle />
           </div>
         </div>
@@ -126,9 +118,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("practice-areas")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.practiceAreas") !== "nav.practiceAreas"
-                ? t("nav.practiceAreas")
-                : "Practice Areas"}
+              {t("nav.practiceAreas")}
             </Link>
 
             <Link
@@ -136,9 +126,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("attorney")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.attorney") !== "nav.attorney"
-                ? t("nav.attorney")
-                : "Attorney"}
+              {t("nav.attorney")}
             </Link>
 
             <Link
@@ -146,9 +134,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("blog")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.blog") !== "nav.blog"
-                ? t("nav.blog")
-                : "Blog"}
+              {t("nav.blog")}
             </Link>
 
             <Link
@@ -156,14 +142,12 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
               className={mobileLinkClass("contact")}
               onClick={() => setMenuOpen(false)}
             >
-              {t("nav.contact") !== "nav.contact"
-                ? t("nav.contact")
-                : "Contact"}
+              {t("nav.contact")}
             </Link>
 
             {/* Language Toggle */}
             <div className="mt-3 flex justify-center border-t border-white/10 px-5 pt-5">
-              <div className="rounded-full border border-white/30 bg-white/5 p-1">
+              <div className="rounded-full border border-white/30 bg-white/5 px-2 py-1">
                 <LanguageToggle />
               </div>
             </div>
