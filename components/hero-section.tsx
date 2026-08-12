@@ -1,66 +1,163 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
-import { MapPin, ArrowRight, Lock, ShieldCheck, MessageCircle } from "lucide-react"
+import { ArrowRight, Lock, MessageCircle, Shield } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
 export function HeroSection() {
-  const { t } = useLanguage()
+  const { language } = useLanguage()
+  const isSpanish = language === "es"
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    legalIssue: "",
+  })
+
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const content = {
+    en: {
+      title: "Your Attorney.\nIn Your Corner.",
+      subtitle:
+        "For over 25 years, Guzman Legal has represented individuals, families, and businesses throughout Tampa Bay.",
+      formTitle: "Tell us how we can help.",
+      name: "First Name *",
+      email: "Email Address *",
+      phone: "Phone Number *",
+      issue: "How can we help you? *",
+      button: "CONTACT GUZMAN LEGAL",
+      confidential: "25+ YEARS EXPERIENCE",
+      spanish: "HABLAMOS ESPAÑOL",
+      tampa: "PROUDLY SERVING TAMPA BAY",
+      success:
+        "Thank you. Your inquiry has been sent to Guzman Legal.",
+    },
+    es: {
+      title: "Su Abogado.\nDe Su Lado.",
+      subtitle:
+        "Por más de 25 años, Guzman Legal ha representado a individuos, familias y empresas en toda el área de Tampa Bay.",
+      formTitle: "Díganos cómo podemos ayudarle.",
+      name: "Nombre *",
+      email: "Correo Electrónico *",
+      phone: "Número de Teléfono *",
+      issue: "¿Cómo podemos ayudarle? *",
+      button: "CONTACTAR A GUZMAN LEGAL",
+      confidential: "MÁS DE 25 AÑOS DE EXPERIENCIA",
+      spanish: "HABLAMOS ESPAÑOL",
+      tampa: "SIRVIENDO CON ORGULLO A TAMPA BAY",
+      success:
+        "Gracias. Su consulta ha sido enviada a Guzman Legal.",
+    },
+  }
+
+  const text = isSpanish ? content.es : content.en
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    setLoading(true)
+
+    try {
+      const response = await fetch("/api/contact-attorney", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to submit inquiry")
+      }
+
+      setSubmitted(true)
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        legalIssue: "",
+      })
+    } catch (error) {
+      console.error("Contact form error:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
-    <section className="relative overflow-hidden bg-[#0B3975] text-white">
+    <section className="relative overflow-hidden bg-[#082f63] text-white">
+      {/* Background glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute right-[-120px] top-[-100px] h-[600px] w-[600px] rounded-full bg-[#174f96] opacity-30 blur-[150px]" />
 
-      {/* Background decorative scales */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -right-20 -top-20 h-[700px] w-[700px] rounded-full border border-white/[0.06]" />
-        <div className="absolute right-[-80px] top-[40px] h-[560px] w-[560px] rounded-full border border-white/[0.05]" />
+        <div className="absolute right-[-80px] top-[40px] h-[600px] w-[850px] rounded-full border border-white/[0.06]" />
 
-        <div className="absolute right-[5%] top-[20px] opacity-30">
-          <div className="relative h-[430px] w-[430px]">
-            <div className="absolute left-1/2 top-0 h-[80px] w-[5px] -translate-x-1/2 bg-white/20" />
-
-            <div className="absolute left-[17%] top-[90px] h-[5px] w-[66%] bg-white/20" />
-
-            <div className="absolute left-[20%] top-[92px] h-[230px] w-[5px] rotate-[20deg] origin-top bg-white/20" />
-            <div className="absolute right-[20%] top-[92px] h-[230px] w-[5px] -rotate-[20deg] origin-top bg-white/20" />
-
-            <div className="absolute left-[8%] top-[305px] h-[5px] w-[38%] rounded-full bg-white/20" />
-            <div className="absolute right-[8%] top-[305px] h-[5px] w-[38%] rounded-full bg-white/20" />
-
-            <div className="absolute left-1/2 top-[50px] h-[300px] w-[2px] -translate-x-1/2 bg-white/15" />
-          </div>
-        </div>
-
-        {/* Dot pattern */}
-        <div className="absolute right-[4%] top-0 grid grid-cols-8 gap-5 opacity-20">
-          {Array.from({ length: 48 }).map((_, index) => (
-            <span
-              key={index}
-              className="h-1.5 w-1.5 rounded-full bg-white"
-            />
-          ))}
-        </div>
+        <div className="absolute right-[-40px] top-[100px] h-[500px] w-[760px] rounded-full border border-white/[0.05]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1500px] px-6 pb-16 pt-16 sm:px-10 lg:px-16 lg:pb-20 lg:pt-20">
+      {/* Subtle AttorneyAbogado watermark */}
+      <div className="pointer-events-none absolute right-[2%] top-[20px] hidden opacity-[0.18] lg:block">
+        <Image
+          src="/logo-white.png"
+          alt=""
+          width={700}
+          height={700}
+          className="h-auto w-[360px] xl:w-[430px]"
+        />
+      </div>
 
-        {/* Main hero content */}
-        <div className="relative min-h-[650px]">
+      {/* Dot pattern */}
+      <div className="pointer-events-none absolute right-[4%] top-0 hidden grid-cols-8 gap-5 opacity-30 lg:grid">
+        {Array.from({ length: 64 }).map((_, index) => (
+          <span
+            key={index}
+            className="h-1 w-1 rounded-full bg-white"
+          />
+        ))}
+      </div>
 
-          {/* Left content */}
-          <div className="relative z-20 max-w-[700px] pt-2 lg:pt-8">
+      <div className="relative mx-auto max-w-[1400px] px-6 pb-12 pt-10 sm:px-10 lg:px-14 lg:pb-14 lg:pt-14">
 
-            <h1 className="font-[var(--font-heading)] text-6xl font-black leading-[0.98] tracking-[-0.04em] sm:text-7xl lg:text-[92px]">
-              {t("hero.title")}
+        {/* Main Hero */}
+        <div className="relative min-h-[590px]">
+
+          {/* Copy */}
+          <div className="relative z-20 max-w-[600px] pt-4 lg:pt-8">
+            <h1
+              className="whitespace-pre-line text-6xl font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-7xl lg:text-[76px]"
+              style={{
+                fontFamily: "var(--font-heading)",
+              }}
+            >
+              {text.title}
             </h1>
 
-            <p className="mt-8 max-w-[720px] font-[var(--font-heading)] text-xl font-medium leading-relaxed text-white/95 sm:text-2xl lg:text-[25px]">
-              {t("hero.subtitle")}
+            <p
+              className="mt-6 max-w-[510px] text-base leading-relaxed text-white/90 sm:text-lg"
+              style={{
+                fontFamily: "var(--font-geist-sans)",
+              }}
+            >
+              {text.subtitle}
             </p>
           </div>
 
-          {/* Attorney image */}
-          <div className="pointer-events-none absolute right-[-50px] top-[-45px] z-10 hidden h-[560px] w-[650px] lg:block">
+          {/* Attorney */}
+          <div className="pointer-events-none absolute right-[-30px] top-[-65px] z-10 hidden h-[570px] w-[650px] lg:block xl:right-[10px]">
             <Image
               src="/attorney-hero.png"
               alt="Guzman Legal attorney"
@@ -70,8 +167,8 @@ export function HeroSection() {
             />
           </div>
 
-          {/* Mobile attorney image */}
-          <div className="pointer-events-none relative z-10 mx-auto mt-8 h-[330px] w-full max-w-[500px] lg:hidden">
+          {/* Mobile attorney */}
+          <div className="pointer-events-none relative z-10 mx-auto mt-8 h-[300px] w-full max-w-[450px] lg:hidden">
             <Image
               src="/attorney-hero.png"
               alt="Guzman Legal attorney"
@@ -81,107 +178,107 @@ export function HeroSection() {
             />
           </div>
 
-          {/* Attorney matching form */}
-          <div className="relative z-30 mt-10 rounded-[28px] bg-white p-5 text-[#0A1830] shadow-2xl sm:p-7 lg:absolute lg:bottom-[25px] lg:left-0 lg:right-0 lg:mt-0 lg:p-7">
+          {/* Inquiry Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="absolute bottom-0 left-0 right-0 z-30 rounded-[18px] bg-white p-5 text-[#071226] shadow-[0_20px_60px_rgba(0,0,0,0.22)] sm:p-6"
+          >
+            <h2
+              className="mb-5 text-xl font-bold"
+              style={{
+                fontFamily: "var(--font-heading)",
+              }}
+            >
+              {text.formTitle}
+            </h2>
 
-            <div className="grid gap-7 lg:grid-cols-[1fr_1fr_auto] lg:items-end">
+            <div className="grid gap-3 lg:grid-cols-2">
 
-              {/* ZIP CODE */}
-              <div>
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#081A36] text-lg font-bold text-white">
-                    1
-                  </span>
+              {/* Name */}
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder={text.name}
+                className="h-[54px] rounded-lg border border-slate-200 bg-white px-4 text-sm text-[#071226] outline-none transition focus:border-[#174f96]"
+              />
 
-                  <label className="font-[var(--font-heading)] text-lg font-bold">
-                    {t("hero.zipLabel")}
-                  </label>
-                </div>
+              {/* Email */}
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder={text.email}
+                className="h-[54px] rounded-lg border border-slate-200 bg-white px-4 text-sm text-[#071226] outline-none transition focus:border-[#174f96]"
+              />
 
-                <div className="flex h-[72px] items-center rounded-xl border border-[#D9E0EA] px-5">
-                  <MapPin className="mr-4 h-6 w-6 text-[#0A1830]" />
+              {/* Phone */}
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                placeholder={text.phone}
+                className="h-[54px] rounded-lg border border-slate-200 bg-white px-4 text-sm text-[#071226] outline-none transition focus:border-[#174f96]"
+              />
 
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    maxLength={5}
-                    placeholder={t("hero.zipPlaceholder")}
-                    className="w-full bg-transparent font-[var(--font-heading)] text-xl font-medium outline-none placeholder:text-[#66758D]"
-                  />
-                </div>
-              </div>
+              {/* Legal Issue */}
+              <textarea
+                name="legalIssue"
+                value={formData.legalIssue}
+                onChange={handleChange}
+                required
+                placeholder={text.issue}
+                rows={3}
+                className="min-h-[54px] resize-none rounded-lg border border-slate-200 bg-white px-4 py-4 text-sm text-[#071226] outline-none transition focus:border-[#174f96] lg:row-span-2"
+              />
 
-              {/* LEGAL ISSUE */}
-              <div>
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#081A36] text-lg font-bold text-white">
-                    2
-                  </span>
-
-                  <label className="font-[var(--font-heading)] text-lg font-bold">
-                    {t("hero.issueLabel")}
-                  </label>
-                </div>
-
-                <button
-                  type="button"
-                  className="flex h-[72px] w-full items-center justify-between rounded-xl border border-[#D9E0EA] px-6 text-left font-[var(--font-heading)] text-xl font-medium text-[#66758D]"
-                >
-                  <span>{t("hero.issuePlaceholder")}</span>
-
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5 7.5L10 12.5L15 7.5"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {/* FIND BUTTON */}
+              {/* Submit */}
               <button
-                type="button"
-                className="flex h-[72px] items-center justify-center gap-4 rounded-xl bg-[#061A38] px-8 font-[var(--font-heading)] text-lg font-bold text-white transition-all hover:bg-[#0A2754] lg:min-w-[270px]"
+                type="submit"
+                disabled={loading}
+                className="flex h-[54px] items-center justify-center gap-3 rounded-lg bg-[#061a38] px-6 text-sm font-bold text-white transition hover:bg-[#0b2850] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {t("hero.findButton")}
-                <ArrowRight className="h-6 w-6" />
+                {loading
+                  ? isSpanish
+                    ? "ENVIANDO..."
+                    : "SENDING..."
+                  : text.button}
+
+                {!loading && <ArrowRight className="h-5 w-5" />}
               </button>
 
             </div>
-          </div>
+
+            {submitted && (
+              <div className="mt-4 rounded-lg bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-800">
+                {text.success}
+              </div>
+            )}
+          </form>
         </div>
 
-        {/* Trust indicators */}
-        <div className="relative z-30 mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-5 text-white sm:gap-x-16">
+        {/* Trust Indicators */}
+        <div className="relative z-30 mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-xs font-semibold sm:gap-x-14">
 
-          <div className="flex items-center gap-3">
-            <Lock className="h-6 w-6" />
-            <span className="font-[var(--font-heading)] text-base font-semibold">
-              {t("howItWorks.confidential")}
-            </span>
+          <div className="flex items-center gap-2">
+            <Lock className="h-5 w-5" />
+            {text.confidential}
           </div>
 
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="h-6 w-6" />
-            <span className="font-[var(--font-heading)] text-base font-semibold">
-              {t("howItWorks.noObligation")}
-            </span>
+          <div className="flex items-center gap-2">
+            <MessageCircle className="h-5 w-5" />
+            {text.spanish}
           </div>
 
-          <div className="flex items-center gap-3">
-            <MessageCircle className="h-6 w-6" />
-            <span className="font-[var(--font-heading)] text-base font-semibold">
-              {t("howItWorks.spanish")}
-            </span>
+          <div className="flex items-center gap-2">
+            <Shield className="h-5 w-5" />
+            {text.tampa}
           </div>
 
         </div>
