@@ -7,6 +7,7 @@ import Image from "next/image"
 import { createClient } from "@supabase/supabase-js"
 import { useLanguage } from "@/contexts/language-context"
 import { SiteHeader } from "@/components/site-header"
+import { HeroSection } from "@/components/hero-section"
 import {
   Shield,
   Lock,
