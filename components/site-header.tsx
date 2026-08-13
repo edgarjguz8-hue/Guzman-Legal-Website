@@ -3,30 +3,44 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { LanguageToggle } from "@/components/language-toggle"
 import { useLanguage } from "@/contexts/language-context"
 
-type SiteHeaderProps = {
-  activePage?:
-    | "practice-areas"
-    | "attorney"
-    | "blog"
-    | "contact"
+type ActivePage =
+  | "practice-areas"
+  | "attorney"
+  | "blog"
+  | "contact"
+  | "home"
+  | null
+
+function getActivePage(pathname: string): ActivePage {
+  if (pathname === "/") return "home"
+  if (pathname.startsWith("/practice-areas")) return "practice-areas"
+  if (pathname.startsWith("/attorney")) return "attorney"
+  // Blog nav item stays active on both the /blog and legacy /resources routes
+  if (pathname.startsWith("/blog") || pathname.startsWith("/resources"))
+    return "blog"
+  if (pathname.startsWith("/contact")) return "contact"
+  return null
 }
 
-export function SiteHeader({ activePage }: SiteHeaderProps) {
+export function SiteHeader() {
   const { t } = useLanguage()
+  const pathname = usePathname()
+  const activePage = getActivePage(pathname ?? "")
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const linkClass = (page: SiteHeaderProps["activePage"]) =>
+  const linkClass = (page: ActivePage) =>
     `flex h-11 items-center justify-center whitespace-nowrap border-b-2 text-[15px] font-medium tracking-wide transition-colors ${
       activePage === page
         ? "border-white text-white"
         : "border-transparent text-white hover:border-white"
     }`
 
-  const mobileLinkClass = (page: SiteHeaderProps["activePage"]) =>
+  const mobileLinkClass = (page: ActivePage) =>
     `block rounded-xl px-5 py-4 text-lg font-medium transition-colors ${
       activePage === page
         ? "bg-white/10 text-white"

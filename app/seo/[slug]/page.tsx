@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowRight, MapPin, ChevronDown, Lock, Shield, MessageCircle } from "lucide-react"
-import { SiteHeader } from "@/components/site-header"
 import {
   parseSeoSlug,
   generateMetaTitle,
@@ -153,8 +152,6 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
             <span key={i} className="h-1 w-1 rounded-full bg-white" />
           ))}
         </div>
-
-        <SiteHeader activePage="home" />
 
         <div className="relative z-10 mx-auto mt-16 max-w-[950px]">
           <div className="max-w-[550px]">

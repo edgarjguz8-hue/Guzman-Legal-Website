@@ -4,7 +4,6 @@ import { Geist, Geist_Mono, Merriweather } from "next/font/google"
 import "./globals.css"
 import { LanguageProvider } from "@/contexts/language-context"
 import { SiteHeader } from "@/components/site-header"
-import { HeroSection } from "@/components/hero-section"
 import { SiteFooter } from "@/components/site-footer"
 
 const geistSans = Geist({
@@ -47,8 +46,6 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <SiteHeader />
-
-          <HeroSection />
 
           {children}
 
