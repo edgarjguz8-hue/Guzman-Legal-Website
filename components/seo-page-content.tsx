@@ -4,7 +4,6 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
-import { SiteHeader } from "@/components/site-header"
 import {
   ArrowRight,
   CheckCircle,
@@ -129,8 +128,6 @@ export function SEOPageContent({
             <span key={i} className="h-1 w-1 rounded-full bg-white" />
           ))}
         </div>
-
-        <SiteHeader activePage="home" />
 
         <div className="relative z-10 mx-auto mt-12 max-w-[950px]">
           <div className="max-w-[550px]">

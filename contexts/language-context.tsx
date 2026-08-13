@@ -149,10 +149,10 @@ const englishTranslations = {
   'forAttorneys.heroTitle1': 'Grow Your',
   'forAttorneys.heroTitle2': 'Legal Practice.',
   'forAttorneys.heroTitle3': 'Get Discovered.',
-  'forAttorneys.subtitle': 'AttorneyAbogado.com helps attorneys connect with people actively looking for legal help in their area.',
+  'forAttorneys.subtitle': 'Guzman Legal helps attorneys connect with people actively looking for legal help in their area.',
   'forAttorneys.joinNetwork': 'Join Our Attorney Network',
   'forAttorneys.trusted': 'Trusted by attorneys. Focused on results.',
-  'forAttorneys.quote': 'AttorneyAbogado.com helps attorneys get discovered by people who are already searching for legal help.',
+  'forAttorneys.quote': 'Guzman Legal helps attorneys get discovered by people who are already searching for legal help.',
   'forAttorneys.quoteBottom': 'Built for local legal growth.',
   'forAttorneys.whyJoin': 'Why Join AttorneyAbogado?',
   'forAttorneys.benefit1Title': 'Local & Exclusive',
@@ -180,7 +180,7 @@ const englishTranslations = {
   'forAttorneys.trafficTickets': 'Traffic Tickets',
   'forAttorneys.andMore': 'And More',
   'forAttorneys.ctaTitle': 'Interested in Partnering?',
-  'forAttorneys.ctaText': 'Join AttorneyAbogado.com and start connecting with more clients in your area today.',
+  'forAttorneys.ctaText': 'Join Guzman Legal and start connecting with more clients in your area today.',
 
   // Resources
   'resources.title': 'Resources',
@@ -499,10 +499,10 @@ const spanishTranslations = {
   'forAttorneys.heroTitle1': 'Haga Crecer Su',
   'forAttorneys.heroTitle2': 'Práctica Legal.',
   'forAttorneys.heroTitle3': 'Sea Encontrado.',
-  'forAttorneys.subtitle': 'AttorneyAbogado.com ayuda a los abogados a conectarse con personas que buscan ayuda legal activamente en su área.',
+  'forAttorneys.subtitle': 'Guzman Legal ayuda a los abogados a conectarse con personas que buscan ayuda legal activamente en su área.',
   'forAttorneys.joinNetwork': 'Únase a Nuestra Red de Abogados',
   'forAttorneys.trusted': 'Confiado por abogados. Enfocado en resultados.',
-  'forAttorneys.quote': 'AttorneyAbogado.com ayuda a los abogados a ser encontrados por personas que ya están buscando ayuda legal.',
+  'forAttorneys.quote': 'Guzman Legal ayuda a los abogados a ser encontrados por personas que ya están buscando ayuda legal.',
   'forAttorneys.quoteBottom': 'Creado para el crecimiento legal local.',
   'forAttorneys.whyJoin': '¿Por Qué Unirse a AttorneyAbogado?',
   'forAttorneys.benefit1Title': 'Local y Exclusivo',
@@ -530,7 +530,7 @@ const spanishTranslations = {
   'forAttorneys.trafficTickets': 'Multas de Tráfico',
   'forAttorneys.andMore': 'Y Más',
   'forAttorneys.ctaTitle': '¿Interesado en Asociarse?',
-  'forAttorneys.ctaText': 'Únase a AttorneyAbogado.com y comience a conectarse con más clientes en su área hoy.',
+  'forAttorneys.ctaText': 'Únase a Guzman Legal y comience a conectarse con más clientes en su área hoy.',
 
   // Resources
   'resources.title': 'Recursos',

@@ -10,28 +10,28 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-10 md:grid-cols-5">
           <div>
-            <h3 className="text-xl font-bold">AttorneyAbogado.com</h3>
+            <h3 className="text-xl font-bold">Guzman Legal</h3>
             <p className="mt-4 text-sm leading-relaxed text-white/70">
               {t("footer.description")}
             </p>
-            <p className="mt-5 text-sm text-white/80">💬 Hablamos Español</p>
+            <p className="mt-5 text-sm text-white/80">Hablamos Español</p>
           </div>
 
           <div>
             <h4 className="font-bold">{t("footer.quickLinks")}</h4>
             <div className="mt-2 h-1 w-8 rounded-full bg-[#0b5fc4]" />
             <div className="mt-4 space-y-3 text-sm text-white/70">
-              <a href="/how-it-works" className="block hover:text-white">
-                {t("nav.howItWorks")}
+              <a href="/practice-areas" className="block hover:text-white">
+                {t("nav.practiceAreas")}
               </a>
-              <a href="/get-connected" className="block hover:text-white">
-                {t("nav.getConnected")}
+              <a href="/attorney" className="block hover:text-white">
+                {t("nav.attorney")}
               </a>
-              <a href="/resources" className="block hover:text-white">
-                {t("nav.resources")}
+              <a href="/blog" className="block hover:text-white">
+                {t("nav.blog")}
               </a>
-              <a href="/for-attorneys" className="block hover:text-white">
-                {t("nav.forAttorneys")}
+              <a href="/contact" className="block hover:text-white">
+                {t("nav.contact")}
               </a>
             </div>
           </div>
@@ -114,7 +114,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-8 border-t border-white/10 pt-6 text-center text-sm text-white/60">
-          <p>© 2026 AttorneyAbogado.com. {t("footer.rights")}</p>
+          <p>© 2026 Guzman Legal. {t("footer.rights")}</p>
 
           <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2">
             <a href="/legal/privacy" className="hover:text-white">

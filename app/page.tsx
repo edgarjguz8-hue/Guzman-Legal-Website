@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { createClient } from "@supabase/supabase-js"
+import { HeroSection } from "@/components/hero-section"
 import { useLanguage } from "@/contexts/language-context"
 import {
   Shield,
@@ -116,6 +117,11 @@ export default function HomePage() {
     <main className="min-h-screen bg-[#f8fafc] text-[#071226]">
 
       {/* =========================
+          HERO (homepage only)
+      ========================= */}
+      <HeroSection />
+
+      {/* =========================
           PRACTICE AREAS
       ========================= */}
       <section className="bg-[#f8fafc] px-7 py-16 lg:py-20">
@@ -141,7 +147,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {practiceAreas.map((item) => {
+            {practiceAreas.slice(0, 4).map((item) => {
               const Icon = item.icon
 
               return (
@@ -173,6 +179,16 @@ export default function HomePage() {
             })}
           </div>
 
+          <div className="mt-10 text-center">
+            <Link
+              href="/practice-areas"
+              className="inline-flex items-center gap-3 rounded-lg bg-[#061a38] px-7 py-4 font-bold text-white transition hover:bg-[#0b2850]"
+            >
+              {isSpanish ? "VER TODAS LAS ÁREAS DE PRÁCTICA" : "VIEW ALL PRACTICE AREAS"}
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </div>
+
         </div>
       </section>
 
@@ -185,8 +201,8 @@ export default function HomePage() {
 
           <div className="overflow-hidden rounded-xl">
             <Image
-              src="/attorney-portrait.jpg"
-              alt="Guzman Legal attorney"
+              src="/attorney-client-meeting.jpg"
+              alt="Edgar J. Guzman, Esq. of Guzman Legal"
               width={700}
               height={800}
               className="h-auto w-full object-cover"
@@ -456,13 +472,13 @@ export default function HomePage() {
             </p>
           </div>
 
-          <a
-            href="mailto:edgar@attorneyabogado.com"
+          <Link
+            href="/contact"
             className="inline-flex items-center gap-3 rounded-lg bg-white px-7 py-4 font-bold text-[#071226] transition hover:bg-slate-100"
           >
             {isSpanish ? "CONTÁCTENOS" : "CONTACT US"}
             <ArrowRight className="h-5 w-5" />
-          </a>
+          </Link>
 
         </div>
       </section>

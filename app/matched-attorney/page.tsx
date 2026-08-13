@@ -6,7 +6,6 @@ import { createClient } from '@supabase/supabase-js'
 import { Mail, Phone, Globe, ArrowRight } from 'lucide-react'
 
 import { BackButton } from '@/components/back-button'
-import { SiteHeader } from '@/components/site-header'
 import { useLanguage } from '@/contexts/language-context'
 
 const supabase = createClient(
@@ -39,8 +38,6 @@ function PageShell({
         <div className="mx-auto max-w-[1400px]">
           <BackButton />
         </div>
-
-        <SiteHeader />
       </section>
 
       {children}

@@ -109,17 +109,6 @@ export function HeroSection() {
         <div className="absolute right-[-40px] top-[100px] h-[500px] w-[760px] rounded-full border border-white/[0.05]" />
       </div>
 
-      {/* Subtle AttorneyAbogado watermark */}
-      <div className="pointer-events-none absolute right-[2%] top-[20px] hidden opacity-[0.18] lg:block">
-        <Image
-          src="/logo-white.png"
-          alt=""
-          width={700}
-          height={700}
-          className="h-auto w-[360px] xl:w-[430px]"
-        />
-      </div>
-
       {/* Dot pattern */}
       <div className="pointer-events-none absolute right-[4%] top-0 hidden grid-cols-8 gap-5 opacity-30 lg:grid">
         {Array.from({ length: 64 }).map((_, index) => (

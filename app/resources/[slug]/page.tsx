@@ -1,5 +1,4 @@
 import { createClient } from "@supabase/supabase-js"
-import { SiteHeader } from "@/components/site-header"
 import { ArticleDetail } from "@/components/article-detail"
 import Link from "next/link"
 
@@ -75,12 +74,6 @@ export default async function ArticlePage({
   if (!article) {
     return (
       <main className="min-h-screen bg-[#f8fafc] text-[#071226]">
-        <section className="bg-[#082f63] px-7 py-6 text-white">
-          <div className="mx-auto max-w-[1400px]">
-            <SiteHeader activePage="resources" />
-          </div>
-        </section>
-
         <section className="px-7 py-20">
           <div className="mx-auto max-w-[900px]">
             <Link href="/resources" className="font-black text-[#0b5fc4]">
@@ -96,12 +89,6 @@ export default async function ArticlePage({
 
   return (
     <main className="min-h-screen bg-[#f8fafc] text-[#071226]">
-      <section className="bg-[#082f63] px-7 py-6 text-white">
-        <div className="mx-auto max-w-[1400px]">
-          <SiteHeader activePage="resources" />
-        </div>
-      </section>
-
       <ArticleDetail article={article} />
     </main>
   )
