@@ -160,7 +160,7 @@ export function HeroSection() {
           </div>
 
           {/* Mobile attorney portrait */}
-          <div className="relative z-10 h-[429px] w-full max-w-none sm:h-[330px] lg:hidden">
+          <div className="pointer-events-none absolute right-[-18px] top-[42px] z-10 h-[390px] w-[300px] lg:hidden sm:right-[-10px] sm:top-[36px] sm:h-[360px] sm:w-[280px]">
             <Image
               src="/attorney-headshot.png"
               alt="Guzman Legal attorney"
