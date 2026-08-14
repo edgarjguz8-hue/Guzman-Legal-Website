@@ -50,7 +50,7 @@ export function SiteHeader() {
     <header className="relative z-[9999] w-full border-b border-white/10 bg-[#0B3975]">
 
       {/* Main Header */}
-      <div className="relative flex min-h-[150px] w-full items-center justify-between px-6 sm:px-10 lg:px-16 xl:px-20">
+      <div className="relative flex min-h-[88px] w-full items-center justify-between px-4 sm:px-8 lg:min-h-[132px] lg:px-12 xl:px-16">
 
         {/* Guzman Legal Logo */}
         <Link
@@ -63,15 +63,15 @@ export function SiteHeader() {
             width={360}
             height={120}
             priority
-            className="h-24 w-auto sm:h-28 lg:h-32"
+            className="h-20 w-auto sm:h-24 lg:h-40"
           />
         </Link>
 
         {/* Desktop Right Side */}
-        <div className="hidden lg:flex flex-col items-end gap-5">
+        <div className="hidden lg:flex items-center gap-7">
 
           {/* Contact Information */}
-          <div className="flex items-center gap-7 text-sm font-medium tracking-wide text-white">
+          <div className="flex items-center gap-5 text-xs font-normal tracking-wide text-white/70">
 
             <a
               href="tel:8139331234"
@@ -92,9 +92,9 @@ export function SiteHeader() {
           </div>
 
           {/* Navigation + Language */}
-          <div className="flex items-center gap-12">
+          <div className="flex items-center gap-7">
 
-            <nav className="flex items-center gap-12">
+            <nav className="flex items-center gap-7">
 
               <Link
                 href="/practice-areas"
@@ -154,7 +154,7 @@ export function SiteHeader() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute left-4 right-4 top-[150px] z-[99999] rounded-2xl border border-white/10 bg-[#0B3975] p-5 shadow-2xl lg:hidden">
+        <div className="absolute left-4 right-4 top-[88px] z-[99999] rounded-2xl border border-white/10 bg-[#0B3975] p-5 shadow-2xl lg:hidden">
 
           {/* Mobile Contact Information */}
           <div className="mb-4 space-y-3 border-b border-white/10 px-5 pb-5">
