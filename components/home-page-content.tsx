@@ -19,6 +19,16 @@ export function HomePageContent({ articles }: { articles: Article[] }) {
 
   const recentArticles = articles.slice(0, 3)
 
+  const formatPublishedDate = (date: string | null | undefined) => {
+    if (!date) return ""
+
+    return new Intl.DateTimeFormat(isSpanish ? "es-US" : "en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(new Date(date))
+  }
+
   const practiceAreas = [
     {
       icon: Car,
@@ -202,62 +212,77 @@ export function HomePageContent({ articles }: { articles: Article[] }) {
             </p>
           </div>
 
-          <div className="mt-12 flex justify-center">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {recentArticles.map((article) => {
+              const title =
+                isSpanish && article.title_es ? article.title_es : article.title
+              const excerpt = article.excerpt
+              const category =
+                isSpanish && article.category_es
+                  ? article.category_es
+                  : article.category
 
-            {/* Blog */}
-            <div className="w-full max-w-3xl rounded-2xl border border-slate-200 p-8">
+              return (
+                <article
+                  key={article.id}
+                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+                >
+                  <Link href={`/resources/${article.slug}`} className="block">
+                    {article.image_url ? (
+                      <Image
+                        src={article.image_url}
+                        alt={title}
+                        width={640}
+                        height={360}
+                        className="h-48 w-full object-cover"
+                      />
+                    ) : (
+                      <div
+                        aria-label={isSpanish ? "Imagen del artículo" : "Article image"}
+                        className="flex h-48 items-center justify-center bg-[#061a38] p-6 text-center"
+                      >
+                        <span className="text-sm font-black uppercase tracking-[0.18em] text-white/90">
+                          Guzman Legal
+                        </span>
+                      </div>
+                    )}
 
-              <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eef5ff]">
-                  <FileText className="h-7 w-7 text-[#0b5fc4]" />
-                </div>
-
-                <h3 className="text-2xl font-bold">
-                  {t("home.blogCardTitle")}
-                </h3>
-              </div>
-
-              <div className="mt-6 space-y-4">
-                {recentArticles.map((article) => {
-                  const title =
-                    isSpanish && article.title_es
-                      ? article.title_es
-                      : article.title
-
-                  const excerpt =
-                    isSpanish && article.excerpt_es
-                      ? article.excerpt_es
-                      : article.excerpt
-
-                  return (
-                    <Link
-                      key={article.id}
-                      href={`/resources/${article.slug}`}
-                      className="block border-b pb-4"
-                    >
-                      <h4 className="font-bold">
+                    <div className="p-6">
+                      {category && (
+                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#0b5fc4]">
+                          {category}
+                        </p>
+                      )}
+                      <h3 className="mt-3 text-xl font-bold text-[#071226]">
                         {title}
-                      </h4>
-
+                      </h3>
                       {excerpt && (
-                        <p className="mt-1 text-sm text-slate-500">
+                        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">
                           {excerpt}
                         </p>
                       )}
-                    </Link>
-                  )
-                })}
-              </div>
+                      {article.published_date && (
+                        <time
+                          dateTime={article.published_date}
+                          className="mt-5 block text-xs font-semibold text-slate-500"
+                        >
+                          {formatPublishedDate(article.published_date)}
+                        </time>
+                      )}
+                    </div>
+                  </Link>
+                </article>
+              )
+            })}
+          </div>
 
-              <Link
-                href="/resources#articles"
-                className="mt-6 inline-flex font-bold text-[#0b5fc4]"
-              >
-                {t("resources.viewAllArticles")} →
-              </Link>
-
-            </div>
-
+          <div className="mt-8 text-center">
+            <Link
+              href="/resources#articles"
+              className="inline-flex font-bold text-[#0b5fc4]"
+            >
+              {t("resources.viewAllArticles")} →
+            </Link>
           </div>
 
         </div>

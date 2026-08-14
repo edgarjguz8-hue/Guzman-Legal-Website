@@ -103,8 +103,42 @@ const getPublishedArticlesCached = unstable_cache(
   { revalidate: 300 }
 )
 
+async function getRecentPublishedArticlesUncached(): Promise<Article[]> {
+  let supabase
+  try {
+    supabase = getSupabaseServerClient()
+  } catch (e) {
+    throw e
+  }
+
+  const { data, error } = await supabase
+    .from("articles")
+    .select(LISTING_COLUMNS)
+    .eq("published", true)
+    .order("published_date", { ascending: false })
+    .limit(3)
+
+  if (error) {
+    throw new Error(
+      `Article fetch error: ${error.message}; code: ${error.code ?? "unknown"}; details: ${error.details ?? "none"}; hint: ${error.hint ?? "none"}`
+    )
+  }
+
+  return (data as Article[]) ?? []
+}
+
+const getRecentPublishedArticlesCached = unstable_cache(
+  getRecentPublishedArticlesUncached,
+  ["recent-published-articles"],
+  { revalidate: 300 }
+)
+
 export function getPublishedArticles(): Promise<Article[]> {
   return getPublishedArticlesCached()
+}
+
+export function getRecentPublishedArticles(): Promise<Article[]> {
+  return getRecentPublishedArticlesCached()
 }
 
 export function getArticleBySlug(slug: string): Promise<Article | null> {
