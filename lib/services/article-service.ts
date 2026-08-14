@@ -78,8 +78,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
   try {
     supabase = getSupabaseServerClient()
   } catch (e) {
-    console.error((e as Error).message)
-    return []
+    throw e
   }
 
   const { data, error } = await supabase
@@ -89,8 +88,9 @@ export async function getPublishedArticles(): Promise<Article[]> {
     .order("published_date", { ascending: false })
 
   if (error) {
-    console.error("Article fetch error:", error.message)
-    return []
+    throw new Error(
+      `Article fetch error: ${error.message}; code: ${error.code ?? "unknown"}; details: ${error.details ?? "none"}; hint: ${error.hint ?? "none"}`
+    )
   }
 
   return (data as Article[]) ?? []
