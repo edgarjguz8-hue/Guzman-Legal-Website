@@ -2,6 +2,8 @@
 
 import { Calendar, Clock } from "lucide-react"
 import Link from "next/link"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 import { useLanguage } from "@/contexts/language-context"
 import type { Article } from "@/types"
 
@@ -57,24 +59,54 @@ export function ArticleDetail({ article }: { article: Article }) {
           </span>
         </div>
 
-        {article.image_url && (
+        {article.image_url ? (
           <img
             src={article.image_url}
             alt={title}
             className="mt-10 h-64 w-full rounded-2xl object-cover shadow-lg sm:h-[420px]"
           />
+        ) : (
+          <div
+            aria-label={isSpanish ? "Imagen del artículo" : "Article image"}
+            className="mt-10 flex h-64 w-full items-center justify-center rounded-2xl bg-[#061a38] p-6 text-center shadow-lg sm:h-[420px]"
+          >
+            <span className="text-sm font-black uppercase tracking-[0.18em] text-white/90">
+              Guzman Legal
+            </span>
+          </div>
         )}
 
         <div className="mt-12 rounded-2xl bg-white p-5 shadow-sm sm:p-8">
           <div className="text-lg leading-8 text-slate-700">
-            {content
-              ?.split(/\n\s*\n/)
-              .filter((paragraph) => paragraph.trim() !== "")
-              .map((paragraph, index) => (
-                <p key={index} className="mb-5 leading-8">
-                  {paragraph.trim()}
-                </p>
-              ))}
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({ children }) => (
+                  <h2 className="mb-5 mt-10 text-3xl font-black leading-tight text-[#071226] first:mt-0">
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="mb-4 mt-8 text-2xl font-black leading-tight text-[#071226]">
+                    {children}
+                  </h3>
+                ),
+                p: ({ children }) => (
+                  <p className="mb-5 leading-8">{children}</p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="mb-5 list-disc space-y-2 pl-6">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="mb-5 list-decimal space-y-2 pl-6">{children}</ol>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-bold text-[#071226]">{children}</strong>
+                ),
+              }}
+            >
+              {content || ""}
+            </ReactMarkdown>
           </div>
 
           <div className="mt-12 rounded-2xl border border-blue-100 bg-blue-50 p-6">

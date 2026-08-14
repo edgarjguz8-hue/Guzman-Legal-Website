@@ -17,9 +17,7 @@ export function HomePageContent({ articles }: { articles: Article[] }) {
   const { t, language } = useLanguage()
   const isSpanish = language === "es"
 
-  const featuredArticles = articles
-    .filter((article) => article.featured === true)
-    .slice(0, 3)
+  const recentArticles = articles.slice(0, 3)
 
   const practiceAreas = [
     {
@@ -220,7 +218,7 @@ export function HomePageContent({ articles }: { articles: Article[] }) {
               </div>
 
               <div className="mt-6 space-y-4">
-                {featuredArticles.map((article) => {
+                {recentArticles.map((article) => {
                   const title =
                     isSpanish && article.title_es
                       ? article.title_es
