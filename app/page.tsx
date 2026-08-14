@@ -11,6 +11,8 @@ import {
   ArrowRight,
   Car,
   FileText,
+  Shield,
+  MessageCircle,
 } from "lucide-react"
 
 export default function HomePage() {
