@@ -28,7 +28,7 @@ export function ResourcesContent() {
   const [articles, setArticles] = useState<Article[]>([])
   const [topics, setTopics] = useState<Topic[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>("")
-  const [articleView, setArticleView] = useState<ArticleView>("featured")
+  const [articleView, setArticleView] = useState<ArticleView>("all")
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
