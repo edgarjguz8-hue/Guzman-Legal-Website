@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { ArrowRight, Lock, MessageCircle, Shield } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -120,7 +119,6 @@ export function HeroSection() {
       </div>
 
       <div className="relative mx-auto max-w-[1400px] px-6 pb-12 pt-10 sm:px-10 lg:px-14 lg:pb-14 lg:pt-14">
-
         {/* Main Hero */}
         <div className="relative min-h-[590px]">
 
@@ -145,28 +143,6 @@ export function HeroSection() {
             </p>
           </div>
 
-          {/* Attorney */}
-          <div className="pointer-events-none absolute right-[-30px] top-[-65px] z-10 hidden h-[570px] w-[650px] lg:block xl:right-[10px]">
-            <Image
-              src="/attorney-hero.png"
-              alt="Guzman Legal attorney"
-              fill
-              priority
-              className="object-contain object-bottom"
-            />
-          </div>
-
-          {/* Mobile attorney */}
-          <div className="pointer-events-none relative z-10 mx-auto mt-8 h-[300px] w-full max-w-[450px] lg:hidden">
-            <Image
-              src="/attorney-hero.png"
-              alt="Guzman Legal attorney"
-              fill
-              priority
-              className="object-contain object-bottom"
-            />
-          </div>
-
           {/* Inquiry Form */}
           <form
             onSubmit={handleSubmit}
@@ -182,7 +158,6 @@ export function HeroSection() {
             </h2>
 
             <div className="grid gap-3 lg:grid-cols-2">
-
               {/* Name */}
               <input
                 type="text"
@@ -241,7 +216,6 @@ export function HeroSection() {
 
                 {!loading && <ArrowRight className="h-5 w-5" />}
               </button>
-
             </div>
 
             {submitted && (
@@ -254,7 +228,6 @@ export function HeroSection() {
 
         {/* Trust Indicators */}
         <div className="relative z-30 mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-xs font-semibold sm:gap-x-14">
-
           <div className="flex items-center gap-2">
             <Lock className="h-5 w-5" />
             {text.confidential}
@@ -269,7 +242,6 @@ export function HeroSection() {
             <Shield className="h-5 w-5" />
             {text.tampa}
           </div>
-
         </div>
       </div>
     </section>
