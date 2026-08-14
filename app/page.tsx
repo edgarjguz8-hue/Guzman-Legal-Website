@@ -14,8 +14,6 @@ import {
   MapPin,
   ArrowRight,
   Car,
-  Heart,
-  Globe,
   FileText,
 } from "lucide-react"
 
@@ -63,39 +61,14 @@ export default function HomePage() {
       text: t("home.practiceCarDesc"),
     },
     {
-      icon: Heart,
-      title: t("practice.familyLaw"),
-      text: t("home.practiceFamilyDesc"),
-    },
-    {
       icon: Shield,
       title: t("practice.criminalDefense"),
       text: t("home.practiceCriminalDesc"),
     },
     {
-      icon: Globe,
-      title: t("practice.immigration"),
-      text: t("home.practiceImmigrationDesc"),
-    },
-    {
-      icon: Shield,
-      title: t("practice.employmentLaw"),
-      text: t("home.practiceEmploymentDesc"),
-    },
-    {
       icon: FileText,
       title: t("practice.businessLaw"),
       text: t("home.practiceBusinessDesc"),
-    },
-    {
-      icon: FileText,
-      title: t("practice.estatePlanning"),
-      text: t("home.practiceEstateDesc"),
-    },
-    {
-      icon: Shield,
-      title: t("practice.realEstate"),
-      text: t("home.practiceRealEstateDesc"),
     },
   ]
 
@@ -132,8 +105,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {practiceAreas.slice(0, 4).map((item) => {
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {practiceAreas.map((item) => {
               const Icon = item.icon
 
               return (

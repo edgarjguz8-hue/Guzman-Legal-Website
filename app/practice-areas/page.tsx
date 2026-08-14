@@ -2,14 +2,7 @@
 
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
-import {
-  ArrowRight,
-  Car,
-  Heart,
-  Shield,
-  Globe,
-  FileText,
-} from "lucide-react"
+import { ArrowRight, Car, Shield, FileText } from "lucide-react"
 
 export default function PracticeAreasPage() {
   const { t, language } = useLanguage()
@@ -22,39 +15,14 @@ export default function PracticeAreasPage() {
       text: t("home.practiceCarDesc"),
     },
     {
-      icon: Heart,
-      title: t("practice.familyLaw"),
-      text: t("home.practiceFamilyDesc"),
-    },
-    {
       icon: Shield,
       title: t("practice.criminalDefense"),
       text: t("home.practiceCriminalDesc"),
     },
     {
-      icon: Globe,
-      title: t("practice.immigration"),
-      text: t("home.practiceImmigrationDesc"),
-    },
-    {
-      icon: Shield,
-      title: t("practice.employmentLaw"),
-      text: t("home.practiceEmploymentDesc"),
-    },
-    {
       icon: FileText,
       title: t("practice.businessLaw"),
       text: t("home.practiceBusinessDesc"),
-    },
-    {
-      icon: FileText,
-      title: t("practice.estatePlanning"),
-      text: t("home.practiceEstateDesc"),
-    },
-    {
-      icon: Shield,
-      title: t("practice.realEstate"),
-      text: t("home.practiceRealEstateDesc"),
     },
   ]
 
@@ -72,8 +40,8 @@ export default function PracticeAreasPage() {
             style={{ fontFamily: "var(--font-heading)" }}
           >
             {isSpanish
-              ? "Representación legal integral para Tampa Bay."
-              : "Comprehensive legal representation for Tampa Bay."}
+              ? "Representación legal para lo que importa."
+              : "Legal representation for what matters."}
           </h1>
 
           <p className="mt-4 max-w-2xl text-lg text-white/85">
@@ -84,21 +52,21 @@ export default function PracticeAreasPage() {
 
       {/* Practice area cards */}
       <section className="px-7 py-16 lg:py-20">
-        <div className="mx-auto max-w-[1200px]">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-[1100px]">
+          <div className="grid gap-6 md:grid-cols-3">
             {practiceAreas.map((item) => {
               const Icon = item.icon
 
               return (
                 <div
                   key={item.title}
-                  className="rounded-xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-lg"
+                  className="rounded-xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#061a38]">
                     <Icon className="h-6 w-6 text-white" />
                   </div>
 
-                  <h3 className="mt-5 text-lg font-bold text-[#071226]">
+                  <h3 className="mt-5 text-xl font-bold text-[#071226]">
                     {item.title}
                   </h3>
 
@@ -108,7 +76,7 @@ export default function PracticeAreasPage() {
 
                   <Link
                     href="/contact"
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#0b5fc4]"
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#0b5fc4]"
                   >
                     {isSpanish ? "CONTÁCTENOS" : "GET HELP"}
                     <ArrowRight className="h-4 w-4" />
@@ -134,7 +102,9 @@ export default function PracticeAreasPage() {
             </h2>
 
             <p className="mt-2 text-white/80">
-              {isSpanish ? "Estamos aquí para ayudar." : "We're here to help."}
+              {isSpanish
+                ? "Estamos aquí para ayudar."
+                : "We're here to help."}
             </p>
           </div>
 
