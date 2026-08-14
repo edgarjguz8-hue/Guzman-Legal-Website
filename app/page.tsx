@@ -12,7 +12,6 @@ import {
   Car,
   FileText,
   Shield,
-  MessageCircle,
 } from "lucide-react"
 
 export default function HomePage() {
@@ -218,7 +217,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0b5fc4]">
-              {isSpanish ? "RECURSOS" : "RESOURCES"}
+              {isSpanish ? "DEL BLOG DE GUZMAN LEGAL" : "FROM THE GUZMAN LEGAL BLOG"}
             </p>
 
             <h2
@@ -227,7 +226,7 @@ export default function HomePage() {
                 fontFamily: "var(--font-heading)",
               }}
             >
-              {t("home.resourcesTitle")}
+              {isSpanish ? "Del Blog de Guzman Legal" : "From the Guzman Legal Blog"}
             </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-600">
@@ -235,47 +234,10 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-
-            {/* FAQs */}
-            <Link
-              href="/resources#faqs"
-              className="rounded-2xl border border-slate-200 p-8 transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eef5ff]">
-                  <MessageCircle className="h-7 w-7 text-[#0b5fc4]" />
-                </div>
-
-                <h3 className="text-2xl font-bold">
-                  {t("home.faqCardTitle")}
-                </h3>
-              </div>
-
-              <div className="mt-6 space-y-4">
-                {[
-                  t("resources.faq1"),
-                  t("resources.faq2"),
-                  t("resources.faq3"),
-                ].map((question) => (
-                  <div
-                    key={question}
-                    className="flex items-center justify-between border-b pb-4 text-sm"
-                  >
-                    <span>{question}</span>
-                    <ArrowRight className="h-4 w-4 text-[#0b5fc4]" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 font-bold text-[#0b5fc4]">
-                {t("home.viewAllFaqs")} →
-              </div>
-            </Link>
-
+          <div className="mt-12 flex justify-center">
 
             {/* Blog */}
-            <div className="rounded-2xl border border-slate-200 p-8">
+            <div className="w-full max-w-3xl rounded-2xl border border-slate-200 p-8">
 
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eef5ff]">
