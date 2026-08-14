@@ -55,7 +55,7 @@ export function SiteHeader() {
         {/* Guzman Legal Logo */}
         <Link
           href="/"
-          className="relative z-10 flex shrink-0 items-center"
+          className="relative z-10 flex h-auto w-auto shrink-0 items-center justify-center lg:h-[100px] lg:w-[300px]"
         >
           <Image
             src="/guzman-logo.png"
@@ -63,7 +63,7 @@ export function SiteHeader() {
             width={360}
             height={120}
             priority
-            className="h-20 w-auto sm:h-24 lg:h-40"
+            className="h-20 w-auto sm:h-24 lg:h-[80px] lg:w-[240px]"
           />
         </Link>
 
