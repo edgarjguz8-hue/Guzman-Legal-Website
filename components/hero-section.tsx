@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import { ArrowRight, Lock, MessageCircle, Shield } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
@@ -106,6 +107,18 @@ export function HeroSection() {
         <div className="absolute right-[-80px] top-[40px] h-[600px] w-[850px] rounded-full border border-white/[0.06]" />
 
         <div className="absolute right-[-40px] top-[100px] h-[500px] w-[760px] rounded-full border border-white/[0.05]" />
+      </div>
+
+      {/* Attorney headshot */}
+      <div className="pointer-events-none absolute right-[-40px] top-[48px] z-10 h-[400px] w-[380px] sm:right-[-20px] sm:top-[18px] sm:h-[520px] sm:w-[490px] lg:right-[2%] lg:top-[-24px] lg:h-[680px] lg:w-[640px]">
+        <Image
+          src="/attorney-headshot.png"
+          alt="Guzman Legal attorney"
+          fill
+          priority
+          sizes="(max-width: 639px) 340px, (max-width: 1023px) 440px, 540px"
+          className="object-contain object-bottom"
+        />
       </div>
 
       {/* Dot pattern */}
