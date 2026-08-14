@@ -2,30 +2,12 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { createClient } from '@supabase/supabase-js'
 import { Mail, Phone, Globe, ArrowRight } from 'lucide-react'
 
 import { BackButton } from '@/components/back-button'
 import { useLanguage } from '@/contexts/language-context'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
-
-type Attorney = {
-  id: string
-  name: string | null
-  firm_name: string | null
-  category: string | null
-  county: string | null
-  phone: string | null
-  email: string | null
-  website: string | null
-  description: string | null
-  spanish_speaking: boolean | null
-  approved: boolean | null
-}
+import { tryGetSupabaseBrowserClient } from '@/lib/supabase/client'
+import type { Attorney } from '@/types'
 
 function PageShell({
   children,
@@ -77,6 +59,22 @@ function MatchedAttorneyContent() {
             copy(
               'matched.invalidRequest',
               'No attorney was selected.'
+            )
+          )
+          setLoading(false)
+        }
+
+        return
+      }
+
+      const supabase = tryGetSupabaseBrowserClient()
+
+      if (!supabase) {
+        if (active) {
+          setError(
+            copy(
+              'matched.loadError',
+              'We could not load attorney details. Please try again.'
             )
           )
           setLoading(false)

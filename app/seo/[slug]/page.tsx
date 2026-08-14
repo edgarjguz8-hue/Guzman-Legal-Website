@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { use, useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowRight, MapPin, ChevronDown, Lock, Shield, MessageCircle } from "lucide-react"
 import {
@@ -10,12 +10,13 @@ import {
   generateH1,
   generateIntroParagraph,
   practiceAreas,
-  locations,
-  counties,
-} from "@/lib/seo-data"
+  cities as locations,
+  seoPagePath,
+} from "@/lib/seo"
 
-export default function SeoPage({ params }: { params: { slug: string } }) {
-  const parsed = parseSeoSlug(params.slug)
+export default function SeoPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params)
+  const parsed = parseSeoSlug(slug)
   const router = useRouter()
   const [zipCode, setZipCode] = useState("")
   const [selectedArea, setSelectedArea] = useState("")
@@ -103,23 +104,24 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
   }
 
   const relatedAreas = practiceAreas.filter(pa => pa.slug !== parsed.practiceArea.slug).slice(0, 5)
-  const relatedLocations = parsed.location 
-    ? locations.filter(l => l.slug !== parsed.location.slug).slice(0, 5)
+  const parsedLocation = parsed.location
+  const relatedLocations = parsedLocation
+    ? locations.filter(l => l.slug !== parsedLocation.slug).slice(0, 5)
     : locations.slice(0, 5)
 
   // Generate FAQ content based on practice area
   const faqs = [
     {
       question: `How do I find a qualified ${practiceAreaName.toLowerCase()} in ${locationName}?`,
-      answer: `AttorneyAbogado simplifies the process by connecting you with experienced ${practiceAreaName.toLowerCase()}s in ${locationName}. Simply enter your ZIP code and practice area, and we'll match you with qualified attorneys.`,
+      answer: `Guzman Legal simplifies the process by connecting you with experienced ${practiceAreaName.toLowerCase()}s in ${locationName}. Simply enter your ZIP code and practice area, and we'll match you with qualified attorneys.`,
     },
     {
       question: `What experience do your ${practiceAreaName.toLowerCase()}s have?`,
       answer: `Our network includes highly experienced ${practiceAreaName.toLowerCase()}s with years of practice in ${locationName}. Each attorney is vetted to ensure they meet our standards for excellence and client service.`,
     },
     {
-      question: "Is there a cost to use AttorneyAbogado?",
-      answer: "Using AttorneyAbogado is free! There's no cost to find an attorney or get connected. Any fees would be between you and the attorney you choose to work with.",
+      question: "Is there a cost to use Guzman Legal?",
+      answer: "Using Guzman Legal is free! There's no cost to find an attorney or get connected. Any fees would be between you and the attorney you choose to work with.",
     },
     {
       question: "Do you offer services in Spanish?",
@@ -268,7 +270,7 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
       {/* How It Works Section */}
       <section className="bg-white px-7 py-20">
         <div className="mx-auto max-w-[1200px]">
-          <h2 className="text-4xl font-black text-[#071226]">How AttorneyAbogado Works</h2>
+          <h2 className="text-4xl font-black text-[#071226]">How Guzman Legal Works</h2>
           <p className="mt-2 text-lg text-slate-600">Simple steps to find your {practiceAreaName.toLowerCase()} in {locationName}</p>
 
           <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -335,7 +337,7 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
                 return (
                   <a
                     key={area.slug}
-                    href={`/seo/${relatedSlug}`}
+                    href={seoPagePath(relatedSlug)}
                     className="rounded-lg bg-[#eef5ff] p-4 text-[#0b5fc4] hover:bg-[#ddeeff] transition font-semibold"
                   >
                     {area.name}
@@ -357,7 +359,7 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
               {relatedLocations.map((loc) => (
                 <a
                   key={loc.slug}
-                  href={`/seo/${parsed.practiceArea.slug}-${loc.slug}`}
+                  href={seoPagePath(`${parsed.practiceArea.slug}-${loc.slug}`)}
                   className="rounded-lg bg-white p-4 text-[#0b5fc4] hover:bg-slate-50 transition font-semibold shadow-[0_8px_24px_rgba(15,23,42,0.08)]"
                 >
                   {loc.name}
