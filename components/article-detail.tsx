@@ -22,7 +22,7 @@ export function ArticleDetail({ article }: { article: Article }) {
       : article.read_time || "5 min read"
 
   return (
-    <article className="px-7 py-16">
+    <article className="px-4 py-12 sm:px-7 sm:py-16">
       <div className="mx-auto max-w-[900px]">
         <Link href="/resources" className="font-black text-[#0b5fc4]">
           {isSpanish ? "← Volver a Recursos" : "← Back to Resources"}
@@ -35,7 +35,7 @@ export function ArticleDetail({ article }: { article: Article }) {
         )}
 
         <h1
-          className="mt-6 text-5xl font-black leading-tight md:text-6xl"
+          className="mt-6 text-4xl font-black leading-tight sm:text-5xl md:text-6xl"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           {title}
@@ -61,11 +61,11 @@ export function ArticleDetail({ article }: { article: Article }) {
           <img
             src={article.image_url}
             alt={title}
-            className="mt-10 h-[420px] w-full rounded-2xl object-cover shadow-lg"
+            className="mt-10 h-64 w-full rounded-2xl object-cover shadow-lg sm:h-[420px]"
           />
         )}
 
-        <div className="mt-12 rounded-2xl bg-white p-8 shadow-sm">
+        <div className="mt-12 rounded-2xl bg-white p-5 shadow-sm sm:p-8">
           <div className="text-lg leading-8 text-slate-700">
             {content
               ?.split(/\n\s*\n/)

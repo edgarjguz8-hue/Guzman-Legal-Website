@@ -118,15 +118,15 @@ export function HeroSection() {
         ))}
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 pb-12 pt-10 sm:px-10 lg:px-14 lg:pb-14 lg:pt-14">
+      <div className="relative mx-auto max-w-[1400px] px-4 pb-10 pt-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-14 lg:pb-14 lg:pt-14">
 
         {/* Main Hero */}
-        <div className="relative min-h-[590px]">
+        <div className="relative lg:min-h-[590px]">
 
           {/* Copy */}
           <div className="relative z-20 max-w-[600px] pt-4 lg:pt-8">
             <h1
-              className="whitespace-pre-line text-6xl font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-7xl lg:text-[76px]"
+              className="whitespace-pre-line text-4xl font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl lg:text-[76px]"
               style={{
                 fontFamily: "var(--font-heading)",
               }}
@@ -147,7 +147,7 @@ export function HeroSection() {
           {/* Inquiry Form */}
           <form
             onSubmit={handleSubmit}
-            className="absolute bottom-0 left-0 right-0 z-30 rounded-[18px] bg-white p-5 text-[#071226] shadow-[0_20px_60px_rgba(0,0,0,0.22)] sm:p-6"
+            className="relative z-30 mt-8 rounded-[18px] bg-white p-4 text-[#071226] shadow-[0_20px_60px_rgba(0,0,0,0.22)] sm:p-6 lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:mt-0"
           >
             <h2
               className="mb-5 text-xl font-bold"

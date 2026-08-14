@@ -8,13 +8,10 @@ import { HeroSection } from "@/components/hero-section"
 import { useLanguage } from "@/contexts/language-context"
 import type { Article } from "@/types"
 import {
-  Shield,
-  Lock,
-  MessageCircle,
-  MapPin,
   ArrowRight,
   Car,
   FileText,
+  Shield,
 } from "lucide-react"
 
 export default function HomePage() {
@@ -83,7 +80,7 @@ export default function HomePage() {
       {/* =========================
           PRACTICE AREAS
       ========================= */}
-      <section className="bg-[#f8fafc] px-7 py-16 lg:py-20">
+      <section className="bg-[#f8fafc] px-4 py-16 sm:px-7 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
 
           <div className="text-center">
@@ -211,76 +208,6 @@ export default function HomePage() {
       </section>
 
 
-      {/* =========================
-          WHY GUZMAN LEGAL
-      ========================= */}
-      <section className="bg-[#f8fafc] px-7 py-20">
-        <div className="mx-auto max-w-[1100px] text-center">
-
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0b5fc4]">
-            {isSpanish ? "POR QUÉ GUZMAN LEGAL" : "WHY GUZMAN LEGAL"}
-          </p>
-
-          <h2
-            className="mt-3 text-4xl font-black text-[#071226] md:text-5xl"
-            style={{
-              fontFamily: "var(--font-heading)",
-            }}
-          >
-            {t("home.whyTitle")}
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-            {t("home.whySubtitle")}
-          </p>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <MapPin className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whyLocalTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whyLocalText")}
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <Shield className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whySecureTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whySecureText")}
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <Lock className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whyFastTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whyFastText")}
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <MessageCircle className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whySpanishTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whySpanishText")}
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
 
       {/* =========================
           RESOURCES
@@ -290,7 +217,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0b5fc4]">
-              {isSpanish ? "RECURSOS" : "RESOURCES"}
+              {isSpanish ? "DEL BLOG DE GUZMAN LEGAL" : "FROM THE GUZMAN LEGAL BLOG"}
             </p>
 
             <h2
@@ -299,7 +226,7 @@ export default function HomePage() {
                 fontFamily: "var(--font-heading)",
               }}
             >
-              {t("home.resourcesTitle")}
+              {isSpanish ? "Del Blog de Guzman Legal" : "From the Guzman Legal Blog"}
             </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-600">
@@ -307,47 +234,10 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-
-            {/* FAQs */}
-            <Link
-              href="/resources#faqs"
-              className="rounded-2xl border border-slate-200 p-8 transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eef5ff]">
-                  <MessageCircle className="h-7 w-7 text-[#0b5fc4]" />
-                </div>
-
-                <h3 className="text-2xl font-bold">
-                  {t("home.faqCardTitle")}
-                </h3>
-              </div>
-
-              <div className="mt-6 space-y-4">
-                {[
-                  t("resources.faq1"),
-                  t("resources.faq2"),
-                  t("resources.faq3"),
-                ].map((question) => (
-                  <div
-                    key={question}
-                    className="flex items-center justify-between border-b pb-4 text-sm"
-                  >
-                    <span>{question}</span>
-                    <ArrowRight className="h-4 w-4 text-[#0b5fc4]" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 font-bold text-[#0b5fc4]">
-                {t("home.viewAllFaqs")} →
-              </div>
-            </Link>
-
+          <div className="mt-12 flex justify-center">
 
             {/* Blog */}
-            <div className="rounded-2xl border border-slate-200 p-8">
+            <div className="w-full max-w-3xl rounded-2xl border border-slate-200 p-8">
 
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#eef5ff]">
@@ -409,7 +299,7 @@ export default function HomePage() {
       {/* =========================
           FINAL CTA
       ========================= */}
-      <section className="bg-[#082f63] px-7 py-16">
+      <section className="bg-[#082f63] px-4 py-16 sm:px-7">
         <div className="mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
 
           <div>
