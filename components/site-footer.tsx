@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
 
 export function SiteFooter() {
@@ -10,7 +11,13 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-10 md:grid-cols-5">
           <div>
-            <h3 className="text-xl font-bold">Guzman Legal</h3>
+            <Image
+              src="/guzman-logo.png"
+              alt="Guzman Legal"
+              width={220}
+              height={55}
+              className="h-auto w-[220px]"
+            />
             <p className="mt-4 text-sm leading-relaxed text-white/70">
               Providing trusted legal representation to individuals, families, and businesses throughout Tampa Bay.
             </p>
@@ -98,38 +105,6 @@ export function SiteFooter() {
                   X
                 </a>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 border-t border-white/10 pt-6">
-          <div className="grid gap-4 text-sm font-bold text-white/80 md:grid-cols-4">
-            <div className="flex items-center justify-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#061a38]">
-                ✓
-              </span>
-              {t("howItWorks.confidential")}
-            </div>
-
-            <div className="flex items-center justify-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#061a38]">
-                ✓
-              </span>
-              {t("howItWorks.noObligation")}
-            </div>
-
-            <div className="flex items-center justify-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#061a38]">
-                ✓
-              </span>
-              {t("howItWorks.spanish")}
-            </div>
-
-            <div className="flex items-center justify-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#061a38]">
-                ✓
-              </span>
-              25+ YEARS EXPERIENCE
             </div>
           </div>
         </div>
