@@ -70,10 +70,10 @@ export default function PrivacyPolicyPage() {
             <p>
               Questions? Contact us at{" "}
               <a
-                href="mailto:info@attorneyabogado.com"
+                href="mailto:info@guzmanlegal.com"
                 className="font-black text-[#006dff]"
               >
-                info@attorneyabogado.com
+                info@guzmanlegal.com
               </a>
               .
             </p>

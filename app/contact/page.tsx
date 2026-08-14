@@ -124,7 +124,7 @@ export default function ContactPage() {
                 <h3 className="font-bold text-[#071226]">
                   {isSpanish ? "Correo Electrónico" : "Email"}
                 </h3>
-                <p className="mt-1 text-slate-600">info@networkingleads.com</p>
+                <p className="mt-1 text-slate-600">info@guzmanlegal.com</p>
               </div>
             </div>
 
