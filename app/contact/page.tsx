@@ -136,7 +136,9 @@ export default function ContactPage() {
                 <h3 className="font-bold text-[#071226]">
                   {isSpanish ? "Teléfono" : "Phone"}
                 </h3>
-                <p className="mt-1 text-slate-600">(813) 555-0000</p>
+                <a href="tel:8139331234" className="mt-1 block text-slate-600">
+                  (813) 933-1234
+                </a>
               </div>
             </div>
 
