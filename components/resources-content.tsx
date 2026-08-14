@@ -219,11 +219,22 @@ export function ResourcesContent({ articles }: { articles: Article[] }) {
                       href={`/resources/${article.slug}`}
                       className="grid overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md md:grid-cols-[250px_1fr]"
                     >
-                      <img
-                        src={article.image_url || "/placeholder.jpg"}
-                        alt={title}
-                        className="h-52 w-full object-cover md:h-full"
-                      />
+                      {article.image_url ? (
+                        <img
+                          src={article.image_url}
+                          alt={title}
+                          className="h-52 w-full object-cover md:h-full"
+                        />
+                      ) : (
+                        <div
+                          aria-label={isSpanish ? "Imagen del artículo" : "Article image"}
+                          className="flex h-52 w-full items-center justify-center bg-[#061a38] p-6 text-center md:h-full"
+                        >
+                          <span className="text-sm font-black uppercase tracking-[0.18em] text-white/90">
+                            Guzman Legal
+                          </span>
+                        </div>
+                      )}
 
                       <div className="p-6 sm:p-7">
                         {category && (

@@ -1,5 +1,5 @@
 import { HomePageContent } from "@/components/home-page-content"
-import { getPublishedArticles } from "@/lib/services/article-service"
+import { getRecentPublishedArticles } from "@/lib/services/article-service"
 import type { Article } from "@/types"
 
 export const revalidate = 300
@@ -8,7 +8,7 @@ export default async function HomePage() {
   let articles: Article[] = []
 
   try {
-    articles = await getPublishedArticles()
+    articles = await getRecentPublishedArticles()
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
 
