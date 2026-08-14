@@ -8,7 +8,7 @@ import type { SendEmailParams } from "@/lib/services/email/send"
  * unchanged. Only the string assembly moved here.
  */
 
-const LOGO_URL = "https://attorneyabogado.com/aa-logo.jpg"
+const LOGO_URL = "https://guzmanlegal.com/aa-logo.jpg"
 
 type LeadEmailInput = {
   attorneyEmail: string

@@ -10,4 +10,4 @@ Disallow: /matched-attorney
 Disallow: /thank-you
 Disallow: /.next/
 
-Sitemap: https://attorneyabogado.com/sitemap.xml
+Sitemap: https://guzmanlegal.com/sitemap.xml
