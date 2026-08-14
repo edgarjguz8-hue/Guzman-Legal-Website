@@ -19,40 +19,41 @@ export function HeroSection() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const content = {
-    en: {
-      title: "Your Attorney.\nIn Your Corner.",
-      subtitle:
-        "For over 25 years, Guzman Legal has represented individuals, families, and businesses throughout Tampa Bay.",
-      formTitle: "Tell us how we can help.",
-      name: "First Name *",
-      email: "Email Address *",
-      phone: "Phone Number *",
-      issue: "How can we help you? *",
-      button: "CONTACT GUZMAN LEGAL",
-      confidential: "25+ YEARS EXPERIENCE",
-      spanish: "HABLAMOS ESPAÑOL",
-      tampa: "PROUDLY SERVING TAMPA BAY",
-      success:
-        "Thank you. Your inquiry has been sent to Guzman Legal.",
-    },
-    es: {
-      title: "Su Abogado.\nDe Su Lado.",
-      subtitle:
-        "Por más de 25 años, Guzman Legal ha representado a individuos, familias y empresas en toda el área de Tampa Bay.",
-      formTitle: "Díganos cómo podemos ayudarle.",
-      name: "Nombre *",
-      email: "Correo Electrónico *",
-      phone: "Número de Teléfono *",
-      issue: "¿Cómo podemos ayudarle? *",
-      button: "CONTACTAR A GUZMAN LEGAL",
-      confidential: "MÁS DE 25 AÑOS DE EXPERIENCIA",
-      spanish: "HABLAMOS ESPAÑOL",
-      tampa: "SIRVIENDO CON ORGULLO A TAMPA BAY",
-      success:
-        "Gracias. Su consulta ha sido enviada a Guzman Legal.",
-    },
-  }
+ const content = {
+  en: {
+    title: "Your Legal Voice.",
+    subtitle:
+      "For over 25 years, Guzman Legal has represented individuals, families, and businesses throughout Tampa Bay.",
+    formTitle: "Tell us how we can help.",
+    name: "First Name *",
+    email: "Email Address *",
+    phone: "Phone Number *",
+    issue: "How can we help you? *",
+    button: "CONTACT GUZMAN LEGAL",
+    confidential: "25+ YEARS EXPERIENCE",
+    spanish: "HABLAMOS ESPAÑOL",
+    tampa: "PROUDLY SERVING TAMPA BAY",
+    success:
+      "Thank you. Your inquiry has been sent to Guzman Legal.",
+  },
+
+  es: {
+    title: "Su Voz Legal.",
+    subtitle:
+      "Por más de 25 años, Guzman Legal ha representado a individuos, familias y empresas en toda el área de Tampa Bay.",
+    formTitle: "Díganos cómo podemos ayudarle.",
+    name: "Nombre *",
+    email: "Correo Electrónico *",
+    phone: "Número de Teléfono *",
+    issue: "¿Cómo podemos ayudarle? *",
+    button: "CONTACTAR A GUZMAN LEGAL",
+    confidential: "MÁS DE 25 AÑOS DE EXPERIENCIA",
+    spanish: "HABLAMOS ESPAÑOL",
+    tampa: "SIRVIENDO CON ORGULLO A TAMPA BAY",
+    success:
+      "Gracias. Su consulta ha sido enviada a Guzman Legal.",
+  },
+}
 
   const text = isSpanish ? content.es : content.en
 
