@@ -8,10 +8,6 @@ import { HeroSection } from "@/components/hero-section"
 import { useLanguage } from "@/contexts/language-context"
 import type { Article } from "@/types"
 import {
-  Shield,
-  Lock,
-  MessageCircle,
-  MapPin,
   ArrowRight,
   Car,
   FileText,
@@ -210,76 +206,6 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      {/* =========================
-          WHY GUZMAN LEGAL
-      ========================= */}
-      <section className="bg-[#f8fafc] px-7 py-20">
-        <div className="mx-auto max-w-[1100px] text-center">
-
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0b5fc4]">
-            {isSpanish ? "POR QUÉ GUZMAN LEGAL" : "WHY GUZMAN LEGAL"}
-          </p>
-
-          <h2
-            className="mt-3 text-4xl font-black text-[#071226] md:text-5xl"
-            style={{
-              fontFamily: "var(--font-heading)",
-            }}
-          >
-            {t("home.whyTitle")}
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-            {t("home.whySubtitle")}
-          </p>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <MapPin className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whyLocalTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whyLocalText")}
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <Shield className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whySecureTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whySecureText")}
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <Lock className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whyFastTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whyFastText")}
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-7 text-left shadow-sm">
-              <MessageCircle className="h-7 w-7 text-[#0b5fc4]" />
-              <h3 className="mt-4 font-bold">
-                {t("home.whySpanishTitle")}
-              </h3>
-              <p className="mt-2 text-slate-600">
-                {t("home.whySpanishText")}
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
 
 
       {/* =========================
