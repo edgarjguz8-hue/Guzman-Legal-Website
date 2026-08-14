@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { tryGetSupabaseBrowserClient } from "@/lib/supabase/client"
+import { useState } from "react"
 import { useLanguage } from "@/contexts/language-context"
 import {
   ArrowRight,
@@ -20,78 +19,27 @@ type Topic = {
 
 type ArticleView = "featured" | "category" | "all"
 
-export function ResourcesContent() {
+export function ResourcesContent({ articles }: { articles: Article[] }) {
   const { t, language } = useLanguage()
   const isSpanish = language === "es"
 
   const [openFaq, setOpenFaq] = useState<number | null>(0)
-  const [articles, setArticles] = useState<Article[]>([])
-  const [topics, setTopics] = useState<Topic[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [articleView, setArticleView] = useState<ArticleView>("all")
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    async function loadResources() {
-      setLoading(true)
-
-      const supabase = tryGetSupabaseBrowserClient()
-
-      if (!supabase) {
-        console.error("Missing Supabase keys")
-        setLoading(false)
-        return
-      }
-
-      const { data: articleData, error: articleError } = await supabase
-        .from("articles")
-        .select(`
-          id,
-          title,
-          title_es,
-          slug,
-          category,
-          category_es,
-          excerpt,
-          excerpt_es,
-          image_url,
-          read_time,
-          read_time_es,
-          published_date,
-          featured
-        `)
-        .eq("published", true)
-        .order("published_date", { ascending: false })
-
-      if (articleError) {
-        console.error("Article fetch error:", articleError.message)
-        setLoading(false)
-        return
-      }
-
-      const loadedArticles = articleData || []
-      setArticles(loadedArticles)
-
-      const uniqueTopics = Array.from(
-        new Map(
-          loadedArticles
-            .filter((article) => article.category?.trim())
-            .map((article) => [
-              article.category!.trim().toLowerCase(),
-              {
-                category: article.category!.trim(),
-                category_es: article.category_es?.trim() || null,
-              },
-            ])
-        ).values()
-      )
-
-      setTopics(uniqueTopics)
-      setLoading(false)
-    }
-
-    loadResources()
-  }, [])
+  const topics = Array.from(
+    new Map(
+      articles
+        .filter((article) => article.category?.trim())
+        .map((article) => [
+          article.category!.trim().toLowerCase(),
+          {
+            category: article.category!.trim(),
+            category_es: article.category_es?.trim() || null,
+          },
+        ])
+    ).values()
+  )
 
   const featuredArticles = articles
     .filter((article) => article.featured === true)
@@ -228,13 +176,7 @@ export function ResourcesContent() {
             )}
 
             <div className="mt-7 space-y-6">
-              {loading && (
-                <div className="rounded-xl border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
-                  {isSpanish ? "Cargando artículos..." : "Loading articles..."}
-                </div>
-              )}
-
-              {!loading && displayedArticles.length === 0 && (
+              {displayedArticles.length === 0 && (
                 <div className="rounded-xl border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
                   {articleView === "category"
                     ? isSpanish
@@ -250,8 +192,7 @@ export function ResourcesContent() {
                 </div>
               )}
 
-              {!loading &&
-                displayedArticles.map((article) => {
+              {displayedArticles.map((article) => {
                   const title =
                     isSpanish && article.title_es
                       ? article.title_es
@@ -358,7 +299,7 @@ export function ResourcesContent() {
             <SectionTitle title={t("resources.popularTopics")} />
 
             <div className="mt-7 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-              {!loading && topics.length === 0 && (
+              {topics.length === 0 && (
                 <div className="px-7 py-6 text-slate-600">
                   {isSpanish ? "No hay temas todavía." : "No topics yet."}
                 </div>

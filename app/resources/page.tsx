@@ -1,5 +1,8 @@
 import { ResourcesContent } from "@/components/resources-content"
+import { getPublishedArticles } from "@/lib/services/article-service"
 
-export default function ResourcesPage() {
-  return <ResourcesContent />
+export default async function ResourcesPage() {
+  const articles = await getPublishedArticles()
+
+  return <ResourcesContent articles={articles} />
 }
