@@ -160,7 +160,7 @@ export function HeroSection() {
           </div>
 
           {/* Mobile attorney portrait */}
-          <div className="pointer-events-none absolute right-[-18px] top-[42px] z-10 h-[390px] w-[300px] lg:hidden sm:right-[-10px] sm:top-[36px] sm:h-[360px] sm:w-[280px]">
+          <div className="relative z-10 h-[280px] w-full max-w-none lg:hidden">
             <Image
               src="/attorney-headshot.png"
               alt="Guzman Legal attorney"
@@ -174,7 +174,7 @@ export function HeroSection() {
           {/* Inquiry Form */}
           <form
             onSubmit={handleSubmit}
-            className="relative z-30 mt-0 rounded-[18px] bg-white p-4 text-[#071226] shadow-[0_20px_60px_rgba(0,0,0,0.22)] sm:mt-8 sm:p-6 lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:mt-0"
+            className="relative z-30 mt-8 rounded-[18px] bg-white p-4 text-[#071226] shadow-[0_20px_60px_rgba(0,0,0,0.22)] sm:p-6 lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:mt-0"
           >
             <h2
               className="mb-5 text-xl font-bold"
