@@ -29,7 +29,7 @@ export default function PracticeAreasPage() {
   return (
     <main className="min-h-screen bg-[#f8fafc] text-[#071226]">
       {/* Page hero */}
-      <section className="bg-[#082f63] px-7 py-16 text-white lg:py-20">
+      <section className="bg-[#082f63] px-4 py-16 sm:px-7 text-white lg:py-20">
         <div className="mx-auto max-w-[1200px]">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#7fb0ee]">
             {isSpanish ? "ÁREAS DE PRÁCTICA" : "PRACTICE AREAS"}
@@ -51,9 +51,9 @@ export default function PracticeAreasPage() {
       </section>
 
       {/* Practice area cards */}
-      <section className="px-7 py-16 lg:py-20">
+      <section className="px-4 py-16 sm:px-7 lg:py-20">
         <div className="mx-auto max-w-[1100px]">
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3">
             {practiceAreas.map((item) => {
               const Icon = item.icon
 
@@ -89,7 +89,7 @@ export default function PracticeAreasPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#082f63] px-7 py-16">
+      <section className="bg-[#082f63] px-4 py-16 sm:px-7">
         <div className="mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
           <div>
             <h2

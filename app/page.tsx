@@ -80,7 +80,7 @@ export default function HomePage() {
       {/* =========================
           PRACTICE AREAS
       ========================= */}
-      <section className="bg-[#f8fafc] px-7 py-16 lg:py-20">
+      <section className="bg-[#f8fafc] px-4 py-16 sm:px-7 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
 
           <div className="text-center">
@@ -299,7 +299,7 @@ export default function HomePage() {
       {/* =========================
           FINAL CTA
       ========================= */}
-      <section className="bg-[#082f63] px-7 py-16">
+      <section className="bg-[#082f63] px-4 py-16 sm:px-7">
         <div className="mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
 
           <div>

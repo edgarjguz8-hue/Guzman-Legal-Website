@@ -7,9 +7,9 @@ export function SiteFooter() {
   const { t } = useLanguage()
 
   return (
-    <footer className="bg-[#061a38] px-7 py-12 text-white">
+    <footer className="bg-[#061a38] px-4 py-12 text-white sm:px-7">
       <div className="mx-auto max-w-[1400px]">
-        <div className="grid gap-10 md:grid-cols-5">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <Image
               src="/guzman-logo.png"

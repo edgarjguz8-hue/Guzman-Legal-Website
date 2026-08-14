@@ -181,9 +181,9 @@ export function ResourcesContent() {
 
       <section
         id="articles"
-        className="scroll-mt-24 px-5 py-12 sm:px-7 sm:py-16"
+        className="scroll-mt-24 px-4 py-12 sm:px-7 sm:py-16"
       >
-        <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[1.2fr_1fr]">
+        <div className="mx-auto grid max-w-[1400px] gap-12 xl:grid-cols-[1.2fr_1fr]">
           <div>
             <SectionTitle title={t("resources.helpfulArticles")} />
 

@@ -92,7 +92,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[#f8fafc] text-[#071226]">
       {/* Page hero */}
-      <section className="bg-[#082f63] px-7 py-16 text-white lg:py-20">
+      <section className="bg-[#082f63] px-4 py-16 sm:px-7 text-white lg:py-20">
         <div className="mx-auto max-w-[1200px]">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#7fb0ee]">
             {text.label}
@@ -112,8 +112,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact grid */}
-      <section className="px-7 py-16 lg:py-20">
-        <div className="mx-auto grid max-w-[1100px] gap-12 md:grid-cols-[1fr_1.2fr]">
+      <section className="px-4 py-16 sm:px-7 lg:py-20">
+        <div className="mx-auto grid max-w-[1100px] gap-12 lg:grid-cols-[1fr_1.2fr]">
           {/* Contact info */}
           <div className="space-y-6">
             <div className="flex items-start gap-4">

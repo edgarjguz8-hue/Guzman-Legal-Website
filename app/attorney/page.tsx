@@ -13,7 +13,7 @@ export default function AttorneyPage() {
     <main className="min-h-screen bg-[#f8fafc] text-[#071226]">
 
       {/* Page Hero */}
-      <section className="bg-[#082f63] px-7 py-16 text-white lg:py-20">
+      <section className="bg-[#082f63] px-4 py-16 sm:px-7 text-white lg:py-20">
         <div className="mx-auto max-w-[1200px]">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#7fb0ee]">
             {isSpanish ? "CONOZCA A SU ABOGADO" : "MEET YOUR ATTORNEY"}
@@ -33,7 +33,7 @@ export default function AttorneyPage() {
       </section>
 
       {/* Main Biography */}
-      <section className="px-7 py-16 lg:py-20">
+      <section className="px-4 py-16 sm:px-7 lg:py-20">
         <div className="mx-auto grid max-w-[1200px] items-start gap-12 lg:grid-cols-[0.85fr_1.15fr]">
 
           {/* Attorney Photo */}
@@ -127,7 +127,7 @@ export default function AttorneyPage() {
       </section>
 
       {/* Professional Associations */}
-      <section className="bg-white px-7 py-16 lg:py-20">
+      <section className="bg-white px-4 py-16 sm:px-7 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
           <div className="grid gap-12 md:grid-cols-2">
 
@@ -203,7 +203,7 @@ export default function AttorneyPage() {
       </section>
 
       {/* Published Works */}
-      <section className="bg-[#f8fafc] px-7 py-16 lg:py-20">
+      <section className="bg-[#f8fafc] px-4 py-16 sm:px-7 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
 
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#0b5fc4]">
@@ -280,7 +280,7 @@ export default function AttorneyPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-[#082f63] px-7 py-16 text-white">
+      <section className="bg-[#082f63] px-4 py-16 sm:px-7 text-white">
         <div className="mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
 
           <div>
