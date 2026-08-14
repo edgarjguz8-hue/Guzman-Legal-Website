@@ -23,7 +23,7 @@ export function HeroSection() {
       title: "Your Attorney.\nIn Your Corner.",
       subtitle:
         "For over 25 years, Guzman Legal has represented individuals, families, and businesses throughout Tampa Bay.",
-      formTitle: "Tell us how we can help.",
+      formTitle: "How can we help you?",
       name: "First Name *",
       email: "Email Address *",
       phone: "Phone Number *",
