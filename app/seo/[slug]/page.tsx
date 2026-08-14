@@ -111,15 +111,15 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
   const faqs = [
     {
       question: `How do I find a qualified ${practiceAreaName.toLowerCase()} in ${locationName}?`,
-      answer: `AttorneyAbogado simplifies the process by connecting you with experienced ${practiceAreaName.toLowerCase()}s in ${locationName}. Simply enter your ZIP code and practice area, and we'll match you with qualified attorneys.`,
+      answer: `Guzman Legal simplifies the process by connecting you with experienced ${practiceAreaName.toLowerCase()}s in ${locationName}. Simply enter your ZIP code and practice area, and we'll match you with qualified attorneys.`,
     },
     {
       question: `What experience do your ${practiceAreaName.toLowerCase()}s have?`,
       answer: `Our network includes highly experienced ${practiceAreaName.toLowerCase()}s with years of practice in ${locationName}. Each attorney is vetted to ensure they meet our standards for excellence and client service.`,
     },
     {
-      question: "Is there a cost to use AttorneyAbogado?",
-      answer: "Using AttorneyAbogado is free! There's no cost to find an attorney or get connected. Any fees would be between you and the attorney you choose to work with.",
+      question: "Is there a cost to use Guzman Legal?",
+      answer: "Using Guzman Legal is free! There's no cost to find an attorney or get connected. Any fees would be between you and the attorney you choose to work with.",
     },
     {
       question: "Do you offer services in Spanish?",
@@ -268,7 +268,7 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
       {/* How It Works Section */}
       <section className="bg-white px-7 py-20">
         <div className="mx-auto max-w-[1200px]">
-          <h2 className="text-4xl font-black text-[#071226]">How AttorneyAbogado Works</h2>
+          <h2 className="text-4xl font-black text-[#071226]">How Guzman Legal Works</h2>
           <p className="mt-2 text-lg text-slate-600">Simple steps to find your {practiceAreaName.toLowerCase()} in {locationName}</p>
 
           <div className="mt-12 grid gap-8 md:grid-cols-3">

@@ -19,7 +19,7 @@ export default function TermsPage() {
 
           <div className="mt-12 text-center">
             <p className="text-sm font-black uppercase tracking-wide text-[#0b6fff]">
-              AttorneyAbogado.com
+              Guzman Legal
             </p>
 
             <h1
@@ -36,18 +36,18 @@ export default function TermsPage() {
         <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_16px_45px_rgba(15,23,42,0.06)] md:p-12">
           <div className="space-y-8 text-base font-semibold leading-8 text-[#31415f]">
             <p>
-              AttorneyAbogado.com is a platform that helps connect individuals
+              Guzman Legal is a platform that helps connect individuals
               with independent attorneys. We are not a law firm and do not
               provide legal advice or legal representation.
             </p>
 
             <p>
               Using this website does not create an attorney-client relationship
-              with AttorneyAbogado.com or any attorney listed on the platform.
+              with Guzman Legal or any attorney listed on the platform.
             </p>
 
             <p>
-              Attorneys listed on AttorneyAbogado.com are independent
+              Attorneys listed on Guzman Legal are independent
               professionals and are solely responsible for their own services,
               advice, communication, and representation.
             </p>
@@ -63,13 +63,13 @@ export default function TermsPage() {
             </p>
 
             <p>
-              Attorneys featured on AttorneyAbogado.com may participate through
+              Attorneys featured on Guzman Legal may participate through
               paid marketing or exclusive territory agreements. This does not
               constitute an endorsement or guarantee of legal services.
             </p>
 
             <p>
-              By using this website, you agree that AttorneyAbogado.com is not
+              By using this website, you agree that Guzman Legal is not
               liable for disputes, losses, damages, or outcomes related to your
               use of the platform or your interactions with any attorney.
             </p>

@@ -108,7 +108,7 @@ const englishTranslations = {
   'howItWorks.step3Label': 'STEP 3',
   'howItWorks.step3Title': 'Get Connected',
   'howItWorks.step3': 'Review your match and submit your information. The attorney will contact you directly.',
-  'howItWorks.whyUse': 'Why Use AttorneyAbogado?',
+  'howItWorks.whyUse': 'Why Use Guzman Legal?',
   'howItWorks.localAttorneys': 'Local Attorneys',
   'howItWorks.confidential': '100% Confidential',
   'howItWorks.noObligation': 'No Obligation',
@@ -154,7 +154,7 @@ const englishTranslations = {
   'forAttorneys.trusted': 'Trusted by attorneys. Focused on results.',
   'forAttorneys.quote': 'Guzman Legal helps attorneys get discovered by people who are already searching for legal help.',
   'forAttorneys.quoteBottom': 'Built for local legal growth.',
-  'forAttorneys.whyJoin': 'Why Join AttorneyAbogado?',
+  'forAttorneys.whyJoin': 'Why Join Guzman Legal?',
   'forAttorneys.benefit1Title': 'Local & Exclusive',
   'forAttorneys.benefit1Text': 'We protect your area with exclusive territories so you never compete with other attorneys on our platform.',
   'forAttorneys.benefit2Title': 'High-Quality Leads',
@@ -335,7 +335,7 @@ const englishTranslations = {
   'home.practiceEstateDesc': 'Wills, trusts, probate and estate matters.',
   'home.practiceRealEstateDesc': 'Closings, disputes, property matters and more.',
 
-  'home.whyTitle': 'Why AttorneyAbogado?',
+  'home.whyTitle': 'Why Guzman Legal?',
   'home.whySubtitle': 'We make it easier to find the right legal help when you need it most.',
 
   'home.whyLocalTitle': 'Local Attorneys You Can Trust',
@@ -458,7 +458,7 @@ const spanishTranslations = {
   'howItWorks.step3Label': 'PASO 3',
   'howItWorks.step3Title': 'Conéctese',
   'howItWorks.step3': 'Revise su abogado asignado y envíe su información. El abogado se comunicará con usted directamente.',
-  'howItWorks.whyUse': '¿Por Qué Usar AttorneyAbogado?',
+  'howItWorks.whyUse': '¿Por Qué Usar Guzman Legal?',
   'howItWorks.localAttorneys': 'Abogados Locales',
   'howItWorks.confidential': '100% Confidencial',
   'howItWorks.noObligation': 'Sin Obligación',
@@ -504,7 +504,7 @@ const spanishTranslations = {
   'forAttorneys.trusted': 'Confiado por abogados. Enfocado en resultados.',
   'forAttorneys.quote': 'Guzman Legal ayuda a los abogados a ser encontrados por personas que ya están buscando ayuda legal.',
   'forAttorneys.quoteBottom': 'Creado para el crecimiento legal local.',
-  'forAttorneys.whyJoin': '¿Por Qué Unirse a AttorneyAbogado?',
+  'forAttorneys.whyJoin': '¿Por Qué Unirse a Guzman Legal?',
   'forAttorneys.benefit1Title': 'Local y Exclusivo',
   'forAttorneys.benefit1Text': 'Protegemos su área con territorios exclusivos para que no compita con otros abogados en nuestra plataforma.',
   'forAttorneys.benefit2Title': 'Clientes Potenciales de Calidad',
@@ -689,7 +689,7 @@ const spanishTranslations = {
   'home.practiceEstateDesc': 'Testamentos, fideicomisos, sucesiones y más.',
   'home.practiceRealEstateDesc': 'Cierres, disputas y asuntos de propiedad.',
 
-  'home.whyTitle': '¿Por qué AttorneyAbogado?',
+  'home.whyTitle': '¿Por qué Guzman Legal?',
   'home.whySubtitle': 'Facilitamos encontrar la ayuda legal adecuada cuando más la necesita.',
 
   'home.whyLocalTitle': 'Abogados Locales de Confianza',

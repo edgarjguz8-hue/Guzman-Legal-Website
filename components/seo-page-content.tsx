@@ -195,7 +195,7 @@ export function SEOPageContent({
       <section className="bg-white px-7 py-20">
         <div className="mx-auto max-w-[950px]">
           <h2 className="text-4xl font-black text-[#071226]">
-            How AttorneyAbogado Works
+            How Guzman Legal Works
           </h2>
 
           <div className="mt-10 grid gap-8 md:grid-cols-3">

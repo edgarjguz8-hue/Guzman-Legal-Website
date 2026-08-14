@@ -107,13 +107,13 @@ export function generateAllSeoSlugs() {
 // Generate meta title
 export function generateMetaTitle(practiceArea: string, location: string | null, county: string | null): string {
   const location_or_county = location || county || "Florida"
-  return `${practiceArea} in ${location_or_county}, FL | AttorneyAbogado`
+  return `${practiceArea} in ${location_or_county}, FL | Guzman Legal`
 }
 
 // Generate meta description
 export function generateMetaDescription(practiceArea: string, location: string | null, county: string | null): string {
   const location_or_county = location || county || "Florida"
-  return `Find experienced ${practiceArea.toLowerCase()} in ${location_or_county}. AttorneyAbogado connects you with qualified attorneys near you. Free consultation available.`
+  return `Find experienced ${practiceArea.toLowerCase()} in ${location_or_county}. Guzman Legal connects you with qualified attorneys near you. Free consultation available.`
 }
 
 // Generate H1
@@ -126,5 +126,5 @@ export function generateH1(practiceArea: string, location: string | null, county
 export function generateIntroParagraph(practiceArea: string, location: string | null, county: string | null): string {
   const location_or_county = location || county || "Florida"
   const article = practiceArea.toLowerCase().startsWith('e') ? 'an' : 'a'
-  return `Looking for ${article} ${practiceArea.toLowerCase()} in ${location_or_county}? AttorneyAbogado helps you find experienced legal professionals who can handle your case. Our network of qualified attorneys specializes in ${practiceArea.toLowerCase()} and is ready to provide you with expert guidance and representation.`
+  return `Looking for ${article} ${practiceArea.toLowerCase()} in ${location_or_county}? Guzman Legal helps you find experienced legal professionals who can handle your case. Our network of qualified attorneys specializes in ${practiceArea.toLowerCase()} and is ready to provide you with expert guidance and representation.`
 }
