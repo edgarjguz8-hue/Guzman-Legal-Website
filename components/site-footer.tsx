@@ -12,7 +12,7 @@ export function SiteFooter() {
           <div>
             <h3 className="text-xl font-bold">Guzman Legal</h3>
             <p className="mt-4 text-sm leading-relaxed text-white/70">
-              {t("footer.description")}
+              Providing trusted legal representation to individuals, families, and businesses throughout Tampa Bay.
             </p>
             <p className="mt-5 text-sm text-white/80">Hablamos Español</p>
           </div>
@@ -42,12 +42,7 @@ export function SiteFooter() {
             <div className="mt-4 space-y-3 text-sm text-white/70">
               <p>{t("practice.carAccidents")}</p>
               <p>{t("practice.criminalDefense")}</p>
-              <p>{t("practice.familyLaw")}</p>
-              <p>{t("practice.immigration")}</p>
-              <p>{t("practice.employmentLaw")}</p>
               <p>{t("practice.businessLaw")}</p>
-              <p>{t("practice.estatePlanning")}</p>
-              <p>{t("practice.realEstate")}</p>
             </div>
           </div>
 
@@ -74,9 +69,35 @@ export function SiteFooter() {
             <h4 className="font-bold">{t("footer.contact")}</h4>
             <div className="mt-2 h-1 w-8 rounded-full bg-[#0b5fc4]" />
             <div className="mt-4 space-y-3 text-sm text-white/70">
-              <p>{t("footer.emailUs")}</p>
-              <p>(800) 123-4567</p>
-              <p>Facebook · Instagram · LinkedIn</p>
+              <a href="mailto:info@guzmanlegal.com" className="block hover:text-white">
+                {t("footer.emailUs")} → info@guzmanlegal.com
+              </a>
+              <div className="flex flex-wrap gap-x-3 gap-y-1">
+                <a
+                  href="https://www.facebook.com/GuzmanLawGroup/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white"
+                >
+                  Facebook
+                </a>
+                <a
+                  href="https://www.instagram.com/guzmanlegal/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://x.com/YourLegalVoice"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white"
+                >
+                  X
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -108,7 +129,7 @@ export function SiteFooter() {
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#061a38]">
                 ✓
               </span>
-              {t("footer.trustedAttorneys")}
+              25+ YEARS EXPERIENCE
             </div>
           </div>
         </div>
