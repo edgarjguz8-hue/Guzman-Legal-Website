@@ -10,9 +10,9 @@ import {
   generateH1,
   generateIntroParagraph,
   practiceAreas,
-  locations,
-  counties,
-} from "@/lib/seo-data"
+  cities as locations,
+  seoPagePath,
+} from "@/lib/seo"
 
 export default function SeoPage({ params }: { params: { slug: string } }) {
   const parsed = parseSeoSlug(params.slug)
@@ -335,7 +335,7 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
                 return (
                   <a
                     key={area.slug}
-                    href={`/seo/${relatedSlug}`}
+                    href={seoPagePath(relatedSlug)}
                     className="rounded-lg bg-[#eef5ff] p-4 text-[#0b5fc4] hover:bg-[#ddeeff] transition font-semibold"
                   >
                     {area.name}
@@ -357,7 +357,7 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
               {relatedLocations.map((loc) => (
                 <a
                   key={loc.slug}
-                  href={`/seo/${parsed.practiceArea.slug}-${loc.slug}`}
+                  href={seoPagePath(`${parsed.practiceArea.slug}-${loc.slug}`)}
                   className="rounded-lg bg-white p-4 text-[#0b5fc4] hover:bg-slate-50 transition font-semibold shadow-[0_8px_24px_rgba(15,23,42,0.08)]"
                 >
                   {loc.name}
