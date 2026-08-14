@@ -110,13 +110,13 @@ export function HeroSection() {
       </div>
 
       {/* Attorney headshot */}
-      <div className="pointer-events-none absolute right-[-20px] top-[-62px] z-10 h-[440px] w-[350px] sm:right-0 sm:top-[-92px] sm:h-[525px] sm:w-[420px] lg:right-[calc(2%+100px)] lg:top-[-154px] lg:h-[590px] lg:w-[470px]">
+      <div className="pointer-events-none absolute right-[calc(50%-175px)] top-[-62px] z-10 hidden h-[440px] w-[350px] lg:right-[calc(2%+100px)] lg:top-[-154px] lg:block lg:h-[590px] lg:w-[470px]">
         <Image
           src="/attorney-headshot.png"
           alt="Guzman Legal attorney"
           fill
           priority
-          sizes="(max-width: 639px) 340px, (max-width: 1023px) 440px, 540px"
+          sizes="(max-width: 1023px) 0px, 470px"
           className="object-contain object-bottom"
         />
       </div>
@@ -155,6 +155,17 @@ export function HeroSection() {
             >
               {text.subtitle}
             </p>
+          </div>
+
+          {/* Mobile attorney portrait */}
+          <div className="relative z-10 mx-auto mt-8 h-[320px] w-full max-w-[300px] sm:mt-10 sm:h-[400px] sm:max-w-[360px] lg:hidden">
+            <Image
+              src="/attorney-headshot.png"
+              alt="Guzman Legal attorney"
+              fill
+              sizes="(max-width: 639px) 300px, 360px"
+              className="object-contain object-bottom"
+            />
           </div>
 
           {/* Inquiry Form */}
