@@ -136,10 +136,12 @@ export function HeroSection() {
         {/* Main Hero */}
         <div className="relative lg:min-h-[590px]">
 
+          {/* Mobile split composition; desktop remains unchanged */}
+          <div className="grid grid-cols-[55%_45%] items-center gap-0 lg:contents">
           {/* Copy */}
           <div className="relative z-20 max-w-[600px] pt-4 lg:pt-8">
             <h1
-              className="whitespace-pre-line text-4xl font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl lg:text-[76px]"
+              className="whitespace-pre-line text-[32px] font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-5xl md:text-7xl lg:text-[76px]"
               style={{
                 fontFamily: "var(--font-heading)",
               }}
@@ -148,7 +150,7 @@ export function HeroSection() {
             </h1>
 
             <p
-              className="mt-6 max-w-[510px] text-base leading-relaxed text-white/90 sm:text-lg"
+              className="mt-4 max-w-[510px] text-xs leading-relaxed text-white/90 sm:mt-6 sm:text-lg"
               style={{
                 fontFamily: "var(--font-geist-sans)",
               }}
@@ -158,7 +160,7 @@ export function HeroSection() {
           </div>
 
           {/* Mobile attorney portrait */}
-          <div className="relative z-10 mx-auto mt-8 h-[320px] w-full max-w-[300px] sm:mt-10 sm:h-[400px] sm:max-w-[360px] lg:hidden">
+          <div className="relative z-10 h-[280px] w-full max-w-none lg:hidden">
             <Image
               src="/attorney-headshot.png"
               alt="Guzman Legal attorney"
@@ -166,6 +168,7 @@ export function HeroSection() {
               sizes="(max-width: 639px) 300px, 360px"
               className="object-contain object-bottom"
             />
+          </div>
           </div>
 
           {/* Inquiry Form */}
