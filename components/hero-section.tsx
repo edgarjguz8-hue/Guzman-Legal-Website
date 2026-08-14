@@ -110,7 +110,7 @@ export function HeroSection() {
       </div>
 
       {/* Attorney headshot */}
-      <div className="pointer-events-none absolute right-[-60px] top-[-62px] z-10 h-[400px] w-[380px] sm:right-[-40px] sm:top-[-92px] sm:h-[520px] sm:w-[490px] lg:right-[calc(2%+20px)] lg:top-[-154px] lg:h-[680px] lg:w-[640px]">
+      <div className="pointer-events-none absolute right-[-60px] top-[-62px] z-10 h-[520px] w-[416px] sm:right-[-40px] sm:top-[-92px] sm:h-[620px] sm:w-[496px] lg:right-[calc(2%+20px)] lg:top-[-154px] lg:h-[700px] lg:w-[560px]">
         <Image
           src="/attorney-headshot.png"
           alt="Guzman Legal attorney"
