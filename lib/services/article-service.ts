@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
 import type { Article } from "@/types"
 
@@ -46,7 +47,7 @@ const DETAIL_COLUMNS = `
 `
 
 /** Fetch a single published article by slug, or `null` if not found. */
-export async function getArticleBySlug(slug: string): Promise<Article | null> {
+async function getArticleBySlugUncached(slug: string): Promise<Article | null> {
   let supabase
   try {
     supabase = getSupabaseServerClient()
@@ -73,7 +74,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 }
 
 /** Fetch all published articles, newest first. */
-export async function getPublishedArticles(): Promise<Article[]> {
+async function getPublishedArticlesUncached(): Promise<Article[]> {
   let supabase
   try {
     supabase = getSupabaseServerClient()
@@ -94,4 +95,22 @@ export async function getPublishedArticles(): Promise<Article[]> {
   }
 
   return (data as Article[]) ?? []
+}
+
+const getPublishedArticlesCached = unstable_cache(
+  getPublishedArticlesUncached,
+  ["published-articles"],
+  { revalidate: 300 }
+)
+
+export function getPublishedArticles(): Promise<Article[]> {
+  return getPublishedArticlesCached()
+}
+
+export function getArticleBySlug(slug: string): Promise<Article | null> {
+  return unstable_cache(
+    () => getArticleBySlugUncached(slug),
+    ["published-article", slug],
+    { revalidate: 300 }
+  )()
 }

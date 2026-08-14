@@ -2,6 +2,8 @@ import { ArticleDetail } from "@/components/article-detail"
 import Link from "next/link"
 import { getArticleBySlug } from "@/lib/services/article-service"
 
+export const revalidate = 300
+
 export default async function ArticlePage({
   params,
 }: {
