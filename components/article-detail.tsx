@@ -3,7 +3,7 @@
 import { Calendar, Clock } from "lucide-react"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
-import type { Article } from "@/app/resources/[slug]/page"
+import type { Article } from "@/types"
 
 export function ArticleDetail({ article }: { article: Article }) {
   const { language } = useLanguage()
@@ -95,7 +95,7 @@ export function ArticleDetail({ article }: { article: Article }) {
   )
 }
 
-function formatDate(date: string | null, isSpanish: boolean) {
+function formatDate(date: string | null | undefined, isSpanish: boolean) {
   if (!date) return ""
 
   return new Date(date).toLocaleDateString(isSpanish ? "es-US" : "en-US", {

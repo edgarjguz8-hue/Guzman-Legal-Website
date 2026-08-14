@@ -28,3 +28,17 @@ export function getSupabaseBrowserClient(): SupabaseClient {
   browserClient = createClient(url, anonKey)
   return browserClient
 }
+
+/**
+ * Non-throwing variant: returns `null` when the public env vars are missing
+ * instead of throwing. Client Components that gracefully degrade on missing
+ * config (showing an empty state rather than crashing the render) should use
+ * this.
+ */
+export function tryGetSupabaseBrowserClient(): SupabaseClient | null {
+  try {
+    return getSupabaseBrowserClient()
+  } catch {
+    return null
+  }
+}

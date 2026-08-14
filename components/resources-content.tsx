@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { createClient } from "@supabase/supabase-js"
+import { tryGetSupabaseBrowserClient } from "@/lib/supabase/client"
 import { useLanguage } from "@/contexts/language-context"
 import {
   ArrowRight,
@@ -11,21 +11,7 @@ import {
   ChevronDown,
 } from "lucide-react"
 
-type Article = {
-  id: string
-  title: string
-  title_es: string | null
-  slug: string
-  category: string | null
-  category_es: string | null
-  excerpt: string | null
-  excerpt_es: string | null
-  image_url: string | null
-  read_time: string | null
-  read_time_es: string | null
-  published_date: string | null
-  featured: boolean | null
-}
+import type { Article } from "@/types"
 
 type Topic = {
   category: string
@@ -49,16 +35,13 @@ export function ResourcesContent() {
     async function loadResources() {
       setLoading(true)
 
-      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      const supabase = tryGetSupabaseBrowserClient()
 
-      if (!supabaseUrl || !supabaseKey) {
+      if (!supabase) {
         console.error("Missing Supabase keys")
         setLoading(false)
         return
       }
-
-      const supabase = createClient(supabaseUrl, supabaseKey)
 
       const { data: articleData, error: articleError } = await supabase
         .from("articles")
@@ -530,7 +513,7 @@ function SectionTitle({ title }: { title: string }) {
   )
 }
 
-function formatDate(date: string | null, isSpanish: boolean) {
+function formatDate(date: string | null | undefined, isSpanish: boolean) {
   if (!date) return ""
 
   return new Date(`${date}T12:00:00`).toLocaleDateString(

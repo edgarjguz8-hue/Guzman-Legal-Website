@@ -1,5 +1,6 @@
-export type { Attorney } from "./attorney"
+export type { Attorney, AttorneyMatchResult } from "./attorney"
 export type { LeadInput, LeadRecord } from "./lead"
+export type { ContactInput } from "./contact"
 export type { PracticeArea } from "./practice-area"
 export type { Location } from "./location"
 export type { SeoEntity, ParsedSeoSlug } from "./seo"

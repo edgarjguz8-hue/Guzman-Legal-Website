@@ -12,6 +12,8 @@ export interface Article {
   slug: string
   excerpt: string | null
   excerpt_es: string | null
+  content?: string | null
+  content_es?: string | null
   category?: string | null
   category_es?: string | null
   image_url?: string | null

@@ -103,8 +103,9 @@ export default function SeoPage({ params }: { params: { slug: string } }) {
   }
 
   const relatedAreas = practiceAreas.filter(pa => pa.slug !== parsed.practiceArea.slug).slice(0, 5)
-  const relatedLocations = parsed.location 
-    ? locations.filter(l => l.slug !== parsed.location.slug).slice(0, 5)
+  const parsedLocation = parsed.location
+  const relatedLocations = parsedLocation
+    ? locations.filter(l => l.slug !== parsedLocation.slug).slice(0, 5)
     : locations.slice(0, 5)
 
   // Generate FAQ content based on practice area

@@ -19,3 +19,13 @@ export interface Attorney {
   spanish_speaking: boolean | null
   approved: boolean | null
 }
+
+/**
+ * Result of the ZIP -> county -> attorneys match flow. Mirrors the JSON shape
+ * returned by `POST /api/find-attorney`.
+ */
+export interface AttorneyMatchResult {
+  county: string | null
+  attorneys: Attorney[]
+  message: string
+}

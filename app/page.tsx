@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { createClient } from "@supabase/supabase-js"
+import { tryGetSupabaseBrowserClient } from "@/lib/supabase/client"
 import { HeroSection } from "@/components/hero-section"
 import { useLanguage } from "@/contexts/language-context"
+import type { Article } from "@/types"
 import {
   Shield,
   Lock,
@@ -18,15 +19,6 @@ import {
   FileText,
 } from "lucide-react"
 
-type Article = {
-  id: string
-  title: string
-  title_es: string | null
-  slug: string
-  excerpt: string | null
-  excerpt_es: string | null
-}
-
 export default function HomePage() {
   const { t, language } = useLanguage()
   const isSpanish = language === "es"
@@ -36,15 +28,9 @@ export default function HomePage() {
   // Load featured articles
   useEffect(() => {
     async function loadArticles() {
-      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      const supabase = tryGetSupabaseBrowserClient()
 
-      if (!supabaseUrl || !supabaseKey) return
-
-      const supabase = createClient(
-        supabaseUrl,
-        supabaseKey
-      )
+      if (!supabase) return
 
       const { data, error } = await supabase
         .from("articles")
