@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { ArrowRight, Lock, MessageCircle, Shield } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -143,28 +142,6 @@ export function HeroSection() {
             >
               {text.subtitle}
             </p>
-          </div>
-
-          {/* Attorney */}
-          <div className="pointer-events-none absolute right-[-30px] top-[-65px] z-10 hidden h-[570px] w-[650px] lg:block xl:right-[10px]">
-            <Image
-              src="/attorney-hero.png"
-              alt="Guzman Legal attorney"
-              fill
-              priority
-              className="object-contain object-bottom"
-            />
-          </div>
-
-          {/* Mobile attorney */}
-          <div className="pointer-events-none relative z-10 mx-auto mt-8 h-[300px] w-full max-w-[450px] lg:hidden">
-            <Image
-              src="/attorney-hero.png"
-              alt="Guzman Legal attorney"
-              fill
-              priority
-              className="object-contain object-bottom"
-            />
           </div>
 
           {/* Inquiry Form */}
