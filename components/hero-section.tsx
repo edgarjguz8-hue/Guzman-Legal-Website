@@ -19,9 +19,9 @@ export function HeroSection() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const content = {
+ const content = {
   en: {
-    title: "Your Legal Voice.\nIn Your Corner.",
+    title: "Your Legal Voice.",
     subtitle:
       "For over 25 years, Guzman Legal has represented individuals, families, and businesses throughout Tampa Bay.",
     formTitle: "Tell us how we can help.",
@@ -36,8 +36,9 @@ export function HeroSection() {
     success:
       "Thank you. Your inquiry has been sent to Guzman Legal.",
   },
+
   es: {
-    title: "Su Voz Legal.\nDe Su Lado.",
+    title: "Su Voz Legal.",
     subtitle:
       "Por más de 25 años, Guzman Legal ha representado a individuos, familias y empresas en toda el área de Tampa Bay.",
     formTitle: "Díganos cómo podemos ayudarle.",
