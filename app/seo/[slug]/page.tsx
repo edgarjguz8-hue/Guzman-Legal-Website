@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { use, useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowRight, MapPin, ChevronDown, Lock, Shield, MessageCircle } from "lucide-react"
 import {
@@ -14,8 +14,9 @@ import {
   seoPagePath,
 } from "@/lib/seo"
 
-export default function SeoPage({ params }: { params: { slug: string } }) {
-  const parsed = parseSeoSlug(params.slug)
+export default function SeoPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params)
+  const parsed = parseSeoSlug(slug)
   const router = useRouter()
   const [zipCode, setZipCode] = useState("")
   const [selectedArea, setSelectedArea] = useState("")

@@ -1,25 +1,13 @@
 User-agent: *
 Allow: /
 
-# Allow crawling of all dynamic SEO pages
-Allow: /car-accident-lawyer*
-Allow: /personal-injury-lawyer*
-Allow: /criminal-defense-lawyer*
-Allow: /dui-lawyer*
-Allow: /family-lawyer*
-Allow: /divorce-lawyer*
-Allow: /immigration-lawyer*
-Allow: /employment-lawyer*
-Allow: /business-lawyer*
-Allow: /estate-planning-lawyer*
-Allow: /real-estate-lawyer*
-Allow: /landlord-tenant-lawyer*
-Allow: /bankruptcy-lawyer*
-Allow: /workers-compensation-lawyer*
+# Programmatic SEO landing pages live under /seo/*
+# Marketing content lives under /resources/* (and its /blog alias)
 
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /private/
+# Disallow API routes and internal flow pages
+Disallow: /api/
+Disallow: /matched-attorney
+Disallow: /thank-you
 Disallow: /.next/
 
 Sitemap: https://attorneyabogado.com/sitemap.xml
