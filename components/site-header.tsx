@@ -68,72 +68,69 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop Right Side */}
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-6">
+
+          {/* Navigation */}
+          <nav className="flex items-center gap-7">
+
+            <Link
+              href="/practice-areas"
+              className={linkClass("practice-areas")}
+            >
+              {t("nav.practiceAreas")}
+            </Link>
+
+            <Link
+              href="/attorney"
+              className={linkClass("attorney")}
+            >
+              {t("nav.attorney")}
+            </Link>
+
+            <Link
+              href="/blog"
+              className={linkClass("blog")}
+            >
+              {t("nav.blog")}
+            </Link>
+
+            <Link
+              href="/contact"
+              className={linkClass("contact")}
+            >
+              {t("nav.contact")}
+            </Link>
+
+          </nav>
 
           {/* Contact Information */}
-          <div className="flex items-center gap-5 text-xs font-normal tracking-wide text-white/70">
+          <div className="flex items-center gap-4 text-xs font-normal tracking-wide text-white/80">
 
             <a
               href="tel:8139331234"
-              className="flex items-center gap-2 transition-opacity hover:opacity-70"
+              className="flex items-center gap-1.5 whitespace-nowrap transition-opacity hover:opacity-70"
             >
-              <Phone className="h-4 w-4" />
+              <Phone className="h-3.5 w-3.5" />
               <span>(813) 933-1234</span>
             </a>
 
             <a
               href="mailto:info@guzmanlegal.com"
-              className="flex items-center gap-2 transition-opacity hover:opacity-70"
+              className="flex items-center gap-1.5 whitespace-nowrap transition-opacity hover:opacity-70"
             >
-              <Mail className="h-4 w-4" />
+              <Mail className="h-3.5 w-3.5" />
               <span>info@guzmanlegal.com</span>
             </a>
 
           </div>
 
-          {/* Navigation + Language */}
-          <div className="flex items-center gap-7">
-
-            <nav className="flex items-center gap-7">
-
-              <Link
-                href="/practice-areas"
-                className={linkClass("practice-areas")}
-              >
-                {t("nav.practiceAreas")}
-              </Link>
-
-              <Link
-                href="/attorney"
-                className={linkClass("attorney")}
-              >
-                {t("nav.attorney")}
-              </Link>
-
-              <Link
-                href="/blog"
-                className={linkClass("blog")}
-              >
-                {t("nav.blog")}
-              </Link>
-
-              <Link
-                href="/contact"
-                className={linkClass("contact")}
-              >
-                {t("nav.contact")}
-              </Link>
-
-            </nav>
-
-            {/* Language Toggle */}
-            <div className="relative z-10 flex items-center">
-              <div className="rounded-full border border-white/30 bg-white/5 px-2 py-1">
-                <LanguageToggle />
-              </div>
+          {/* Language Toggle */}
+          <div className="relative z-10 flex items-center">
+            <div className="rounded-full border border-white/30 bg-white/5 px-2 py-1">
+              <LanguageToggle />
             </div>
-
           </div>
+
         </div>
 
         {/* Mobile Menu Button */}
